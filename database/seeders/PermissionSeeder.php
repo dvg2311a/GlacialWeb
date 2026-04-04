@@ -114,8 +114,13 @@ class PermissionSeeder extends Seeder
             'Eliminar Inventario',
         ];
 
+        $guard = config('auth.defaults.guard', 'web');
+
         foreach ($permission as $value) {
-            Permission::create(['name' => $value, 'guard_name' => 'sanctum']);
+            Permission::firstOrCreate([
+                'name' => $value,
+                'guard_name' => $guard,
+            ]);
         }
     }
 }

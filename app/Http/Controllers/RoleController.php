@@ -3,60 +3,67 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+
     public function index()
     {
-        //
+        $roles = Role::with('permissions')->get()->map(function ($role) {
+            return [
+                'id' => $role->id,
+                'name' => $role->name,
+                'permissions' => $role->permissions->map(function ($p) {
+                    return ['id' => $p->id, 'name' => $p->name];
+                })->values(),
+            ];
+        });
+
+        // dd($roles);
+
+        return Inertia::render('Roles/Index', [
+            'roles' => $roles,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        //
+        $role = new Role();
+        // Enviar la lista completa de permisos (id + name) como `permissions`
+        $permissions = Permission::select('id', 'name')->orderBy('id', 'asc')->get();
+
+        return Inertia::render('Roles/Create', ['role' => $role, 'permissions' => $permissions]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+
+
+        return redirect()->route('roles.index')->with('success', 'No se pueden crear roles.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //
