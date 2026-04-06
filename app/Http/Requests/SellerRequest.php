@@ -29,6 +29,7 @@ class SellerRequest extends FormRequest
             'phone' => 'nullable|string|max:20',
             'sex' => 'nullable|string|size:1',
             'picture' => 'nullable|string|max:2048',
+            'identity_card' => 'required|string|max:20',
             'cart_id' => 'required|exists:carts,id',
         ];
     }

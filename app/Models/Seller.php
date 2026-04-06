@@ -10,7 +10,7 @@ class Seller extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'surname', 'direction', 'phone', 'sex', 'picture',
+        'name', 'surname', 'direction', 'phone', 'sex', 'identity_card', 'picture',
         'cart_id'
     ];
 
