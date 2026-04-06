@@ -1,4 +1,5 @@
 <script setup>
+import { Fan } from 'lucide-vue-next';
 import { ref } from 'vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Dropdown from '@/Components/Dropdown.vue';
@@ -25,7 +26,7 @@ const showingNavigationDropdown = ref(false);
                             <!-- Logo -->
                             <div class="flex shrink-0 items-center">
                                 <Link :href="route('dashboard')">
-                                    <ApplicationLogo class="block h-9 w-auto fill-current text-gray-800" />
+                                <ApplicationLogo class="block h-9 w-auto fill-current text-gray-800" />
                                 </Link>
                             </div>
 
@@ -36,9 +37,17 @@ const showingNavigationDropdown = ref(false);
                                 </NavLink>
                             </div>
 
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="$page.props.auth.roles.includes('Administrador')">
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
+                                v-if="$page.props.auth.roles.includes('Administrador')">
                                 <NavLink :href="route('roles.index')" :active="route().current('roles.index')">
                                     Roles
+                                </NavLink>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
+                                v-if="$page.props.auth.roles.includes('Administrador')">
+                                <NavLink :href="route('type_freezers.index')" :active="route().current('type_freezers.index')">
+                                    <Fan class="mr-2"/> Tipos de Freezer
                                 </NavLink>
                             </div>
 
