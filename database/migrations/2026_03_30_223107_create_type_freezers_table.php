@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('type_freezers', function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->string("name", 10)->unique();
+            $table->string("name", 30)->unique();
             $table->string("description");
             $table->timestamps();
         });
