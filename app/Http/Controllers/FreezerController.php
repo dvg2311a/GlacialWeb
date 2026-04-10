@@ -12,7 +12,7 @@ class FreezerController extends Controller
 {
     public function index()
     {
-        $freezer = Freezer::all();
+        $freezer = Freezer::with('typeFreezer')->get();
         $type = TypeFreezer::all();
         return Inertia::render('Freezer/Index', ['freezer' => $freezer, 'type' => $type]);
     }
@@ -21,6 +21,7 @@ class FreezerController extends Controller
     {
         $freezer = new Freezer();
         $type = TypeFreezer::all();
+        // dd($type);
         return Inertia::render('Freezer/Create', ['freezer' => $freezer, 'type' => $type]);
     }
 

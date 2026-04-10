@@ -1,12 +1,14 @@
 <script setup>
     import { Head, router } from '@inertiajs/vue3';
     import { Plus, SquarePen, Trash } from 'lucide-vue-next';
-    import NavLink from '@/components/NavLink.vue';
+    import NavLink from '@/Components/NavLink.vue';
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+
 
 
     defineProps({
         freezer: Array,
+
     });
 
     const deleteFreezer = (id) => {
@@ -54,7 +56,7 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr v-for="freezer in freezer" :key="type_freezer.id">
+                            <tr v-for="freezer in freezer" :key="freezer.id">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     {{ freezer.number_freezer }}
                                 </td>
@@ -65,7 +67,7 @@
                                     {{ freezer.type_freezer.name }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <NavLink :href="route('freezers.edit', type_freezer.id)" class="text-indigo-600 hover:text-indigo-900" title="Editar">
+                                    <NavLink :href="route('freezers.edit', freezer.id)" class="text-indigo-600 hover:text-indigo-900" title="Editar">
                                         <SquarePen />
 
                                     </NavLink>

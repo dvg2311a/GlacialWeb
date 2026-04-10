@@ -51,6 +51,13 @@ const showingNavigationDropdown = ref(false);
                                 </NavLink>
                             </div>
 
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
+                                v-if="$page.props.auth.roles.includes('Administrador')">
+                                <NavLink :href="route('freezers.index')" :active="route().current('freezers.index')">
+                                    <Fan class="mr-2"/> Freezers
+                                </NavLink>
+                            </div>
+
                         </div>
 
                         <div class="hidden sm:ms-6 sm:flex sm:items-center">

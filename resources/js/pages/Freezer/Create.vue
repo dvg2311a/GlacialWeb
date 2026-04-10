@@ -1,18 +1,17 @@
 <script setup>
 import { Head, useForm } from '@inertiajs/vue3';
 import { ArrowLeft } from 'lucide-vue-next';
-import NavLink from '@/components/NavLink.vue';
+import NavLink from '@/Components/NavLink.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { type } from 'os';
 
 defineProps({
     freezer: Array,
-    type: Object
+    type: Array
 });
 const form = useForm({
     number_freezer: '',
     status: '',
-    type: ''
+    type_freezer_id: ''
 });
 
 const submit = () => {
@@ -43,24 +42,31 @@ const submit = () => {
                         <div>
                             <label for="number_freezer" class="block text-sm font-medium text-gray-700">Número de
                                 Freezer</label>
-                            <input v-model="form.number_freezer" type="text" name="number_freezer" id="name" required
+                            <input v-model="form.number_freezer" type="number" name="number_freezer" id="name" required
                                 class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <div v-if="form.errors.number_freezer" class="text-red-600 text-sm mt-1">{{
                                 form.errors.number_freezer }}</div>
                         </div>
 
                         <div>
-                            <label for="description" class="block text-sm font-medium text-gray-700">Descripción</label>
+                            <label for="description" class="block text-sm font-medium text-gray-700">Estado</label>
                             <input v-model="form.status" name="description" id="description" rows="3"
                                 class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></input>
                             <p v-if="form.errors.status" class="text-red-600 text-sm mt-1">{{ form.errors.status }}</p>
                         </div>
                         <div>
-                            <label for="number_freezer" class="block text-sm font-medium text-gray-700">Tipo de Freezer</label>
-                            <input v-model="form.type" type="text" name="number_freezer" id="name" required
+                            <label for="number_freezer" class="block text-sm font-medium text-gray-700">Tipo de
+                                Freezer</label>
+                            <select v-model="form.type_freezer_id" name="type_freezer_id" id="type_freezer_id" required
                                 class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                            <div v-if="form.errors.type" class="text-red-600 text-sm mt-1">{{
-                                form.errors.type }}</div>
+                                <option value="">Seleccionar tipo</option>
+                                <option v-for="t in type" :key="t.id" :value="t.id">
+                                    {{ t.name }}
+                                </option>
+                            </select>
+                            <div v-if="form.errors.type_freezer_id" class="text-red-600 text-sm mt-1">{{
+                                form.errors.type_freezer_id }}</div>
+
                         </div>
                         <div>
                             <button type="submit"
