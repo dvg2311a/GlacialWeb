@@ -2,7 +2,7 @@
 import { Head } from '@inertiajs/vue3';
 import { useForm } from '@inertiajs/vue3';
 import { ArrowLeft } from 'lucide-vue-next';
-import NavLink from '@/components/NavLink.vue';
+import NavLink from '@/Components/NavLink.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
 const props = defineProps({
@@ -27,7 +27,7 @@ const submit = () => {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200 flex flex-wrap">
-                        <NavLink :href="route('type_freezers.index')"
+                        <NavLink :href="route('freezers.index')"
                             class="-translate-x-3 border-none rounded-md font-semibold tracking-widest focus:outline-none focus:ring disabled:opacity-25 transition">
                             <ArrowLeft :size="32" color="gray" />
                         </NavLink>

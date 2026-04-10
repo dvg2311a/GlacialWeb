@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-vue-next';
 import NavLink from '@/Components/NavLink.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
+
 defineProps({
     freezer: Array,
     type: Array
@@ -14,9 +15,25 @@ const form = useForm({
     type_freezer_id: ''
 });
 
-const submit = () => {
-    form.post(route('freezers.store'));
-};
+const Swal = window.Swal;
+
+function submit(){
+    form.post(route('freezers.store'), {
+        onSuccess: () => {
+            Swal.fire({
+                title: '¡Éxito!',
+                text: 'El freezer ha sido creado exitosamente.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar',
+                timer: 3000,
+                timerProgressBar: true,
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+            });
+        }
+    });
+}
 </script>
 
 <template>
@@ -42,7 +59,7 @@ const submit = () => {
                         <div>
                             <label for="number_freezer" class="block text-sm font-medium text-gray-700">Número de
                                 Freezer</label>
-                            <input v-model="form.number_freezer" type="number" name="number_freezer" id="name" required
+                            <input v-model="form.number_freezer" type="text" name="number_freezer" id="name" required
                                 class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <div v-if="form.errors.number_freezer" class="text-red-600 text-sm mt-1">{{
                                 form.errors.number_freezer }}</div>
@@ -50,8 +67,15 @@ const submit = () => {
 
                         <div>
                             <label for="description" class="block text-sm font-medium text-gray-700">Estado</label>
-                            <input v-model="form.status" name="description" id="description" rows="3"
-                                class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></input>
+                            <select v-model="form.status" name="description" id="description" rows="3"
+                                class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                <option value="" disabled>Selecciona un estado</option>
+                                <option value="activo">Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                                <option value="dañado">Inactivo dañado</option>
+                                <option value="bueno">Inactivo en buen estado</option>
+                                <option value="mantenimiento">Mantenimiento</option>
+                            </select>
                             <p v-if="form.errors.status" class="text-red-600 text-sm mt-1">{{ form.errors.status }}</p>
                         </div>
                         <div>

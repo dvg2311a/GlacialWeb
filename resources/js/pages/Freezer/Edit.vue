@@ -2,24 +2,42 @@
 import { Head } from '@inertiajs/vue3';
 import { useForm } from '@inertiajs/vue3';
 import { ArrowLeft } from 'lucide-vue-next';
-import NavLink from '@/components/NavLink.vue';
+import NavLink from '@/Components/NavLink.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
 
 const props = defineProps({
-    freezer: Object,
-    type: Object
+    freezer: Array,
+    type: Array
 });
 
 const form = useForm({
-    number_freezer: props.freezer?.name ?? '',
-    status: props.freezer?.description ?? '',
-    type: props.freezer.type ?? '',
+    number_freezer: props.freezer?.number_freezer ?? '',
+    status: props.freezer?.status ?? '',
+    type_freezer_id: props.freezer.type_freezer_id ?? '',
 });
 
-const submit = () => {
-    form.put(route('freezers.update', props.freezer.id));
-};
+
+
+const Swal = window.Swal;
+
+function submit(){
+    form.put(route('freezers.update', props.freezer.id), {
+        onSuccess: () => {
+            Swal.fire({
+                title: '¡Éxito!',
+                text: 'El freezer ha sido actualizado exitosamente.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar',
+                timer: 3000,
+                timerProgressBar: true,
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+            });
+        }
+    });
+}
 </script>
 
 <template>
@@ -30,7 +48,7 @@ const submit = () => {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200 flex flex-wrap">
-                        <NavLink :href="route('type_freezers.index')"
+                        <NavLink :href="route('freezers.index')"
                             class="-translate-x-3 border-none rounded-md font-semibold tracking-widest focus:outline-none focus:ring disabled:opacity-25 transition">
                             <ArrowLeft :size="32" color="gray" />
                         </NavLink>
@@ -45,23 +63,39 @@ const submit = () => {
                         <div>
                             <label for="number_freezer" class="block text-sm font-medium text-gray-700">Número de
                                 Freezer</label>
-                            <input v-model="form.number_freezer" type="text" name="number_freezer" id="name" required
-                                class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            <input v-model="form.number_freezer" name="number_freezer" id="number_freezer" required
+                                class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm
+                                focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            </input>
                             <div v-if="form.errors.number_freezer" class="text-red-600 text-sm mt-1">{{
                                 form.errors.number_freezer }}</div>
                         </div>
 
                         <div>
                             <label for="status" class="block text-sm font-medium text-gray-700">Estado</label>
-                            <textarea v-model="form.status" name="satus" id="description" rows="3"
-                                class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                            <select v-model="form.status" name="status" id="status" rows="3"
+                                class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring
+                                focus:ring-indigo-200 focus:ring-opacity-50">
+                                <option value="" disabled>Selecciona un estado</option>
+                                <option value="activo">Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                                <option value="dañado">Inactivo dañado</option>
+                                <option value="bueno">Inactivo en buen estado</option>
+                                <option value="mantenimiento">Mantenimiento</option>
+                            </select>
                             <p v-if="form.errors.status" class="text-red-600 text-sm mt-1">{{ form.errors.status }}</p>
                         </div>
                         <div>
-                            <label for="type" class="block text-sm font-medium text-gray-700">Estado</label>
-                            <textarea v-model="form.status" name="type" id="description" rows="3"
-                                class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
-                            <p v-if="form.errors.type" class="text-red-600 text-sm mt-1">{{ form.errors.type }}</p>
+                            <label for="type" class="block text-sm font-medium text-gray-700">Tipo de Freezer</label>
+                            <select v-model="form.type_freezer_id" name="type_freezer_id" id="type_freezer_id" required
+                                class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring
+                                focus:ring-indigo-200 focus:ring-opacity-50">
+                                <option value="" disabled>Selecciona un tipo de freezer</option>
+                                <option v-for="type in props.type" :key="type.id" :value="type.id">
+                                    {{ type.name }}
+                                </option>
+                            </select>
+                            <p v-if="form.errors.type_freezer_id" class="text-red-600 text-sm mt-1">{{ form.errors.type_freezer_id }}</p>
                         </div>
                         <div>
                             <button type="submit" :disabled="form.processing"

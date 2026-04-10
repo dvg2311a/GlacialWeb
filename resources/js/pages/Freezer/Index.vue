@@ -11,10 +11,30 @@
 
     });
 
-    const deleteFreezer = (id) => {
-        router.delete(route('freezers.destroy', id), {
+    const Swal = window.Swal;
+
+
+    function confirmDelete(id) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminarlo!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                router.delete(route('freezers.destroy', id));
+                Swal.fire(
+                    '¡Eliminado!',
+                    'El freezer ha sido eliminado.',
+                    'success'
+                );
+            }
         });
-    };
+    }
 
 </script>
 
@@ -71,7 +91,7 @@
                                         <SquarePen />
 
                                     </NavLink>
-                                    <button @click="deleteFreezer(freezer.id)" class="text-red-600 hover:text-red-900 ml-2 " title="Eliminar">
+                                    <button @click="confirmDelete(freezer.id)" class="text-red-600 hover:text-red-900 ml-2 " title="Eliminar">
                                         <Trash />
 
                                     </button>
