@@ -1,11 +1,11 @@
 <script setup>
-import { Fan } from 'lucide-vue-next';
+import { Fan, Snowflake, PencilRuler, Star } from 'lucide-vue-next';
 import { ref } from 'vue';
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
-import NavLink from '@/Components/NavLink.vue';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import ApplicationLogo from '@/components/ApplicationLogo.vue';
+import Dropdown from '@/components/Dropdown.vue';
+import DropdownLink from '@/components/DropdownLink.vue';
+import NavLink from '@/components/NavLink.vue';
+import ResponsiveNavLink from '@/components/ResponsiveNavLink.vue';
 
 defineProps({
     title: String,
@@ -40,21 +40,29 @@ const showingNavigationDropdown = ref(false);
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
                                 v-if="$page.props.auth.roles.includes('Administrador')">
                                 <NavLink :href="route('roles.index')" :active="route().current('roles.index')">
-                                    Roles
+                                    <Star class="mr-2" /> Roles
                                 </NavLink>
                             </div>
 
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
                                 v-if="$page.props.auth.roles.includes('Administrador')">
-                                <NavLink :href="route('type_freezers.index')" :active="route().current('type_freezers.index')">
-                                    <Fan class="mr-2"/> Tipos de Freezer
+                                <NavLink :href="route('type_freezers.index')"
+                                    :active="route().current('type_freezers.index')">
+                                    <Fan class="mr-2" /> Tipos de Freezer
                                 </NavLink>
                             </div>
 
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
                                 v-if="$page.props.auth.roles.includes('Administrador')">
                                 <NavLink :href="route('freezers.index')" :active="route().current('freezers.index')">
-                                    <Fan class="mr-2"/> Freezers
+                                    <Snowflake class="mr-2" /> Freezers
+                                </NavLink>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
+                                v-if="$page.props.auth.roles.includes('Administrador')">
+                                <NavLink :href="route('plate_dimensions.index')" :active="route().current('plate_dimensions.index')">
+                                    <PencilRuler class="mr-2" /> Dimensiones de Placa
                                 </NavLink>
                             </div>
 
