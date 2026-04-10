@@ -21,7 +21,6 @@ class FreezerController extends Controller
     {
         $freezer = new Freezer();
         $type = TypeFreezer::all();
-        // dd($type);
         return Inertia::render('Freezer/Create', ['freezer' => $freezer, 'type' => $type]);
     }
 
