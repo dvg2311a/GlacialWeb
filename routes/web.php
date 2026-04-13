@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileControllers;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 
-use App\Http\Controllers\RoleControllers;
+use App\Http\Controllers\RoleController;
 
 use App\Http\Controllers\TypeFreezerController;
 use App\Http\Controllers\FreezerController;
@@ -50,13 +50,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileControllers::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileControllers::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileControllers::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::middleware(['auth:web', config('auth_session'), 'verified', 'role:Administrador'])->group(function () {
-    Route::resource('/roles', RoleControllers::class);
+    Route::resource('/roles', RoleController::class);
 
     // ? Modulos de Freezer
     Route::resource('/type_freezers', TypeFreezerController::class);
