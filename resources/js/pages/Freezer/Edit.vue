@@ -66,7 +66,6 @@ function submit(){
                             <input v-model="form.number_freezer" name="number_freezer" id="number_freezer" required
                                 class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm
                                 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                            </input>
                             <div v-if="form.errors.number_freezer" class="text-red-600 text-sm mt-1">{{
                                 form.errors.number_freezer }}</div>
                         </div>
