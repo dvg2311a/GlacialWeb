@@ -23,8 +23,8 @@ class PlateDimensionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'width' => 'required|decimal:0,2',
-            'height' => 'required|decimal:0,2',
+            'width' => 'required|numeric|regex:/^\d{1,8}(\.\d{1,2})?$/',
+            'height' => 'required|numeric|regex:/^\d{1,8}(\.\d{1,2})?$/',
             'unit_measure' => 'required|in:CM,INCH',
             'shape' => 'required|string|max:50',
         ];
