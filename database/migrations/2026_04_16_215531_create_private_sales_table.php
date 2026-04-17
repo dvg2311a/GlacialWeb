@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements("id");
             $table->dateTime("date_sale")->index();
 
-            $table->foreignId("user_i")->constrained("users")->onUpdate("cascade")->onDelete("cascade");
+            $table->foreignId("user_id")->constrained("users")->onUpdate("cascade")->onDelete("cascade");
 
             $table->timestamps();
         });
