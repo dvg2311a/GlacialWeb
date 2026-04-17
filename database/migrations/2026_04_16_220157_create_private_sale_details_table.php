@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements("id");
             $table->integer("quantity");
             $table->decimal("unit_price");
+            $table->decimal("line_total", 12, 2);
             $table->enum("type_price", ["Detalle", "Mayorista", "Malo"]);
 
             $table->foreignId("product_id")->constrained("products")->onDelete("cascade")->onUpdate("cascade");

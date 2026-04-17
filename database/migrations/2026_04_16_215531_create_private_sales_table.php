@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('private_sales', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->dateTime("date_sale")->index();
-
+            $table->decimal("grand_total", 12, 2);
             $table->foreignId("user_id")->constrained("users")->onUpdate("cascade")->onDelete("cascade");
 
             $table->timestamps();
