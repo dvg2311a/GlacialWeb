@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class PrivateSale extends Model
 {
+    protected $fillable = [
+        'date_sale', 'grand_total', 'user_id'
+    ];
     public function privateSaleDetail() : HasMany {
         return $this ->hasMany(PrivateSaleDetail::class);
     }

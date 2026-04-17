@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class PrivateSaleDetail extends Model
 {
 
+    protected $fillable = [
+        'quantity', 'unit_price', 'line_total', 'type_price', 'product_id', 'private_sale_id'
+    ];
 
     public function product() : BelongsTo {
         return $this -> belongsTo(Product::class);
