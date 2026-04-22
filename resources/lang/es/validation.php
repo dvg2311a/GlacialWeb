@@ -12,5 +12,8 @@ return [
     'attributes' => [
         'name' => 'Nombre',
         'description' => 'Descripción',
+        'code_plate' => 'Codigo de placa',
+        'plate_dimension_id' => 'Dimensión de placa',
+        'freezers_id' => 'Freezer',
     ],
 ];

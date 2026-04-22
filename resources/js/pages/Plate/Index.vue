@@ -7,7 +7,9 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
 
 defineProps({
-    plate_dimensions: Array,
+    plates: Array,
+    plate_dimension: Array,
+    freezer: Array
 
 });
 
@@ -26,7 +28,7 @@ function confirmDelete(id) {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            router.delete(route('plate_dimensions.destroy', id));
+            router.delete(route('plates.destroy', id));
             Swal.fire(
                 '¡Eliminado!',
                 'La dimensión de la placa ha sido eliminada.',
@@ -40,22 +42,23 @@ function confirmDelete(id) {
 
 <template>
 
-    <Head title="Dimensiones de Placas" />
+    <Head title="Placas" />
     <AuthenticatedLayout>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        <h1 class="text-2xl font-bold mb-4">Dimensiones de Placas</h1>
-                        <p class="text-gray-600">En este apartado puedes gestionar las dimensiones de las placas.
-                            Agregar, editar ver y eliminar cada registro.</p>
+                        <h1 class="text-2xl font-bold mb-4">Placas</h1>
+                        <p class="text-gray-600">En este apartado puedes gestionar las placas.
+                            Agregar, editar ver, eliminar y asignar al freezer y su dimensión correspondiente a
+                            cada registro.</p>
                     </div>
                 </div>
 
                 <div class="mt-6 max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-end">
-                    <NavLink :href="route('plate_dimensions.create')"
+                    <NavLink :href="route('plates.create')"
                         class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 focus:text-white active:bg-blue-600 disabled:opacity-25 transition">
-                        Agregar Dimensión
+                        Agregar Placa
                         <Plus :size="20" />
                     </NavLink>
                 </div>
@@ -66,19 +69,15 @@ function confirmDelete(id) {
                             <tr>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Alto
-                                </th>
-                                <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Ancho
-                                </th>
-                                <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Unidad de Medida
+                                    Codigo de placa
                                 </th>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Forma
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Freezer
                                 </th>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -87,26 +86,23 @@ function confirmDelete(id) {
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr v-for="plate_dimension in plate_dimensions" :key="plate_dimension.id">
+                            <tr v-for="plate in plates" :key="plate.id">
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    {{ plate_dimension.height }}
+                                    {{ plate.code_plate }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    {{ plate_dimension.width }}
+                                    {{ plate.plate_dimension.shape }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    {{ plate_dimension.unit_measure }}
+                                    {{ plate.freezer.number_freezer }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    {{ plate_dimension.shape }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <NavLink :href="route('plate_dimensions.edit', plate_dimension.id)"
+                                    <NavLink :href="route('plates.edit', plate.id)"
                                         class="text-indigo-600 hover:text-indigo-900" title="Editar">
                                         <SquarePen />
 
                                     </NavLink>
-                                    <button @click="confirmDelete(plate_dimension.id)"
+                                    <button @click="confirmDelete(plate.id)"
                                         class="text-red-600 hover:text-red-900 ml-2 " title="Eliminar">
                                         <Trash />
 
