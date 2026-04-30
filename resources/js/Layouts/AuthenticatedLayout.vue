@@ -1,5 +1,5 @@
 <script setup>
-import { Fan, Snowflake, PencilRuler, Star, BetweenVerticalStart } from 'lucide-vue-next';
+import { Fan, Snowflake, PencilRuler, Star, BetweenVerticalStart, ChartColumnStacked } from 'lucide-vue-next';
 import { ref } from 'vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Dropdown from '@/Components/Dropdown.vue';
@@ -20,15 +20,9 @@ const showingNavigationDropdown = ref(false);
         <div class="min-h-screen bg-gray-100">
             <nav class="border-b border-gray-100 bg-white">
                 <!-- Primary Navigation Menu -->
-                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-7x2 px-4 sm:px-6 lg:px-8">
                     <div class="flex h-16 justify-between">
                         <div class="flex">
-                            <!-- Logo -->
-                            <div class="flex shrink-0 items-center">
-                                <Link :href="route('dashboard')">
-                                <ApplicationLogo class="block h-9 w-auto fill-current text-gray-800" />
-                                </Link>
-                            </div>
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -61,7 +55,8 @@ const showingNavigationDropdown = ref(false);
 
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
                                 v-if="$page.props.auth.roles.includes('Administrador')">
-                                <NavLink :href="route('plate_dimensions.index')" :active="route().current('plate_dimensions.index')">
+                                <NavLink :href="route('plate_dimensions.index')"
+                                    :active="route().current('plate_dimensions.index')">
                                     <PencilRuler class="mr-2" /> Dimensiones de Placa
                                 </NavLink>
                             </div>
@@ -70,6 +65,13 @@ const showingNavigationDropdown = ref(false);
                                 v-if="$page.props.auth.roles.includes('Administrador')">
                                 <NavLink :href="route('plates.index')" :active="route().current('plates.index')">
                                     <BetweenVerticalStart class="mr-2" /> Placas
+                                </NavLink>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
+                                v-if="$page.props.auth.roles.includes('Administrador')">
+                                <NavLink :href="route('type_products.index')" :active="route().current('type_products.index')">
+                                    <ChartColumnStacked class="mr-2" /> Tipos de Producto
                                 </NavLink>
                             </div>
 
