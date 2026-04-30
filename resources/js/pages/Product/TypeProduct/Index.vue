@@ -6,32 +6,49 @@
 
 
     defineProps({
-        type_freezer: Array,
+        type_product: Array,
     });
 
-    const deleteTypeFreezer = (id) => {
-        router.delete(route('type_freezers.destroy', id), {
-        });
-    };
+function confirmDelete(id) {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡No podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminarlo!',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            router.delete(route('type_products.destroy', id));
+            Swal.fire(
+                '¡Eliminado!',
+                'El tipo de producto ha sido eliminado.',
+                'success'
+            );
+        }
+    });
+}
 
 </script>
 
 <template>
-    <Head title="Type Freezers" />
+    <Head title="Type Products" />
     <AuthenticatedLayout>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        <h1 class="text-2xl font-bold mb-4">Tipos de Freezers</h1>
-                        <p class="text-gray-600">En este apartado puedes gestionar los tipos de freezers.
+                        <h1 class="text-2xl font-bold mb-4">Tipos de Productos</h1>
+                        <p class="text-gray-600">En este apartado puedes gestionar los tipos de productos.
                             Agregar, editar ver y eliminar cada registro.</p>
                     </div>
                 </div>
 
                 <div class="mt-6 max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-end">
-                    <NavLink :href="route('type_freezers.create')" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 focus:text-white active:bg-blue-600 disabled:opacity-25 transition">
-                        Agregar Tipo de Freezer <Plus :size="20"/>
+                    <NavLink :href="route('type_products.create')" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 focus:text-white active:bg-blue-600 disabled:opacity-25 transition">
+                        Agregar Tipo de Producto <Plus :size="20"/>
                     </NavLink>
                 </div>
 
@@ -51,19 +68,19 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr v-for="type_freezer in type_freezer" :key="type_freezer.id">
+                            <tr v-for="type_product in type_product" :key="type_product.id">
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    {{ type_freezer.name }}
+                                    {{ type_product.name }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    {{ type_freezer.description }}
+                                    {{ type_product.description }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <NavLink :href="route('type_freezers.edit', type_freezer.id)" class="text-indigo-600 hover:text-indigo-900" title="Editar">
+                                    <NavLink :href="route('type_products.edit', type_product.id)" class="text-indigo-600 hover:text-indigo-900" title="Editar">
                                         <SquarePen />
 
                                     </NavLink>
-                                    <button @click="deleteTypeFreezer(type_freezer.id)" class="text-red-600 hover:text-red-900 ml-2 " title="Eliminar">
+                                    <button @click="confirmDelete(type_product.id)" class="text-red-600 hover:text-red-900 ml-2 " title="Eliminar">
                                         <Trash />
 
                                     </button>

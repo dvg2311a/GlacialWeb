@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TypeFreezerRequest extends FormRequest
@@ -16,7 +16,7 @@ class TypeFreezerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:30|min:3|unique:type_freezers,name,' . $this->route('id'),
+            'name' => 'required','string','max:30','min:3',Rule::unique('type_freezers', 'name')->ignore($this->route('type_freezer')),
             'description' => 'required|string|max:100|min:3',
         ];
     }
