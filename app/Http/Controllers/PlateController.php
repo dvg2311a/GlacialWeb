@@ -45,8 +45,10 @@ class PlateController extends Controller
     public function edit(string $id)
     {
         $plate = Plate::findOrFail($id);
+        $plate_dimension = PlateDimension::all();
+        $freezer = Freezer::all();
 
-        return Inertia::render('Plate/Edit');
+        return Inertia::render('Plate/Edit', ['plate' => $plate, 'plate_dimension' => $plate_dimension, 'freezer' => $freezer]);
     }
 
 
