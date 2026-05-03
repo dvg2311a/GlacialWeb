@@ -68,8 +68,8 @@ Route::middleware(['auth:web', config('auth_session'), 'verified', 'role:Adminis
 
     // ? Modulo de Productos
     Route::resource('/type_products', TypeProductController::class);
-    Route::resource('/flavor_product', FlavorProductController::class);
-    Route::resource('/status_product', StatusProductController::class);
+    Route::resource('/flavor_products', FlavorProductController::class);
+    Route::resource('/status_products', StatusProductController::class);
     Route::resource('/products', ProductController::class);
 
     // ? Modulo de Pedidos
