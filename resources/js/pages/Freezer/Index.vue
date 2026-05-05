@@ -1,7 +1,7 @@
 <script setup>
     import { Head, router } from '@inertiajs/vue3';
     import { Plus, SquarePen, Trash } from 'lucide-vue-next';
-    import NavLink from '@/components/NavLink.vue';
+    import NavLink from '@/Components/NavLink.vue';
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
 
