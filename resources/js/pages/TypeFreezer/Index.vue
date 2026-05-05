@@ -84,8 +84,8 @@ function confirmDelete(id) {
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <NavLink :href="route('type_freezers.edit', type_freezer.id)" title="Editar"
-                                        class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-600 dark:hover:text-indigo-900">
-                                        <SquarePen class="edit" />
+                                        class="text-indigo-600 hover:text-indigo-900 cursor-pointer">
+                                        <SquarePen class="cursor-pointer dark:text-indigo-600 dark:hover:text-indigo-900"/>
                                     </NavLink>
                                     <button @click="confirmDelete(type_freezer.id)"
                                         class="text-red-600 hover:text-red-900 ml-2 " title="Eliminar">
