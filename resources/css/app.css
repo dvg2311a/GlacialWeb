@@ -41,15 +41,4 @@
     }
 
     /* ensure SVG icons inherit text color */
-    svg {
-        color: inherit;
-    }
-
-    .dark svg {
-        color: inherit;
-
-        .edit {
-            color: blue-500;
-        }
-    }
 }
