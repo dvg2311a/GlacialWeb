@@ -42,14 +42,14 @@ function submit() {
     <AuthenticatedLayout>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200 flex flex-wrap">
+                <div class=" overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-1 ml-4 flex flex-wrap">
                         <NavLink :href="route('plate_dimensions.index')"
                             class="-translate-x-3 border-none rounded-md font-semibold tracking-widest focus:outline-none focus:ring disabled:opacity-25 transition">
                             <ArrowLeft :size="32" color="gray" />
                         </NavLink>
                         <h1 class="text-2xl font-bold mt-1">Crear Dimensión de Placa</h1>
-                        <p class="text-gray-600 w-full mt-4">En este apartado puedes crear un nueva dimensión de placa.</p>
+                        <p class="dark:text-white w-full mt-4">En este apartado puedes crear un nueva dimensión de placa.</p>
                     </div>
                 </div>
 
