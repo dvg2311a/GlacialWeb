@@ -43,10 +43,10 @@
     <AuthenticatedLayout>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
+                <div class=" overflow-hidden sm:rounded-lg">
+                    <div class="p-1 border-gray-200">
                         <h1 class="text-2xl font-bold mb-4">Freezers</h1>
-                        <p class="text-gray-600">En este apartado puedes gestionar los freezers.
+                        <p class=":dark:text-white">En este apartado puedes gestionar los freezers.
                             Agregar, editar ver y eliminar cada registro.</p>
                     </div>
                 </div>
@@ -87,8 +87,9 @@
                                     {{ freezer.type_freezer.name }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <NavLink :href="route('freezers.edit', freezer.id)" class="text-indigo-600 hover:text-indigo-900" title="Editar">
-                                        <SquarePen />
+                                    <NavLink :href="route('freezers.edit', freezer.id)"
+                                    class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-600" title="Editar">
+                                        <SquarePen class="edit"/>
 
                                     </NavLink>
                                     <button @click="confirmDelete(freezer.id)" class="text-red-600 hover:text-red-900 ml-2 " title="Eliminar">
