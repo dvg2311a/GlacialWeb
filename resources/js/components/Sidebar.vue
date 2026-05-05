@@ -51,12 +51,13 @@ import { toggleTheme } from '@/theme';
                         </template>
 
                         <template #content>
-                            <NavLink :href="route('roles.index')" :active="route().current('roles.index')"
-                                class="flex items-center p-3 ml-3">
-                                <Star class="mr-3 w-5 h-5" />
-                                <span>Roles</span>
-                            </NavLink>
-
+                            <div class="flex flex-col gap-4">
+                                <NavLink :href="route('roles.index')" :active="route().current('roles.index')"
+                                    class="flex items-center p-3 ml-3">
+                                    <Star class="mr-3 w-5 h-5" />
+                                    <span>Roles</span>
+                                </NavLink>
+                            </div>
                         </template>
                     </Dropdown>
 
@@ -83,17 +84,19 @@ import { toggleTheme } from '@/theme';
                         </template>
 
                         <template #content>
-                            <NavLink :href="route('type_freezers.index')"
-                                :active="route().current('type_freezers.index')" class="flex items-center p-3 ml-3">
-                                <Fan class="mr-1" />
-                                <span>Tipos de Freezer</span>
-                            </NavLink>
+                            <div class="flex flex-col gap-4">
+                                <NavLink :href="route('type_freezers.index')"
+                                    :active="route().current('type_freezers.index')" class="flex items-center p-3 ml-3">
+                                    <Fan class="mr-1" />
+                                    <span>Tipos de Freezer</span>
+                                </NavLink>
 
-                            <NavLink :href="route('freezers.index')" :active="route().current('freezers.index')"
-                                class="flex items-center p-3 ml-3">
-                                <Snowflake class="mr-1" />
-                                <span>Freezers</span>
-                            </NavLink>
+                                <NavLink :href="route('freezers.index')" :active="route().current('freezers.index')"
+                                    class="flex items-center p-3 ml-3">
+                                    <Snowflake class="mr-1" />
+                                    <span>Freezers</span>
+                                </NavLink>
+                            </div>
                         </template>
                     </Dropdown>
 
@@ -120,17 +123,20 @@ import { toggleTheme } from '@/theme';
                         </template>
 
                         <template #content>
-                            <NavLink :href="route('plate_dimensions.index')"
-                                :active="route().current('plate_dimensions.index')" class="flex items-center p-3 ml-2">
-                                <PencilRuler class="mr-1" />
-                                <span>Dimensiones de Placa</span>
-                            </NavLink>
+                            <div class="flex flex-col gap-4">
+                                <NavLink :href="route('plate_dimensions.index')"
+                                    :active="route().current('plate_dimensions.index')"
+                                    class="flex items-center p-3 ml-2">
+                                    <PencilRuler class="mr-1" />
+                                    <span>Dimensiones de Placa</span>
+                                </NavLink>
 
-                            <NavLink :href="route('plates.index')" :active="route().current('plates.index')"
-                                class="flex items-center p-3 ml-2">
-                                <BetweenVerticalStart class="mr-1" />
-                                <span>Placas</span>
-                            </NavLink>
+                                <NavLink :href="route('plates.index')" :active="route().current('plates.index')"
+                                    class="flex items-center p-3 ml-2">
+                                    <BetweenVerticalStart class="mr-1" />
+                                    <span>Placas</span>
+                                </NavLink>
+                            </div>
                         </template>
                     </Dropdown>
 
@@ -158,24 +164,28 @@ import { toggleTheme } from '@/theme';
 
                         <template #content>
 
+                            <div class="flex flex-col gap-4">
 
-                            <NavLink :href="route('type_products.index')"
-                                :active="route().current('type_products.index')" class="flex items-center p-3 ml-2">
-                                <ChartColumnStacked class="mr-1" />
-                                <span>Tipos de Producto</span>
-                            </NavLink>
+                                <NavLink :href="route('type_products.index')"
+                                    :active="route().current('type_products.index')" class="flex items-center p-3 ml-2">
+                                    <ChartColumnStacked class="mr-1" />
+                                    <span>Tipos de Producto</span>
+                                </NavLink>
 
-                            <NavLink :href="route('flavor_products.index')"
-                                :active="route().current('flavor_products.index')" class="flex items-center p-3 ml-2">
-                                <Apple class="mr-1" />
-                                <span>Sabor de Producto</span>
-                            </NavLink>
+                                <NavLink :href="route('flavor_products.index')"
+                                    :active="route().current('flavor_products.index')"
+                                    class="flex items-center p-3 ml-2">
+                                    <Apple class="mr-1" />
+                                    <span>Sabor de Producto</span>
+                                </NavLink>
 
-                            <NavLink :href="route('status_products.index')"
-                                :active="route().current('status_products.index')" class="flex items-center p-3 ml-2">
-                                <Info class="mr-1" />
-                                <span>Estado de Producto</span>
-                            </NavLink>
+                                <NavLink :href="route('status_products.index')"
+                                    :active="route().current('status_products.index')"
+                                    class="flex items-center p-3 ml-2">
+                                    <Info class="mr-1" />
+                                    <span>Estado de Producto</span>
+                                </NavLink>
+                            </div>
                         </template>
                     </Dropdown>
 
