@@ -9,7 +9,7 @@ import { toggleTheme } from '@/theme';
 <template>
     <aside class="hidden lg:block w-80 fixed top-0 left-0 z-20 h-full">
         <div
-            class="relative flex h-[calc(100vh-0.4rem)] w-full max-w-[16rem] flex-col rounded-xl bg-white bg-clip-border p-4 text-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:shadow-none shadow-xl shadow-blue-gray-900/5">
+            class="relative flex h-[calc(100vh-0.4rem)] w-full max-w-[16rem] flex-col rounded-xl bg-clip-border p-4 text-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:shadow-none shadow-xl shadow-blue-gray-900/5">
             <div class="p-4 mb-2 flex items-center gap-4 rounded-lg">
                 <h5
                     class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900 dark:text-white">
@@ -33,7 +33,7 @@ import { toggleTheme } from '@/theme';
                         <template #trigger>
                             <span class="inline-flex rounded-md">
                                 <button type="button"
-                                    class="inline-flex items-center rounded-md border border-transparent bg-white px-1 py-2 text-sm font-medium leading-4
+                                    class="inline-flex items-center rounded-md border border-transparent px-1 py-2 text-sm font-medium leading-4
                                 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:text-white dark:bg-transparent">
 
                                     <UserRoundCog class="mr-3 w-5 h-5" />
@@ -66,7 +66,7 @@ import { toggleTheme } from '@/theme';
                         <template #trigger>
                             <span class="inline-flex rounded-md">
                                 <button type="button"
-                                    class="inline-flex items-center rounded-md border border-transparent bg-white px-1 py-2 text-sm font-medium leading-4
+                                    class="inline-flex items-center rounded-md border border-transparent px-1 py-2 text-sm font-medium leading-4
                                     text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:text-white dark:bg-transparent">
 
                                     <ThermometerSnowflake class="mr-3 w-5 h-5" />
@@ -105,7 +105,7 @@ import { toggleTheme } from '@/theme';
                         <template #trigger>
                             <span class="inline-flex rounded-md">
                                 <button type="button"
-                                    class="inline-flex items-center rounded-md border border-transparent bg-white px-1 py-2 text-sm font-medium leading-4
+                                    class="inline-flex items-center rounded-md border border-transparent  px-1 py-2 text-sm font-medium leading-4
                                     text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:text-white dark:bg-transparent">
 
                                     <Group class="mr-3 w-5 h-5" />
@@ -145,7 +145,7 @@ import { toggleTheme } from '@/theme';
                         <template #trigger>
                             <span class="inline-flex rounded-md">
                                 <button type="button"
-                                    class="inline-flex items-center rounded-md border border-transparent bg-white px-1 py-2 text-sm font-medium leading-4
+                                    class="inline-flex items-center rounded-md border border-transparent px-1 py-2 text-sm font-medium leading-4
                                     text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:text-white dark:bg-transparent">
 
                                     <PackageSearch class="mr-3 w-5 h-5" />
@@ -217,7 +217,7 @@ import { toggleTheme } from '@/theme';
                             <template #trigger>
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
-                                        class="inline-flex items-center rounded-md border border-transparent bg-white dark:bg-transparent px-3 py-2 text-sm font-medium leading-4 text-gray-500 dark:text-gray-200 transition duration-150 ease-in-out hover:text-gray-700 dark:hover:text-white focus:outline-none">
+                                        class="inline-flex items-center rounded-md border border-transparent dark:bg-transparent px-3 py-2 text-sm font-medium leading-4 text-gray-500 dark:text-gray-200 transition duration-150 ease-in-out hover:text-gray-700 dark:hover:text-white focus:outline-none">
                                         {{ $page.props.auth.user.name }}
 
                                         <svg class="-me-0.5 ms-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
