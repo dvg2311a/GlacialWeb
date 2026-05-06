@@ -7,6 +7,7 @@ import Sidebar from '@/Components/Sidebar.vue';
 defineProps({
     title: String,
     permissions: Array,
+    fullWidth: Boolean,
 });
 
 const showingNavigationDropdown = ref(false);
@@ -57,7 +58,7 @@ const showingNavigationDropdown = ref(false);
             </nav>
 
             <!-- Page Content -->
-            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <div :class="fullWidth ? 'w-full px-4 py-6 sm:px-6 lg:px-8' : 'mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8'">
                 <div class="flex gap-6 ">
 
                     <Sidebar />
