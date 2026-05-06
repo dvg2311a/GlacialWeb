@@ -1,15 +1,15 @@
 <script setup>
-import { ChartColumnStacked, Star, Fan, Snowflake, PencilRuler, BetweenVerticalStart, Apple, Info, PackageSearch, Group, ThermometerSnowflake, UserRoundCog, SunMoon } from 'lucide-vue-next';
-import NavLink from '@/Components/NavLink.vue';
+import { ChartColumnStacked, Star, Fan, Snowflake, PencilRuler, BetweenVerticalStart, Apple, Info, PackageSearch, Group, ThermometerSnowflake, UserRoundCog, SunMoon, IceCreamCone } from 'lucide-vue-next';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
+import NavLink from '@/Components/NavLink.vue';
 import { toggleTheme } from '@/theme';
 </script>
 
 <template>
     <aside class="hidden lg:block w-80 fixed top-0 left-0 z-20 h-full">
         <div
-            class="relative flex h-[calc(100vh-0.4rem)] w-full max-w-[20rem] flex-col rounded-xl bg-white bg-clip-border p-4 text-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:shadow-none shadow-xl shadow-blue-gray-900/5">
+            class="relative flex h-[calc(100vh-0.4rem)] w-full max-w-[16rem] flex-col rounded-xl bg-white bg-clip-border p-4 text-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:shadow-none shadow-xl shadow-blue-gray-900/5">
             <div class="p-4 mb-2 flex items-center gap-4 rounded-lg">
                 <h5
                     class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900 dark:text-white">
@@ -184,6 +184,13 @@ import { toggleTheme } from '@/theme';
                                     class="flex items-center p-3 ml-2">
                                     <Info class="mr-1" />
                                     <span>Estado de Producto</span>
+                                </NavLink>
+
+                                <NavLink :href="route('products.index')"
+                                    :active="route().current('products.index')"
+                                    class="flex items-center p-3 ml-2">
+                                    <IceCreamCone class="mr-1" />
+                                    <span>Productos</span>
                                 </NavLink>
                             </div>
                         </template>
