@@ -140,7 +140,7 @@ function submit() {
                         <div>
                             <label for="freezer_id" class="block text-sm font-medium text-gray-700">Freezer</label>
                             <select v-model="form.freezer_id" name="freezer_id" id="freezer_id" rows="3"
-                                class="mt-1 block w-40 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                class="mt-1 block w-50 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 <option value="" disabled>Selecciona un freezer</option>
                                 <option v-for="freezer in freezers" :key="freezer.id" :value="freezer.id">
                                     {{ freezer.number_freezer }}
@@ -154,7 +154,7 @@ function submit() {
                             <label for="type_product_id" class="block text-sm font-medium text-gray-700">Tipo de
                                 Producto</label>
                             <select v-model="form.type_product_id" name="type_product_id" id="type_product_id" required
-                                class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                class="mt-1 block w-70 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 <option value="" selected>Selecciona un tipo de producto</option>
                                 <option v-for="tp in type_products" :key="tp.id" :value="tp.id">
                                     {{ tp.name }}
@@ -185,7 +185,7 @@ function submit() {
                                 class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 <option value="" selected>Selecciona un estado del producto</option>
                                 <option v-for="sp in status_products" :key="sp.id" :value="sp.id">
-                                    {{ sp.name }}
+                                    {{ sp.status }}
                                 </option>
                             </select>
                             <div v-if="form.status_product_id" class="text-red-600 text-sm mt-1">{{

@@ -7,9 +7,9 @@ import { toggleTheme } from '@/theme';
 </script>
 
 <template>
-    <aside class="hidden lg:block w-80 fixed top-0 left-0 z-20 h-full">
+    <aside class="hidden lg:block w-70 fixed top-0 left-0 z-20 h-full">
         <div
-            class="relative flex h-[calc(100vh-0.4rem)] w-full max-w-[16rem] flex-col rounded-xl bg-clip-border p-4 text-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:shadow-none shadow-xl shadow-blue-gray-900/5">
+            class="relative flex h-[calc(100vh-0rem)] w-full max-w-[16rem] flex-col rounded-b bg-clip-border p-4 text-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:shadow-none shadow-xl shadow-blue-gray-900/5">
             <div class="p-4 mb-2 flex items-center gap-4 rounded-lg">
                 <h5
                     class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900 dark:text-white">

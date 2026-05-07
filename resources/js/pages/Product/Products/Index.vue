@@ -37,8 +37,8 @@ function confirmDelete(id) {
 
     <Head title="Products" />
     <AuthenticatedLayout :fullWidth="true">
-        <div class="py-8  w-full">
-            <div class="w-full sm:px-6 lg:px-8">
+        <div class="py-4 w-full">
+            <div class="w-full mx-auto -sm:px-6 -lg-px-8">
                 <div class="overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-1 ml-4">
                         <h1 class="text-2xl font-bold mb-4">Productos</h1>

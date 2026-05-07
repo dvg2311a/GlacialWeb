@@ -64,7 +64,7 @@ const showingNavigationDropdown = ref(false);
                     <Sidebar />
 
                     <!-- Main content -->
-                    <main class="flex-1 ml-80">
+                    <main class="flex-1 ml-60">
                         <slot />
                     </main>
                 </div>
