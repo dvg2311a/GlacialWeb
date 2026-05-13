@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('purchase_order_details', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('boxes_ordered');
-            $table->integer('boxes_received');
+            $table->integer('boxes_received')->default(0);
             $table->decimal('purchase_price_per_box', 12, 2);
             $table->decimal('tax_percentage', 5, 2)->default(0.15);
             $table->decimal('tax_amount_per_box', 12, 2);
