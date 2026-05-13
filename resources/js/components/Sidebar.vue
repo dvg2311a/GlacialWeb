@@ -1,5 +1,5 @@
 <script setup>
-import { ChartColumnStacked, Star, Fan, Snowflake, PencilRuler, BetweenVerticalStart, Apple, Info, PackageSearch, Group, ThermometerSnowflake, UserRoundCog, SunMoon, IceCreamCone } from 'lucide-vue-next';
+import { ChartColumnStacked, Star, Fan, Snowflake, PencilRuler, BetweenVerticalStart, Apple, Info, PackageSearch, Group, ThermometerSnowflake, UserRoundCog, SunMoon, IceCreamCone, ListTodo } from 'lucide-vue-next';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
@@ -192,10 +192,19 @@ import { toggleTheme } from '@/theme';
                                     <IceCreamCone class="mr-1" />
                                     <span>Productos</span>
                                 </NavLink>
+
                             </div>
                         </template>
+
+
                     </Dropdown>
 
+                    <NavLink :href="route('orders_enterprises.index')"
+                        :active="route().current('orders_enterprises.index')"
+                        class="flex items-center p-3">
+                        <ListTodo class="mr-1" />
+                        <span>Pedidos</span>
+                    </NavLink>
 
                     <div class="border-t border-blue-gray-100 my-2"></div>
 
