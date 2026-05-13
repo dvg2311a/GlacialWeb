@@ -73,7 +73,7 @@ Route::middleware(['auth:web', config('auth_session'), 'verified', 'role:Adminis
     Route::resource('/products', ProductController::class);
 
     // ? Modulo de Pedidos
-    Route::resource('/order_enterprises', OrderEnterpriseController::class);
+    Route::resource('/orders_enterprises', OrderEnterpriseController::class);
     Route::resource('/purchase_order_details', PurchaseOrderDetailController::class);
 
     // ? Modulo de Carritos
