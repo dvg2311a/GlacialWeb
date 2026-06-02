@@ -51,6 +51,7 @@ function confirmDelete(id) {
                         <h1 class="text-2xl font-bold mb-4">Pedidos Empresa</h1>
                         <p class="dark:text-white">Gestión de pedidos de empresa. Ver detalles, eliminar o crear nuevos
                             pedidos.</p>
+                        <p class="dark:text-white"><b>Total de pedidos realizados a la fecha:</b> {{ order.length }}</p>
                     </div>
 
                 </div>
