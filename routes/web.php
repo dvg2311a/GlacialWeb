@@ -36,13 +36,8 @@ use Inertia\Inertia;
 
 
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+Route::get('/', function (){
+    return Inertia::render('Auth/Login');
 });
 
 Route::get('/dashboard', function () {
@@ -74,7 +69,6 @@ Route::middleware(['auth:web', config('auth_session'), 'verified', 'role:Adminis
 
     // ? Modulo de Pedidos
     Route::resource('/orders_enterprises', OrderEnterpriseController::class);
-    Route::resource('/purchase_order_details', PurchaseOrderDetailController::class);
 
     // ? Modulo de Carritos
     Route::resource('/type_carts', TypeCartController::class);
