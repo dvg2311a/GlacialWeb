@@ -5,7 +5,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
 <template>
     <div
-        class="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0"
+        class="flex min-h-screen flex-col items-center dark:bg-gray-900 pt-6 sm:justify-center sm:pt-0"
     >
         <div>
             <Link href="/">
@@ -14,7 +14,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
         </div>
 
         <div
-            class="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg"
+            class="w-80 mt-32 sm:w-full sm:mt-6 p-6 overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg"
         >
             <slot />
         </div>
