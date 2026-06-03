@@ -7,13 +7,17 @@ return [
     'max' => [
         'string' => 'El campo :attribute no puede tener más de :max caracteres.',
     ],
+    'min' => [
+        'string' => 'El campo :attribute no puede tener menos de :min caracteres.',
+    ],
     'unique' => 'El campo :attribute ya ha sido tomado.',
 
     'attributes' => [
-        'name' => 'Nombre',
-        'description' => 'Descripción',
-        'code_plate' => 'Codigo de placa',
-        'plate_dimension_id' => 'Dimensión de placa',
+        'name' => 'nombre',
+        'description' => 'descripción',
+        'code_plate' => 'codigo de placa',
+        'plate_dimension_id' => 'dimensión de placa',
         'freezers_id' => 'Freezer',
+        'status' => 'estado'
     ],
 ];

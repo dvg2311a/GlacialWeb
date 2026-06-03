@@ -23,8 +23,8 @@ class StatusCartRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|in:Active,Inactive,Maintenance,Decommissioned,Reserved,In Use,Available,Out of Service',
-            'description' => 'nullable|string|max:50',
+            'name' => 'required|string|max:100|min:3',
+            'description' => 'nullable|string|max:100|min:3',
         ];
     }
 }

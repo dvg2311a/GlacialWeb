@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('status_carts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('name', ['Active', 'Inactive', 'Maintenance', 'Decommissioned', 'Reserved', 'In Use', 'Available', 'Out of Service']);
-            $table->string('description', 50)->nullable();
+            $table->string('name', 50);
+            $table->string('description', 100)->nullable();
             $table->timestamps();
         });
     }

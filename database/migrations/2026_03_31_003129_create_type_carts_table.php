@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('type_carts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 30);
-            $table->string('description', 50)->nullable();
+            $table->string('description', 100)->nullable();
             $table->timestamps();
         });
     }
