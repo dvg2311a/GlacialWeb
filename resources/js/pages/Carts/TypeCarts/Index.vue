@@ -56,8 +56,8 @@ function confirmDelete(id) {
                     </NavLink>
                 </div>
 
-                <div class="mt-6 mr-4 rounded-lg border border-gray-200 overflow-auto w-[365px] pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400" style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
-                    <table class="min-w-[700px] divide-y divide-gray-200">
+                <div class="mt-6 mr-4 rounded-lg border border-gray-200 overflow-auto w-[365px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400" style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
+                    <table class="min-w-[700px] lg:w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
                                     <th scope="col"

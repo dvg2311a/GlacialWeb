@@ -56,8 +56,8 @@ function confirmDelete(id) {
                     </NavLink>
                 </div>
 
-                <div class="mt-6">
-                    <table class="min-w-full divide-y divide-gray-200">
+                <div class="mt-6 overflow-auto w-[365px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400" style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
+                    <table class="min-w-[0px] lg:w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
                                 <th scope="col"
@@ -97,11 +97,6 @@ function confirmDelete(id) {
                         </tbody>
                     </table>
                 </div>
-                <!-- Edit modal -->
-                <Modal :show="showEdit" @close="showEdit = false">
-                    <TypeFreezerForm :typeFreezer="selectedTypeFreezer" mode="edit" @updated="onUpdated"
-                        @close="showEdit = false" />
-                </Modal>
             </div>
         </div>
     </AuthenticatedLayout>
