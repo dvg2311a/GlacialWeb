@@ -14,9 +14,24 @@ const form = useForm({
     description: props.type_freezer?.description ?? '',
 });
 
-const submit = () => {
-    form.put(route('type_freezers.update', props.type_freezer.id));
-};
+
+function submit(){
+    form.put(route('type_freezers.update', props.type_freezer.id), {
+        onSuccess: () => {
+            Swal.fire({
+                title: '¡Éxito!',
+                text: 'El tipo de freezer ha sido actualizado exitosamente.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar',
+                timer: 3000,
+                timerProgressBar: true,
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+            });
+        }
+    });
+}
 </script>
 
 <template>
