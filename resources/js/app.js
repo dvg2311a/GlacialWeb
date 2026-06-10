@@ -1,6 +1,5 @@
 import '../css/app.css';
 // import './bootstrap';
-
 import { createInertiaApp } from '@inertiajs/vue3';
 import { loadSlim } from "@tsparticles/slim";
 import Particles from "@tsparticles/vue3";
@@ -27,8 +26,7 @@ createInertiaApp({
                 await loadSlim(engine);
             },
         });
-        // Register Particles component globally (do not `use` it as a plugin)
-        // Particles component is loaded dynamically per-page to avoid export/plugin conflicts
+
         return app.mount(el);
     },
     progress: {
