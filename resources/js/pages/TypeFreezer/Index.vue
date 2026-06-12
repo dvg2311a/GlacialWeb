@@ -51,7 +51,7 @@ function confirmDelete(id) {
                 <div class="mt-6 max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-end">
                     <NavLink :href="route('type_freezers.create')"
                         class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 focus:text-white active:bg-blue-600 disabled:opacity-25 transition">
-                        Agregar Tipo de Freezer
+                        Agregar
                         <Plus :size="20" />
                     </NavLink>
                 </div>
