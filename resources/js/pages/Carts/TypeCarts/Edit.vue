@@ -15,7 +15,7 @@ const form = useForm({
 });
 
 function submit() {
-    form.post(route('type_carts.update', props.type_cart.id), {
+    form.put(route('type_carts.update', props.type_cart.id), {
         onSuccess: () => {
             Swal.fire({
                 title: '¡Éxito!',
