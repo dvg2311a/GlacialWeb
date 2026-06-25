@@ -8,7 +8,6 @@ use App\Models\Freezer;
 use App\Models\Product;
 use App\Models\StatusProduct;
 use App\Models\TypeProduct;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Throwable;
 
