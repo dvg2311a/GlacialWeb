@@ -11,7 +11,7 @@ class Cart extends Model
 
     protected $fillable = [
         'plate_number', 'description', 'proprietary_type',
-        'type_cart_id', 'status_cart_id'
+        'type_cart_id', 'status_cart_id', 'seller_id',
     ];
 
     public function typeCart(){

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('proprietary_type', ['Company', 'Individual']);
             $table->foreignId('type_cart_id')->constrained('type_carts')->onDelete('cascade');
             $table->foreignId('status_cart_id')->constrained('status_carts')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('seller_id')->constrained('sellers')->cascadeOnDelete()->cascadeOnDelete();
             $table->timestamps();
         });
     }
