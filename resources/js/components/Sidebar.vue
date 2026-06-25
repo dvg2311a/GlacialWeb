@@ -230,6 +230,11 @@ import { toggleTheme } from '@/theme';
                                     <Info class="mr-3 w-5 h-5" />
                                     <span>Estado de Carrito</span>
                                 </NavLink>
+                                <NavLink :href="route('carts.index')" :active="route().current('carts.index')"
+                                    class="flex items-center p-3 ml-3">
+                                    <Info class="mr-3 w-5 h-5" />
+                                    <span>Carritos</span>
+                                </NavLink>
                             </div>
                         </template>
                         </Dropdown>
