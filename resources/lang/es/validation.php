@@ -13,6 +13,10 @@ return [
     'unique' => 'El campo :attribute ya ha sido tomado.',
 
     'attributes' => [
+        'plate_number' => 'número de placa',
+        'proprietary_type' => 'tipo de propietario',
+        'type_cart_id' => 'tipo de carrito',
+        'status_cart_id' => 'estado del carrito',
         'name' => 'nombre',
         'description' => 'descripción',
         'code_plate' => 'codigo de placa',
