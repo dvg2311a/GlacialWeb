@@ -205,9 +205,14 @@ const showingNavigationDropdown = ref(false);
                                             <Info class="mr-2 w-4 h-4 inline" />
                                             <span>Estado de Carrito</span>
                                         </ResponsiveNavLink>
+                                        <ResponsiveNavLink :href="route('carts.index')"
+                                            :active="route().current('carts.index')">
+                                            <ShoppingCart class="mr-2 w-4 h-4 inline" />
+                                            <span>Carritos</span>
+                                        </ResponsiveNavLink>
                                     </div>
                                 </template>
-                            </Dropdown>
+                            </Dropdown> 
                         </template>
 
                         <ResponsiveNavLink :href="route('orders_enterprises.index')"
