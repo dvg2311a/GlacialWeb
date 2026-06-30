@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Http\Requests\CartRequest;
-use App\Models\Seller;
 use App\Models\StatusCart;
 use App\Models\TypeCart;
 use Inertia\Inertia;
@@ -15,7 +14,7 @@ class CartController extends Controller
 
     public function index()
     {
-        $carts = Cart::orderByDesc('id')->get();
+        $carts = Cart::orderByDesc('id')->with('typeCart')->get();
 
         return Inertia::render('Carts/Cart/Index', ['carts' => $carts]);
     }
@@ -25,9 +24,8 @@ class CartController extends Controller
         $carts = new Cart();
         $status_cart = StatusCart::all();
         $type_cart = TypeCart::all();
-        $seller = Seller::all();
 
-        return Inertia::render('Carts/Cart/Create', ['cart' => $carts, 'status_cart' => $status_cart, 'type_cart' => $type_cart, 'seller' => $seller]);
+        return Inertia::render('Carts/Cart/Create', ['cart' => $carts, 'status_cart' => $status_cart, 'type_cart' => $type_cart]);
     }
 
     public function store(CartRequest $request)
@@ -39,7 +37,7 @@ class CartController extends Controller
 
     public function show(string $id)
     {
-        $cart = Cart::findOrFail($id)->with('typeCart', 'statusCart', 'seller');
+        $cart = Cart::with('typeCart', 'statusCart')->findOrFail($id);
         return Inertia::render('Carts/Cart/Show', ['cart' => $cart]);
     }
 
@@ -48,17 +46,15 @@ class CartController extends Controller
         $carts = Cart::findOrFail($id);
         $status_cart = StatusCart::all();
         $type_cart = TypeCart::all();
-        $seller = Seller::all();
 
-        return Inertia::render('Carts/Cart/Edit');
+        return Inertia::render('Carts/Cart/Edit', ['cart' => $carts, 'status_cart' => $status_cart, 'type_cart' => $type_cart]);
     }
 
-    public function update(CartRequest $request, string $id)
+    public function update(CartRequest $request, Cart $cart)
     {
-        $cart = Cart::findOrFail($id)->with('typeCart', 'statusCart', 'seller');
-        $cart->updated($request->validated());
+        $cart->update($request->validated());
 
-        return redirect()->route('cart.index')->with('Carrito actualizado');
+        return redirect()->route('carts.index')->with('success', 'Carrito actualizado');
     }
 
     public function destroy(string $id)
@@ -67,7 +63,7 @@ class CartController extends Controller
 
         $cart->delete();
 
-        return redirect()->route('cart.index')->with('Carrito eliminado');
+        return redirect()->route('carts.index')->with('Carrito eliminado');
 
     }
 }
