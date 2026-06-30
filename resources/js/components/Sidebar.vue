@@ -1,5 +1,5 @@
 <script setup>
-import { ChartColumnStacked, Star, Fan, Snowflake, PencilRuler, BetweenVerticalStart, Apple, Info, PackageSearch, Group, ThermometerSnowflake, UserRoundCog, SunMoon, IceCreamCone, ListTodo, BaggageClaim, ShoppingCart } from 'lucide-vue-next';
+import { ChartColumnStacked, Star, Fan, Snowflake, PencilRuler, BetweenVerticalStart, Apple, Info, PackageSearch, Group, ThermometerSnowflake, UserRoundCog, SunMoon, IceCreamCone, ListTodo, BaggageClaim, ShoppingCart, Caravan } from 'lucide-vue-next';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
@@ -232,7 +232,7 @@ import { toggleTheme } from '@/theme';
                                 </NavLink>
                                 <NavLink :href="route('carts.index')" :active="route().current('carts.index')"
                                     class="flex items-center p-3 ml-3">
-                                    <Info class="mr-3 w-5 h-5" />
+                                    <Caravan class="mr-3 w-5 h-5" />
                                     <span>Carritos</span>
                                 </NavLink>
                             </div>
