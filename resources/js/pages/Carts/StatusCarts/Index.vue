@@ -56,8 +56,9 @@ function confirmDelete(id) {
                     </NavLink>
                 </div>
 
-                <div class="mt-6">
-                    <table class="min-w-full divide-y divide-gray-200">
+                <div class="mt-6 overflow-auto w-[365px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                    style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
+                    <table class="min-w-[0px] lg:w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
                                 <th scope="col"
@@ -85,7 +86,8 @@ function confirmDelete(id) {
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <NavLink :href="route('status_carts.edit', item.id)" title="Editar"
                                         class="text-indigo-600 hover:text-indigo-900 cursor-pointer">
-                                        <SquarePen class="cursor-pointer dark:text-indigo-600 dark:hover:text-indigo-900"/>
+                                        <SquarePen
+                                            class="cursor-pointer dark:text-indigo-600 dark:hover:text-indigo-900" />
                                     </NavLink>
                                     <button @click="confirmDelete(item.id)"
                                         class="text-red-600 hover:text-red-900 ml-2 " title="Eliminar">

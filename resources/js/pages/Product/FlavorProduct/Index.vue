@@ -1,13 +1,13 @@
 <script setup>
-    import { Head, router } from '@inertiajs/vue3';
-    import { Plus, SquarePen, Trash } from 'lucide-vue-next';
-    import NavLink from '@/Components/NavLink.vue';
-    import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { Head, router } from '@inertiajs/vue3';
+import { Plus, SquarePen, Trash } from 'lucide-vue-next';
+import NavLink from '@/Components/NavLink.vue';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
 
-    defineProps({
-        flavor_product: Array,
-    });
+defineProps({
+    flavor_product: Array,
+});
 
 function confirmDelete(id) {
     Swal.fire({
@@ -34,6 +34,7 @@ function confirmDelete(id) {
 </script>
 
 <template>
+
     <Head title="Flavor Products" />
     <AuthenticatedLayout>
         <div class="py-12">
@@ -47,22 +48,27 @@ function confirmDelete(id) {
                 </div>
 
                 <div class="mt-6 max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-end">
-                    <NavLink :href="route('flavor_products.create')" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 focus:text-white active:bg-blue-600 disabled:opacity-25 transition">
-                        Agregar Sabor de Producto <Plus :size="20"/>
+                    <NavLink :href="route('flavor_products.create')"
+                        class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 focus:text-white active:bg-blue-600 disabled:opacity-25 transition">
+                        Agregar Sabor de Producto
+                        <Plus :size="20" />
                     </NavLink>
                 </div>
-
-                <div class="mt-6">
-                    <table class="min-w-full divide-y divide-gray-200">
+                <div class="mt-6 overflow-auto w-[365px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                    style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
+                    <table class="min-w-[0px] lg:w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Nombre
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Descripción
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Acciones
                                 </th>
                             </tr>
@@ -76,11 +82,13 @@ function confirmDelete(id) {
                                     {{ flavor_product.description }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <NavLink :href="route('flavor_products.edit', flavor_product.id)" class="text-indigo-600 hover:text-indigo-900" title="Editar">
+                                    <NavLink :href="route('flavor_products.edit', flavor_product.id)"
+                                        class="text-indigo-600 hover:text-indigo-900" title="Editar">
                                         <SquarePen />
 
                                     </NavLink>
-                                    <button @click="confirmDelete(flavor_product.id)" class="text-red-600 hover:text-red-900 ml-2 " title="Eliminar">
+                                    <button @click="confirmDelete(flavor_product.id)"
+                                        class="text-red-600 hover:text-red-900 ml-2 " title="Eliminar">
                                         <Trash />
 
                                     </button>
