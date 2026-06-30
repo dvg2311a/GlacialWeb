@@ -58,8 +58,9 @@ function confirmDelete(id) {
                     </NavLink>
                 </div>
 
-                <div class="mt-6">
-                    <table class="min-w-full divide-y divide-gray-200">
+                <div class="mt-6 overflow-auto w-[365px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                    style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
+                    <table class="min-w-[0px] lg:w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
                                 <th scope="col"
@@ -72,7 +73,7 @@ function confirmDelete(id) {
                                 </th>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Vendedor
+                                    Tipo de carro
                                 </th>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -88,8 +89,8 @@ function confirmDelete(id) {
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     {{ item.description }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-blue">
-                                    {{ item.seller.name }}
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    {{ item.type_cart.name }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <NavLink :href="route('carts.show', item.id)" title="Ver"
