@@ -47,7 +47,7 @@ function confirmDelete(id) {
         <div class="py-0 lg:py-12 w-full">
             <div class="w-min-full mx-auto -sm:px-6 -lg-px-8">
                 <div class="overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-1 lg:ml-4">
+                    <div class="lg:p-1 lg:ml-4">
                         <h1 class="text-2xl font-bold mb-4">Pedidos Empresa</h1>
                         <p class="dark:text-white">Gestión de pedidos de empresa. Ver detalles, eliminar o crear nuevos
                             pedidos.</p>
