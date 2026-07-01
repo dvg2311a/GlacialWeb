@@ -48,7 +48,7 @@ function confirmDelete(id) {
                     </div>
                 </div>
 
-                <div class="mt-6 max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-end">
+                <div class="mt-6 mr-4 max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-end">
                     <NavLink :href="route('type_freezers.create')"
                         class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 focus:text-white active:bg-blue-600 disabled:opacity-25 transition">
                         Agregar Tipo de Freezer
@@ -56,7 +56,7 @@ function confirmDelete(id) {
                     </NavLink>
                 </div>
 
-                <div class="mt-6 overflow-auto w-[365px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400" style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
+                <div class=" mt-6 -ml-4 overflow-auto w-[400px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400" style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
                     <table class="min-w-[0px] lg:w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
