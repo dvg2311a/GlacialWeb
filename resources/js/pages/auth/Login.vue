@@ -69,7 +69,7 @@ const options = {
 
         <GuestLayout>
 
-            <Head title="Log in" />
+            <Head title="Inicio de sesión" />
 
             <form @submit.prevent="submit" class="relative z-50">
                 <div>
