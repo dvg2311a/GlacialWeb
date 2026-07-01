@@ -40,7 +40,7 @@ function confirmDelete(id) {
         <div class="py-0 lg:py-12">
             <div class="w-full mx-auto -sm:px-6 -lg-px-8">
                 <div class="overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-1 ml-4">
+                    <div class="lg:p-1 lg:ml-4">
                         <h1 class="text-2xl font-bold mb-4">Productos</h1>
                         <p class="dark:text-white">En este apartado puedes gestionar los productos.
                             Agregar, editar ver y eliminar cada registro.</p>
@@ -55,7 +55,7 @@ function confirmDelete(id) {
                     </NavLink>
                 </div>
 
-                <div class=" bg-white mt-6 -ml-4 overflow-auto w-[428px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                <div class=" bg-white mt-6 -ml-4 lg:ml-2 overflow-auto w-[428px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
                     style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
                     <table class="min-w-[0px] lg:w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
