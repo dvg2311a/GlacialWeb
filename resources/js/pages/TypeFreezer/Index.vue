@@ -38,7 +38,7 @@ function confirmDelete(id) {
 
     <Head title="Type Freezers" />
     <AuthenticatedLayout>
-        <div class="py-12">
+        <div class="py-0 lg:py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class=" overflow-hidden sm:rounded-lg">
                     <div class="p-1">
@@ -56,7 +56,8 @@ function confirmDelete(id) {
                     </NavLink>
                 </div>
 
-                <div class=" bg-white mt-6 -ml-4 overflow-auto w-[428px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400" style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
+                <div class=" bg-white mt-6 -ml-4 overflow-auto w-[428px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                    style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
                     <table class="min-w-[0px] lg:w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
@@ -85,7 +86,8 @@ function confirmDelete(id) {
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <NavLink :href="route('type_freezers.edit', type_freezer.id)" title="Editar"
                                         class="text-indigo-600 hover:text-indigo-900 cursor-pointer">
-                                        <SquarePen class="cursor-pointer dark:text-indigo-600 dark:hover:text-indigo-900"/>
+                                        <SquarePen
+                                            class="cursor-pointer dark:text-indigo-600 dark:hover:text-indigo-900" />
                                     </NavLink>
                                     <button @click="confirmDelete(type_freezer.id)"
                                         class="text-red-600 hover:text-red-900 ml-2 " title="Eliminar">

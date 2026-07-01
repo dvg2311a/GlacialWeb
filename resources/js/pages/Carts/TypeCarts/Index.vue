@@ -38,10 +38,10 @@ function confirmDelete(id) {
 
     <Head title="Type Carts" />
     <AuthenticatedLayout>
-        <div class="py-12">
+        <div class="py-0 lg:py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class=" overflow-hidden sm:rounded-lg">
-                    <div class="p-1">
+                    <div class="">
                         <h1 class="text-2xl font-bold mb-4">Tipos de Carritos</h1>
                         <p class=" :dark:text-white">En este apartado puedes
                             gestionar los tipos. Agregar, editar ver y eliminar cada registro.</p>

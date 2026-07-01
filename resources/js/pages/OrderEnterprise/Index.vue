@@ -44,7 +44,7 @@ function confirmDelete(id) {
 
     <Head title="Pedidos Empresa" />
     <AuthenticatedLayout :fullWidth="true">
-        <div class="py-4 w-full">
+        <div class="py-0 lg:py-12">
             <div class="w-min-full mx-auto -sm:px-6 -lg-px-8">
                 <div class="overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-1 ml-4">
@@ -98,8 +98,11 @@ function confirmDelete(id) {
                         <tbody class="bg-white divide-y divide-gray-200">
                             <tr v-for="o in order" :key="o.id">
                                 <td class="px-6 py-4 whitespace-nowrap text-center">{{ formatDate(o.order_date) }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">{{ formatDate(o.expected_date) }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">{{ o.purchase_order_detail.reduce((total, detail) => total + detail.boxes_received, 0) }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">{{ formatDate(o.expected_date) }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">{{
+                                    o.purchase_order_detail.reduce((total, detail) => total + detail.boxes_received, 0)
+                                    }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-center">{{ o.order_status }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-center">{{ o.subtotal_base }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-center">{{ o.total_tax }}</td>
