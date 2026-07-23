@@ -76,7 +76,8 @@ Route::middleware(['auth:web', config('auth_session'), 'verified', 'role:Adminis
     Route::resource('/carts', CartController::class);
 
     // ? Modulo de Vendedores
-    Route::resource('/seller', SellerController::class);
+    Route::resource('/sellers', SellerController::class);
+    Route::get('/sellers/{seller}/picture', [SellerController::class, 'picture'])->name('sellers.picture');
 
     // ? Modulo de Reporte de Vendedores
     Route::resource('/seller_daily_reports', SellerDailyReportController::class);

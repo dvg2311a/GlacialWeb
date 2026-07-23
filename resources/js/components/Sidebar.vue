@@ -57,6 +57,11 @@ import { toggleTheme } from '@/theme';
                                     <Star class="mr-3 w-5 h-5" />
                                     <span>Roles</span>
                                 </NavLink>
+                                <NavLink :href="route('sellers.index')" :active="route().current('sellers.index')"
+                                    class="flex items-center p-3 ml-3">
+                                    <Star class="mr-3 w-5 h-5" />
+                                    <span>Vendedores</span>
+                                </NavLink>
                             </div>
                         </template>
                     </Dropdown>

@@ -10,18 +10,20 @@ return [
     'min' => [
         'string' => 'El campo :attribute no puede tener menos de :min caracteres.',
     ],
-    'unique' => 'El campo :attribute ya ha sido tomado.',
+    'unique' => 'El campo :attribute ya ha sido tomado. ¡Elija otro!',
 
     'attributes' => [
         'plate_number' => 'número de placa',
         'proprietary_type' => 'tipo de propietario',
         'type_cart_id' => 'tipo de carrito',
         'status_cart_id' => 'estado del carrito',
+        'cart_id' => 'carrito',
         'name' => 'nombre',
         'description' => 'descripción',
         'code_plate' => 'codigo de placa',
         'plate_dimension_id' => 'dimensión de placa',
         'freezers_id' => 'Freezer',
-        'status' => 'estado'
+        'status' => 'estado',
+
     ],
 ];
