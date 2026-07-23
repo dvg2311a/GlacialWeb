@@ -20,7 +20,7 @@ return new class extends Migration
             $table->char('sex', 1)->nullable();
             $table->string('identity_card', 20)->unique();
             $table->string('picture', 2048)->nullable();
-            $table->foreignId('cart_id')->constrained('carts')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('cart_id')->unique()->constrained('carts')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

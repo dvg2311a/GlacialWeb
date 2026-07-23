@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SellerRequest extends FormRequest
@@ -18,19 +17,20 @@ class SellerRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, ValidationRule|array<mixed>|string>
+    * @return array<string, array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:50',
+            'name' => 'required|string|max:50|unique:sellers,name,' . $this->route('seller'),
             'surname' => 'required|string|max:50',
             'direction' => 'nullable|string|max:100',
             'phone' => 'nullable|string|max:20',
             'sex' => 'nullable|string|size:1',
-            'picture' => 'nullable|string|max:2048',
+            'status' => 'required|string',
+            'picture' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'identity_card' => 'required|string|max:20',
-            'cart_id' => 'required|exists:carts,id',
+            'cart_id' => 'required|exists:carts,id|unique:sellers,cart_id,' . $this->route('seller'),
         ];
     }
 }
