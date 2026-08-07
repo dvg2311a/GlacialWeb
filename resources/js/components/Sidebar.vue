@@ -28,7 +28,7 @@ import { toggleTheme } from '@/theme';
                     <span>Inicio</span>
                 </NavLink>
 
-                <div v-if="$page.props.auth.roles.includes('Administrador')" class="mt-2 flex flex-col gap-1">
+                <div v-if="$page.props.auth.roles.includes('Gerente')" class="mt-2 flex flex-col gap-1">
                     <Dropdown align="right" width="48">
                         <template #trigger>
                             <span class="inline-flex rounded-md">
@@ -65,6 +65,12 @@ import { toggleTheme } from '@/theme';
                             </div>
                         </template>
                     </Dropdown>
+
+                    <NavLink :href="route('seller_daily_reports.index')" :active="route().current('seller_daily_reports.index')"
+                        class="flex items-center p-3">
+                        <Star class="mr-3 w-5 h-5" />
+                        <span>Reportes</span>
+                    </NavLink>
 
 
                     <Dropdown align="right" width="48">

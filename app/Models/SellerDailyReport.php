@@ -10,7 +10,7 @@ class SellerDailyReport extends Model
     use HasFactory;
 
     protected $fillable = [
-        'report_date', 'morning_checkup', 'evening_checkup',
+        'report_date', 'morning_checkup', 'evening_checkup', 'grand_total',
         'seller_id'
     ];
 
