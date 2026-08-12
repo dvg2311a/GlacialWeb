@@ -1,24 +1,63 @@
-<script setup>
+<script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
 import { ArrowLeft } from 'lucide-vue-next';
 import NavLink from '@/Components/NavLink.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
-const { daily_report, daily_report_detail, product } = defineProps({
-    daily_report: Object,
-    daily_report_detail: Array,
-    product: Array
-});
+type UserOption = {
+    name: string;
+    surname?: string | null;
+};
+
+type ReportSeller = {
+    name: string;
+};
+
+type DailyReportItem = {
+    id: number | string;
+    product?: {
+        name: string;
+    } | null;
+    quantity_out: number;
+    quantity_return: number;
+    quantity_sold: number;
+    wholesale_price: number;
+    total_sales: number;
+};
+
+type DailyReport = {
+    report_date: string;
+    grand_total?: number | string | null;
+    seller?: ReportSeller | null;
+};
+
+const props = defineProps < {
+    daily_report: DailyReport;
+    daily_report_detail: DailyReportItem[];
+    creator_user: UserOption | null;
+} > ();
+
+const { daily_report, daily_report_detail, creator_user } = props;
+
+function creatorUserLabel(user: UserOption | null) {
+    if (!user) {
+        return '—';
+    }
+
+    return `${user.name}${user.surname ? ` ${user.surname}` : ''}`;
+}
 </script>
 
 <template>
+
     <Head title="Ver Reporte" />
     <AuthenticatedLayout>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="overflow-hidden shadow-sm sm:rounded-lg">
                     <div class=" ml-4 p-1 flex flex-wrap">
-                        <NavLink :href="route('seller_daily_reports.index')" class="-translate-x-3 border-none rounded-md font-semibold tracking-widest focus:outline-none focus:ring disabled:opacity-25 transition">
+                        <NavLink :href="route('seller_daily_reports.index')"
+                            class="-translate-x-3 border-none rounded-md font-semibold tracking-widest focus:outline-none focus:ring disabled:opacity-25 transition">
                             <ArrowLeft :size="32" color="gray" />
                         </NavLink>
                         <h1 class="text-2xl font-bold mt-1">Detalle Reporte</h1>
@@ -28,10 +67,11 @@ const { daily_report, daily_report_detail, product } = defineProps({
 
                 <div class="mt-6 bg-white p-4 rounded">
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-                        <div><strong>Vendedor:</strong> {{ daily_report.seller ? daily_report.seller.name : '—'
-                         }}</div>
+                        <div><strong>Vendedor:</strong> {{ daily_report.seller ? daily_report.seller.name && daily_report.seller.surname ? `${daily_report.seller.name} ${daily_report.seller.surname}` : daily_report.seller.name : '—'
+                            }}</div>
                         <div><strong>Fecha:</strong> {{ daily_report.report_date }}</div>
                         <div><strong>Total:</strong> {{ daily_report.grand_total ?? 0 }}</div>
+                        <div><strong>Usuario que registró:</strong> {{ creatorUserLabel(creator_user) }}</div>
                     </div>
 
                     <div class="overflow-auto">
@@ -58,7 +98,6 @@ const { daily_report, daily_report_detail, product } = defineProps({
                             </tbody>
                         </table>
 
-                        <p>Usuario que atendió: {{ daily_report.user_id ? daily_report.user.name : '—' }}</p>
                     </div>
                 </div>
             </div>

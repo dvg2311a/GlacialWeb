@@ -101,11 +101,12 @@ class SellerDailyReportController extends Controller
 
     public function show(string $id)
     {
-        $daily_report = SellerDailyReport::with('sellerDailyReportDetail')->findOrFail($id);
+        $daily_report = SellerDailyReport::with(['seller', 'sellerDailyReportDetail'])->findOrFail($id);
         $daily_report_detail = SellerDailyReportDetail::with('product', 'user')->where('seller_daily_report_id', $daily_report->id)->get();
         $product = Product::all();
+        $creator_user = $daily_report_detail->first()?->user;
 
-        return Inertia::render('DailyReport/Show', ['daily_report' => $daily_report, 'daily_report_detail' => $daily_report_detail, 'product' => $product]);
+        return Inertia::render('DailyReport/Show', ['daily_report' => $daily_report, 'daily_report_detail' => $daily_report_detail, 'product' => $product, 'creator_user' => $creator_user]);
     }
 
 
