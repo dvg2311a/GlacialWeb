@@ -57,6 +57,8 @@ const { daily_report, daily_report_detail, product } = defineProps({
                                 </tr>
                             </tbody>
                         </table>
+
+                        <p>Usuario que atendió: {{ daily_report.user_id ? daily_report.user.name : '—' }}</p>
                     </div>
                 </div>
             </div>

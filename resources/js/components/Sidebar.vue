@@ -28,7 +28,7 @@ import { toggleTheme } from '@/theme';
                     <span>Inicio</span>
                 </NavLink>
 
-                <div v-if="$page.props.auth.roles.includes('Gerente')" class="mt-2 flex flex-col gap-1">
+                <div v-if="$page.props.auth.roles.includes('Administrador')" class="mt-2 flex flex-col gap-1">
                     <Dropdown align="right" width="48">
                         <template #trigger>
                             <span class="inline-flex rounded-md">

@@ -86,6 +86,7 @@ function confirmDelete(id: number) {
                                     <NavLink :href="route('seller_daily_reports.edit', { seller_daily_report: report.id })" class="text-indigo-600 hover:text-indigo-900 ml-2" title="Editar">
                                         <SquarePen />
                                     </NavLink>
+                                    
                                     <button @click="confirmDelete(report.id)" class="text-red-600 hover:text-red-900 ml-2" title="Eliminar">
                                         <Trash />
                                     </button>

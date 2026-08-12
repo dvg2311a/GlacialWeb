@@ -23,11 +23,13 @@ class SellerDailyReportRequest extends FormRequest
     {
         return [
             'report_date' => 'required|date',
-            'morning_checkup' => ['required', 'regex:/^\d{2}:\d{2}(:\d{2})?$/'],
-            'evening_checkup' => ['required', 'regex:/^\d{2}:\d{2}(:\d{2})?$/'],
+            'morning_checkup' => ['nullable', 'regex:/^\d{2}:\d{2}(:\d{2})?$/'],
+            'evening_checkup' => ['nullable', 'regex:/^\d{2}:\d{2}(:\d{2})?$/'],
             'seller_id' => 'nullable|exists:sellers,id',
             'seller_reports' => 'nullable|array',
             'seller_reports.*.seller_id' => 'required|exists:sellers,id',
+            'seller_reports.*.morning_checkup' => ['required', 'regex:/^\d{2}:\d{2}(:\d{2})?$/'],
+            'seller_reports.*.evening_checkup' => ['required', 'regex:/^\d{2}:\d{2}(:\d{2})?$/'],
             'seller_reports.*.products' => 'nullable|array|min:1',
             'seller_reports.*.products.*.id' => 'required|exists:products,id',
             'seller_reports.*.products.*.quantity_out' => 'required|integer|min:0',

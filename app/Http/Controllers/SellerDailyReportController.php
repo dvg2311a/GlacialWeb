@@ -47,10 +47,13 @@ class SellerDailyReportController extends Controller
                 }
 
                 foreach ($reportGroups ?? [] as $reportGroup) {
+                    $morningCheckup = $reportGroup['morning_checkup'] ?? $request->morning_checkup;
+                    $eveningCheckup = $reportGroup['evening_checkup'] ?? $request->evening_checkup;
+
                     $dailyReport = SellerDailyReport::create([
                         'report_date' => $request->report_date,
-                        'morning_checkup' => $request->morning_checkup,
-                        'evening_checkup' => $request->evening_checkup,
+                        'morning_checkup' => $morningCheckup,
+                        'evening_checkup' => $eveningCheckup,
                         'seller_id' => $reportGroup['seller_id'],
                     ]);
 
