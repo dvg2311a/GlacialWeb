@@ -1,5 +1,5 @@
 <script setup>
-import { ChartColumnStacked, Star, Fan, Snowflake, PencilRuler, BetweenVerticalStart, Apple, Info, PackageSearch, Group, ThermometerSnowflake, UserRoundCog, IceCreamCone, ListTodo, BaggageClaim, ShoppingCart, LogOut, SunMoon } from 'lucide-vue-next';
+import { ChartColumnStacked, Star, Fan, Snowflake, PencilRuler, BetweenVerticalStart, Apple, Info, PackageSearch, Group, ThermometerSnowflake, UserRoundCog, IceCreamCone, ListTodo, BaggageClaim, ShoppingCart, LogOut, SunMoon, NotebookText } from 'lucide-vue-next';
 import { ref } from 'vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
@@ -27,9 +27,9 @@ const showingNavigationDropdown = ref(false);
         </div>
 
 
-        <div class="min-h-screen  dark:bg-gray-900">
+        <div class="min-h-screen  dark:bg-gray-900 z-50" style="z-index: 1000;">
             <nav
-                class=" dark:border-gray-700 bg-white dark:bg-gray-800 rounded-b absolute hidden:-ml-72 w-46 -mt-4 transition-all duration-200 ease-in-out">
+                class=" dark:border-gray-700 bg-white dark:bg-gray-800 rounded-b absolute z-50 hidden:-ml-72 w-46 -mt-4 transition-all duration-200 ease-in-out">
                 <!-- Responsive Navigation Menu -->
                 <div :class="{
                     block: showingNavigationDropdown,
@@ -44,9 +44,9 @@ const showingNavigationDropdown = ref(false);
                             </ResponsiveNavLink>
                             <button type="button" @click="toggleTheme" class="block px-4 py-2 text-start text-sm leading-5 text-gray-700 dark:text-gray-200 transition
                             duration-300 ease-in-out focus:outline-none hover:rotate-180 active:rotate-180">
-                            <SunMoon class="w-4 h-4" />
-                        </button>
-                    </div>
+                                <SunMoon class="w-4 h-4" />
+                            </button>
+                        </div>
 
                         <template v-if="$page.props.auth.roles.includes('Administrador')">
                             <Dropdown align="left" width="48">
@@ -74,6 +74,12 @@ const showingNavigationDropdown = ref(false);
                                     </div>
                                 </template>
                             </Dropdown>
+
+                            <ResponsiveNavLink :href="route('seller_daily_reports.index')"
+                            :active="route().current('seller_daily_reports.index')" class="text-xs">
+                            <NotebookText class="mr-2 w-4 h-4 inline" />
+                            <span>Ventas Diarias</span>
+                        </ResponsiveNavLink>
 
                             <Dropdown align="left" width="48">
                                 <template #trigger>
@@ -212,7 +218,7 @@ const showingNavigationDropdown = ref(false);
                                         </ResponsiveNavLink>
                                     </div>
                                 </template>
-                            </Dropdown> 
+                            </Dropdown>
                         </template>
 
                         <ResponsiveNavLink :href="route('orders_enterprises.index')"

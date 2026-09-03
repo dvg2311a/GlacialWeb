@@ -1,5 +1,5 @@
 <script setup>
-import { ChartColumnStacked, Star, Fan, Snowflake, PencilRuler, BetweenVerticalStart, Apple, Info, PackageSearch, Group, ThermometerSnowflake, UserRoundCog, SunMoon, IceCreamCone, ListTodo, BaggageClaim, ShoppingCart, Caravan } from 'lucide-vue-next';
+import { ChartColumnStacked, Star, Fan, Snowflake, PencilRuler, BetweenVerticalStart, Apple, Info, PackageSearch, Group, ThermometerSnowflake, UserRoundCog, SunMoon, IceCreamCone, ListTodo, BaggageClaim, ShoppingCart, Caravan, NotebookText } from 'lucide-vue-next';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
@@ -66,10 +66,10 @@ import { toggleTheme } from '@/theme';
                         </template>
                     </Dropdown>
 
-                    <NavLink :href="route('seller_daily_reports.index')" :active="route().current('seller_daily_reports.index')"
-                        class="flex items-center p-3">
-                        <Star class="mr-3 w-5 h-5" />
-                        <span>Reportes</span>
+                    <NavLink :href="route('seller_daily_reports.index')"
+                        :active="route().current('seller_daily_reports.index')" class="flex items-center p-3">
+                        <NotebookText class="mr-3 w-5 h-5" />
+                        <span>Ventas Diarias</span>
                     </NavLink>
 
 
@@ -197,8 +197,7 @@ import { toggleTheme } from '@/theme';
                                     <span>Estado de Producto</span>
                                 </NavLink>
 
-                                <NavLink :href="route('products.index')"
-                                    :active="route().current('products.index')"
+                                <NavLink :href="route('products.index')" :active="route().current('products.index')"
                                     class="flex items-center p-3 ml-2">
                                     <IceCreamCone class="mr-1" />
                                     <span>Productos</span>
@@ -236,8 +235,8 @@ import { toggleTheme } from '@/theme';
                                     <BaggageClaim class="mr-3 w-5 h-5" />
                                     <span>Tipos de Carrito</span>
                                 </NavLink>
-                                <NavLink :href="route('status_carts.index')" :active="route().current('status_carts.index')"
-                                    class="flex items-center p-3 ml-3">
+                                <NavLink :href="route('status_carts.index')"
+                                    :active="route().current('status_carts.index')" class="flex items-center p-3 ml-3">
                                     <Info class="mr-3 w-5 h-5" />
                                     <span>Estado de Carrito</span>
                                 </NavLink>
@@ -248,11 +247,10 @@ import { toggleTheme } from '@/theme';
                                 </NavLink>
                             </div>
                         </template>
-                        </Dropdown>
+                    </Dropdown>
 
                     <NavLink :href="route('orders_enterprises.index')"
-                        :active="route().current('orders_enterprises.index')"
-                        class="flex items-center p-3">
+                        :active="route().current('orders_enterprises.index')" class="flex items-center p-3">
                         <ListTodo class="mr-1" />
                         <span>Pedidos</span>
                     </NavLink>
@@ -278,7 +276,7 @@ import { toggleTheme } from '@/theme';
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
                                         class="inline-flex items-center rounded-md border border-transparent dark:bg-transparent px-3 py-2 text-sm font-medium leading-4 text-gray-500 dark:text-gray-200 transition duration-150 ease-in-out hover:text-gray-700 dark:hover:text-white focus:outline-none">
-                                            {{ $page.props.auth.user.name }}
+                                        {{ $page.props.auth.user.name }}
 
                                         <svg class="-me-0.5 ms-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 20 20" fill="currentColor">
