@@ -14,6 +14,10 @@ class SellerDailyReport extends Model
         'seller_id'
     ];
 
+    protected $casts = [
+        'report_date' => 'date',
+    ];
+
     public function seller(){
         return $this -> belongsTo(Seller::class);
     }
