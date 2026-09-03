@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SellerDailyReportRequest;
 use Illuminate\Validation\ValidationException;
+use Carbon\Carbon;
 use Throwable;
 
 class SellerDailyReportController extends Controller
@@ -18,9 +19,13 @@ class SellerDailyReportController extends Controller
 
     public function index()
     {
-        $daily_report = SellerDailyReport::with(['seller', 'sellerDailyReportDetail:id,total_sales,seller_daily_report_id,user_id'])->get();
+        $report = SellerDailyReport::with('seller','sellerDailyReportDetail:id,total_sales,seller_daily_report_id,user_id')->orderBy('report_date', 'desc')->get();
 
-        return Inertia::render('DailyReport/Index', ['daily_report' => $daily_report]);
+        $reports_group = $report->groupBy(function($item){
+                            return $item->report_date->format('d \d\e F \d\e Y');
+                        });
+
+        return Inertia::render('DailyReport/Index', ['reports_group' => $reports_group]);
     }
 
 
