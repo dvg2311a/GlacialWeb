@@ -81,7 +81,8 @@ Route::middleware(['auth:web', config('auth_session'), 'verified', 'role:Adminis
 
     // ? Modulo de Reporte de Vendedores
     Route::resource('/seller_daily_reports', SellerDailyReportController::class);
-    Route::resource('/seller_daily_report_details', SellerDailyReportDetailController::class);
+    Route::get('seller_daily_reports/{report_date}/group', [SellerDailyReportController::class, 'reportDate'])->name('seller_daily_reports.report_date');
+    // Route::resource('/seller_daily_report_details', SellerDailyReportDetailController::class);
 
     // ? Modulo de Inventario
     Route::resource('/inventories', InventoryController::class);

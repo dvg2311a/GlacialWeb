@@ -19,13 +19,45 @@ class SellerDailyReportController extends Controller
 
     public function index()
     {
-        $report = SellerDailyReport::with('seller','sellerDailyReportDetail:id,total_sales,seller_daily_report_id,user_id')->orderBy('report_date', 'desc')->get();
+        $report = SellerDailyReport::with('seller', 'sellerDailyReportDetail:id,total_sales,seller_daily_report_id,user_id')->orderBy('grand_total', 'asc')->get();
 
-        $reports_group = $report->groupBy(function($item){
-                            return $item->report_date->format('d \d\e F \d\e Y');
-                        });
+        $reports_group = $report->groupBy(function ($item) {
+              return $item->report_date->format('Y-m-d');
+        });
 
         return Inertia::render('DailyReport/Index', ['reports_group' => $reports_group]);
+    }
+    /*
+    Se necesita realizar una vista en la cual se muestre un listado de los vendedores,
+    la fecha del reporte, el total vendido por cada vendedor y al final, el total general de las ventas del día.
+    Este reporte unicamente se debe filtrar por la report_date, debido a que unicamente se quiere mostrar el reporte
+    correspondiente a la fecha en cuestión
+
+    Datos que vamos a ocupar para el reporte:
+    - Vendedor
+    - Fecha del reporte
+    - Total vendido por cada vendedor
+    - Total general de ventas del día
+    Para obtener el total vendido por cada vendedor, se debe sumar el total_sales de cada detalle
+    Para obtener el total general de ventas del día, se debe sumar el total vendido por cada vendedor
+    Se debe mostrar un mensaje de error si no se encuentra ningun reporte para la fecha.
+*/
+
+    public function reportDate($report_date)
+    {
+        $report = SellerDailyReport::with('seller', 'sellerDailyReportDetail:id,total_sales,seller_daily_report_id,user_id', 'sellerDailyReportDetail.user:id,name,surname')
+        ->whereDate('report_date', $report_date)->orderBy('grand_total', 'asc')->get();
+
+        $total_sale = $report->sum('grand_total');
+
+        
+
+
+        return Inertia::render('DailyReport/ReportDate', [
+            'report_date' => $report_date,
+            'total_sale' => $total_sale,
+            'reports' => $report
+        ]);
     }
 
 
@@ -39,7 +71,8 @@ class SellerDailyReportController extends Controller
         return Inertia::render('DailyReport/Create', ['daily_reports' => $daily_reports, 'daily_report_details' => $daily_report_details, 'products' => $products, 'sellers' => $sellers]);
     }
 
-    public function store(SellerDailyReportRequest $request) {
+    public function store(SellerDailyReportRequest $request)
+    {
         try {
             DB::transaction(function () use ($request) {
                 $reportGroups = $request->input('seller_reports');

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->date('report_date');
             $table->time('morning_checkup');
-            $table->time('evening_checkup');
+            $table->time('evening_checkup')->nullable();
             $table->decimal('grand_total', 12, 2)->default(0);
             $table->foreignId('seller_id')->constrained('sellers')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
