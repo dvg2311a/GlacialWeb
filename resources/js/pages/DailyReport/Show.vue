@@ -26,7 +26,7 @@ type DailyReportItem = {
 };
 
 type DailyReport = {
-    report_date: string;
+    report_date: Date;
     grand_total?: number | string | null;
     seller?: ReportSeller | null;
 };
@@ -52,8 +52,8 @@ function creatorUserLabel(user: UserOption | null) {
 
     <Head title="Ver Reporte" />
     <AuthenticatedLayout>
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="lg:py-12">
+            <div class="max-w-7xl mx-auto sm:px-1 lg:px-8">
                 <div class="overflow-hidden shadow-sm sm:rounded-lg">
                     <div class=" ml-4 p-1 flex flex-wrap">
                         <NavLink :href="route('seller_daily_reports.index')"
@@ -61,21 +61,23 @@ function creatorUserLabel(user: UserOption | null) {
                             <ArrowLeft :size="32" color="gray" />
                         </NavLink>
                         <h1 class="text-2xl font-bold mt-1">Detalle Reporte</h1>
-                        <p class="dark:text-white w-full mt-4">Reporte del día {{ daily_report.report_date }}</p>
+                        <p class="dark:text-white w-full mt-4">Reporte del día {{ new Date(daily_report.report_date).toLocaleDateString('es-NI') }}</p>
                     </div>
                 </div>
 
-                <div class="mt-6 bg-white p-4 rounded">
+                <div class="mt-6 bg-white rounded pl-2 pt-4">
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
                         <div><strong>Vendedor:</strong> {{ daily_report.seller ? daily_report.seller.name && daily_report.seller.surname ? `${daily_report.seller.name} ${daily_report.seller.surname}` : daily_report.seller.name : '—'
                             }}</div>
-                        <div><strong>Fecha:</strong> {{ daily_report.report_date }}</div>
+                        <div><strong>Fecha de registro:</strong> {{ new Date(
+                            daily_report.report_date).toLocaleDateString('es-NI') }}</div>
                         <div><strong>Total:</strong> {{ daily_report.grand_total ?? 0 }}</div>
-                        <div><strong>Usuario que registró:</strong> {{ creatorUserLabel(creator_user) }}</div>
+                        <div class=" w-[360px]"><strong>Usuario que registró:</strong> {{ creatorUserLabel(creator_user) }}</div>
                     </div>
 
-                    <div class="overflow-auto">
-                        <table class="w-full divide-y divide-gray-200">
+                    <div class="overflow-auto w-[360px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                        style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
+                        <table class="w-[360px] lg:w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th class="px-4 py-2 text-left">Producto</th>

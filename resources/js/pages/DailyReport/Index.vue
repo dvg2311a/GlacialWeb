@@ -7,18 +7,17 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 defineProps({
     reports_group: {
         type: Object,
-        required: true
-    }
+        required: true,
+    },
 });
 
-// const formatDate = (date) => {
-//     return new Date(date + 'T00:00:00').toLocaleDateString('es-NI', {
-
-//         year: 'numeric',
-//         month: 'long',
-//         day: '2-digit'
-//     });
-// }
+function formatDate(dateString) {
+    return new Date(`${dateString}T00:00:00`).toLocaleDateString('es-NI', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+    });
+}
 
 function confirmDelete(id) {
     Swal.fire({
@@ -50,9 +49,9 @@ function confirmDelete(id) {
         <div class="py-0 lg:py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class=" overflow-hidden sm:rounded-lg">
-                    <div class="p-1 border-gray-200">
+                    <div class="p-1 0 ">
                         <h1 class="text-2xl font-bold mb-4">Ventas Diarias</h1>
-                        <p class="-translate-x-1" style="z-index: -1000;">Este apartado contiene el listado de ventas diarias de los
+                        <p class="-translate-x-1 w-[350px] lg:w-full" style="z-index: -1000;">Este apartado contiene el listado de ventas diarias de los
                             vendedores.
                             Puedes agregar nuevas ventas o editar las existentes.
                             Para eliminar alguna venta, consulta con el adminsitrador</p>
@@ -61,22 +60,33 @@ function confirmDelete(id) {
 
                 <div class="mt-6 max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-end">
                     <NavLink :href="route('seller_daily_reports.create')"
-                        class="-translate-x-4 inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 focus:text-white active:bg-blue-600 disabled:opacity-25 transition">
+                        class="-translate-x-4 lg:-translate-x-0 inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 focus:text-white active:bg-blue-600 disabled:opacity-25 transition">
 
                         Nuevo Reporte
                         <Plus :size="18" class="ml-2" />
                     </NavLink>
                 </div>
 
-                <div v-for="(reports, date) in reports_group" :key="date" class=" bg-white rounded-lg mt-6 -ml-4 ">
+                <div v-for="(reports, date) in reports_group" :key="date" class=" bg-white rounded-lg mt-6 -ml-4 pb-2">
 
-                    <h3 class="text-lg font-semibold text-gray-500 m-4 pt-4">{{ date }}</h3>
+                    <div class="flex items-center justify-between border-b border-gray-200 px-4 py-2">
+                        <h3 class="text-lg font-semibold text-gray-500 m-4 pt-4 capitalize">{{ formatDate(date) }}</h3>
+
+                        <NavLink :href="route('seller_daily_reports.report_date', { report_date: date })"
+                            class="ml-4 mb-2 inline-flex items-center px-3 py-1 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 focus:text-white active:bg-blue-600 disabled:opacity-25 transition">
+
+                            Ver Reporte
+                            <Eye :size="18" class="ml-2" />
+                        </NavLink>
+                    </div>
+
+
 
                     <div class="overflow-auto w-[428px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
                         style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
 
-                        <table class="min-w-[0px] lg:w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
+                        <table class="min-w-[0px] lg:w-full divide-y rounded-lg divide-gray-200">
+                            <thead class="bg-gray-50 rounded-lg">
                                 <tr>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -116,13 +126,12 @@ function confirmDelete(id) {
                                             <Trash />
                                         </button>
                                     </td>
-                                    <!-- {{ report.created_at }} -->
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <hr>
+
                 </div>
 
             </div>

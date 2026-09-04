@@ -107,7 +107,7 @@ function submit() {
 
     <Head title="Editar Reporte" />
     <AuthenticatedLayout>
-        <div class="py-12">
+        <div class="lg:py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="overflow-hidden shadow-sm sm:rounded-lg">
                     <div class=" ml-4 p-1 flex flex-wrap">
@@ -123,10 +123,10 @@ function submit() {
                 <div class="mt-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <form @submit.prevent="submit" class="space-y-6">
                         <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
-                            <div>
+                            <div class="w-[260px]">
                                 <label class="block text-sm font-medium text-gray-700">Vendedor</label>
                                 <select v-model="form.seller_id"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm W-[320px]">
                                     <option value="">Seleccionar vendedor</option>
                                     <option v-for="s in (sellers || [])" :key="s.id" :value="s.id">{{ s.name }} {{
                                         s.surname }}</option>
@@ -135,21 +135,21 @@ function submit() {
                                     form.errors.seller_id }}</div>
                             </div>
 
-                            <div>
+                            <div class="w-[180px]">
                                 <label class="block text-sm font-medium text-gray-700">Fecha de reporte</label>
                                 <input v-model="form.report_date" type="date"
                                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" />
                                 <InputError :message="form.errors.report_date" />
                             </div>
 
-                            <div>
+                            <div class="w-[180px]">
                                 <label class="block text-sm font-medium text-gray-700">Revisión Matutina</label>
                                 <input v-model="form.morning_checkup" type="time" step="1"
                                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" />
                                 <InputError :message="form.errors.morning_checkup" />
                             </div>
 
-                            <div>
+                            <div class="w-[180px]">
                                 <label class="block text-sm font-medium text-gray-700">Revisión Vespertina</label>
                                 <input v-model="form.evening_checkup" type="time" step="1"
                                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" />
@@ -158,14 +158,15 @@ function submit() {
                         </div>
 
                         <div class="mt-6">
-                            <div class="flex items-center justify-between">
+                            <div class="flex items-center justify-between mb-4 w-[390px] lg:w-full">
                                 <h2 class="font-semibold mb-2">Productos</h2>
                                 <button type="button" @click="addProduct"
                                     class="inline-flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded-md shadow-sm hover:bg-green-500">
                                     Añadir producto
                                 </button>
                             </div>
-                            <div class="overflow-auto bg-white p-2 rounded">
+                            <div class="overflow-auto w-[428px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                                style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
                                 <table class="w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-50">
                                         <tr>
@@ -190,7 +191,7 @@ function submit() {
                                             <td class="px-4 py-2">
                                                 <select v-model="form.seller_daily_reports[idx].id"
                                                     @change="(e) => { const prod = (products || []).find(x => x.id == form.seller_daily_reports[idx].id); if (prod) { form.seller_daily_reports[idx].name = prod.name; form.seller_daily_reports[idx].wholesale_price = prod.wholesale_price ?? 0 } syncReportRow(form.seller_daily_reports[idx]) }"
-                                                    class="w-full rounded border-gray-300 shadow-sm">
+                                                    class=" rounded border-gray-300 shadow-sm">
                                                     <option value="">Seleccionar producto</option>
                                                     <option v-for="prod in (products || [])" :key="prod.id"
                                                         :value="prod.id">{{ prod.name }}</option>
@@ -222,10 +223,10 @@ function submit() {
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="mt-2 flex justify-end">
+                            <div class="mt-2 mr-7 flex justify-end">
                                 <div class="rounded-md bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700">
                                     Total general: {{form.seller_daily_reports.reduce((s, r) => s +
-                                        (Number(r.line_total) || 0), 0).toFixed(2) }}
+                                        (Number(r.line_total) || 0), 0).toFixed(2)}}
                                 </div>
                             </div>
                         </div>
