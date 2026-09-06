@@ -64,7 +64,7 @@ function submit() {
                 </div>
 
                 <div class="mt-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <form @submit.prevent="submit" class="flex flex-wrap gap-5 justify-center items-start w-full p-6 rounded-lg shadow-lg bg-green-700">
+                    <form @submit.prevent="submit" class="flex flex-wrap gap-5 justify-center items-start w-full p-6 rounded-lg shadow-lg">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
                             <input v-model="form.name" type="text" name="name" id="name" required
