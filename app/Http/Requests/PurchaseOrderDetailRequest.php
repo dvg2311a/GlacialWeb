@@ -23,7 +23,7 @@ class PurchaseOrderDetailRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'boxes_ordered' => 'required|integer|min:1',
+            // 'boxes_ordered' => 'required|integer|min:1',
             'boxes_received' => 'required|integer|min:0',
             'purchase_price_per_box' => 'required|decimal:0,2',
             'tax_percentage' => 'required|decimal:0,2',

@@ -24,7 +24,7 @@ const Swal = window.Swal;
 function addProduct() {
 	form.products.push({
 		id: '',
-		boxes_ordered: 0,
+		// boxes_ordered: 0,
 		boxes_received: 0,
 		purchase_price_per_box: 0,
 		tax_percentage: 0,
@@ -143,7 +143,7 @@ addProduct();
 									<thead>
 										<tr class="text-left bg-gray-100">
 											<th class="px-2">Producto</th>
-											<th class="px-2">Cajas Pedidas</th>
+											<!-- <th class="px-2">Cajas Pedidas</th> -->
 											<th class="px-2">Cajas Recibidas</th>
 											<th class="px-2">Precio x Caja</th>
 											<th class="px-2">% Impuesto</th>
@@ -159,10 +159,10 @@ addProduct();
 												</select>
 												<InputError :message="form.errors[`products.${idx}.id`]" />
 											</td>
-											<td class="px-2 py-2">
+											<!-- <td class="px-2 py-2">
 												<input v-model.number="p.boxes_ordered" type="number" min="0" @input="recalcTotals()" class="w-24 rounded border-gray-300" />
 												<InputError :message="form.errors[`products.${idx}.boxes_ordered`]" />
-											</td>
+											</td> -->
 											<td class="px-2 py-2">
 												<input v-model.number="p.boxes_received" type="number" min="0" @input="recalcTotals()" class="w-24 rounded border-gray-300" />
 												<InputError :message="form.errors[`products.${idx}.boxes_received`]" />

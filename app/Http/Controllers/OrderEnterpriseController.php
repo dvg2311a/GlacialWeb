@@ -62,7 +62,7 @@ class OrderEnterpriseController extends Controller
                     $grandTotalLine += $grandTotal;
 
                     PurchaseOrderDetail::create([
-                        'boxes_ordered' => $product['boxes_ordered'],
+                        // 'boxes_ordered' => $product['boxes_ordered'],
                         'boxes_received' => $product['boxes_received'],
                         'purchase_price_per_box' => $product['purchase_price_per_box'],
                         'tax_percentage' => $product['tax_percentage'],
@@ -160,7 +160,7 @@ class OrderEnterpriseController extends Controller
 
                     // recrear detalle
                     PurchaseOrderDetail::create([
-                        'boxes_ordered' => $product['boxes_ordered'],
+                        // 'boxes_ordered' => $product['boxes_ordered'],
                         'boxes_received' => $product['boxes_received'],
                         'purchase_price_per_box' => $product['purchase_price_per_box'],
                         'tax_percentage' => $product['tax_percentage'],
