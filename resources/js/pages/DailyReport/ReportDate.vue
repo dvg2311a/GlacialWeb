@@ -96,7 +96,7 @@ const attendedUsers = computed(() => {
 					</NavLink>
 
 					<div>
-						<h1 class="text-2xl font-bold mt-1">
+						<h1 class="text-2xl font-bold mt-1 dark:text-gray-100">
 							Resumen diario
 						</h1>
 						<!-- <p class="text-2xl font-bold tracking-tight text-gray-100 sm:text-3xl">

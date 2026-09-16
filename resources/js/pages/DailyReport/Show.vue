@@ -67,12 +67,12 @@ function creatorUserLabel(user: UserOption | null) {
 
                 <div class="mt-6 bg-white rounded pl-2 pt-4">
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-                        <div><strong>Vendedor:</strong> {{ daily_report.seller ? daily_report.seller.name && daily_report.seller.surname ? `${daily_report.seller.name} ${daily_report.seller.surname}` : daily_report.seller.name : '—'
+                        <div class="dark:text-gray-900"><strong>Vendedor:</strong> {{ daily_report.seller ? daily_report.seller.name && daily_report.seller.surname ? `${daily_report.seller.name} ${daily_report.seller.surname}` : daily_report.seller.name : '—'
                             }}</div>
-                        <div><strong>Fecha de registro:</strong> {{ new Date(
+                        <div class="dark:text-gray-900"><strong>Fecha de registro:</strong> {{ new Date(
                             daily_report.report_date).toLocaleDateString('es-NI') }}</div>
-                        <div><strong>Total:</strong> {{ daily_report.grand_total ?? 0 }}</div>
-                        <div class=" w-[360px]"><strong>Usuario que registró:</strong> {{ creatorUserLabel(creator_user) }}</div>
+                        <div class="dark:text-gray-900"><strong>Total:</strong> {{ daily_report.grand_total ?? 0 }}</div>
+                        <div class=" w-[360px] dark:text-gray-900"><strong>Usuario que registró:</strong> {{ creatorUserLabel(creator_user) }}</div>
                     </div>
 
                     <div class="overflow-auto w-[360px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
@@ -90,12 +90,12 @@ function creatorUserLabel(user: UserOption | null) {
                             </thead>
                             <tbody>
                                 <tr v-for="d in daily_report_detail" :key="d.id">
-                                    <td class="px-4 py-2">{{ d.product ? d.product.name : '—' }}</td>
-                                    <td class="px-4 py-2">{{ d.quantity_out }}</td>
-                                    <td class="px-4 py-2">{{ d.quantity_return }}</td>
-                                    <td class="px-4 py-2">{{ d.quantity_sold }}</td>
-                                    <td class="px-4 py-2">{{ d.wholesale_price }}</td>
-                                    <td class="px-4 py-2">{{ d.total_sales }}</td>
+                                    <td class="px-4 py-2 dark:text-gray-100">{{ d.product ? d.product.name : '—' }}</td>
+                                    <td class="px-4 py-2 dark:text-gray-100">{{ d.quantity_out }}</td>
+                                    <td class="px-4 py-2 dark:text-gray-100">{{ d.quantity_return }}</td>
+                                    <td class="px-4 py-2 dark:text-gray-100">{{ d.quantity_sold }}</td>
+                                    <td class="px-4 py-2 dark:text-gray-100">{{ d.wholesale_price }}</td>
+                                    <td class="px-4 py-2 dark:text-gray-100">{{ d.total_sales }}</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -122,7 +122,7 @@ function submit() {
 
                 <div class="mt-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <form @submit.prevent="submit" class="space-y-6">
-                        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
                             <div class="w-[260px]">
                                 <label class="block text-sm font-medium text-gray-700">Vendedor</label>
                                 <select v-model="form.seller_id"

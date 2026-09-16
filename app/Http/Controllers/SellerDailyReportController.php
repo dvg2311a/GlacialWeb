@@ -50,9 +50,6 @@ class SellerDailyReportController extends Controller
 
         $total_sale = $report->sum('grand_total');
 
-        
-
-
         return Inertia::render('DailyReport/ReportDate', [
             'report_date' => $report_date,
             'total_sale' => $total_sale,
