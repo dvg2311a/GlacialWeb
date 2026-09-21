@@ -97,7 +97,7 @@ function submit() {
                             <label for="wholesale_price" class="block text-sm font-medium text-gray-700">Precio de
                                 Mayoreo (C$)</label>
                             <input v-model="form.wholesale_price" type="number" name="wholesale_price"
-                                id="wholesale_price" required
+                                id="wholesale_price" required min="0"
                                 class="mt-1 block w-40 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <div v-if="form.errors.wholesale_price" class="text-red-600 text-sm mt-1">{{
                                 form.errors.wholesale_price }}</div>
@@ -106,7 +106,7 @@ function submit() {
                             <label for="retail_price" class="block text-sm font-medium text-gray-700">Precio de
                                 Detalle (C$)</label>
                             <input v-model="form.retail_price" type="number" name="retail_price" id="retail_price"
-                                required
+                                required min="0"
                                 class="mt-1 block w-40 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <div v-if="form.errors.retail_price" class="text-red-600 text-sm mt-1">{{
                                 form.errors.retail_price }}</div>
@@ -115,7 +115,7 @@ function submit() {
                             <label for="purchase_price" class="block text-sm font-medium text-gray-700">Precio de
                                 Compra (C$)</label>
                             <input v-model="form.purchase_price" type="number" name="purchase_price" id="purchase_price"
-                                required
+                                required min="0"
                                 class="mt-1 block w-40 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <div v-if="form.errors.purchase_price" class="text-red-600 text-sm mt-1">{{
                                 form.errors.purchase_price }}</div>
@@ -123,7 +123,7 @@ function submit() {
                         <div>
                             <label for="bad_price" class="block text-sm font-medium text-gray-700">Precio
                                 Malo (C$)</label>
-                            <input v-model="form.bad_price" type="number" name="bad_price" id="bad_price" required
+                            <input v-model="form.bad_price" type="number" name="bad_price" id="bad_price" required min="0"
                                 class="mt-1 block w-40 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <div v-if="form.errors.bad_price" class="text-red-600 text-sm mt-1">{{
                                 form.errors.bad_price }}</div>
