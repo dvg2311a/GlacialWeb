@@ -29,14 +29,13 @@ use App\Http\Controllers\SellerDailyReportController;
 use App\Http\Controllers\SellerDailyReportDetailController;
 
 use App\Http\Controllers\InventoryController;
-
-
+use App\Http\Controllers\PrivateSaleController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
 
-Route::get('/', function (){
+Route::get('/', function () {
     return Inertia::render('Auth/Login');
 });
 
@@ -79,17 +78,19 @@ Route::middleware(['auth:web', config('auth_session'), 'verified', 'role:Adminis
     Route::resource('/sellers', SellerController::class);
     Route::get('/sellers/{seller}/picture', [SellerController::class, 'picture'])->name('sellers.picture');
 
-    // ? Modulo de Reporte de Vendedores
-    Route::resource('/seller_daily_reports', SellerDailyReportController::class);
-    Route::get('seller_daily_reports/{report_date}/group', [SellerDailyReportController::class, 'reportDate'])->name('seller_daily_reports.report_date');
     // Route::resource('/seller_daily_report_details', SellerDailyReportDetailController::class);
 
     // ? Modulo de Inventario
     Route::resource('/inventories', InventoryController::class);
+
+    // ? Modulo de Reporte de Vendedores
 });
 
-Route::middleware(['auth:web', config('auth_session'), 'verified', 'role:Administrador|Gerente'])->group(function (){
+Route::middleware(['auth:web', config('auth_session'), 'verified', 'role:Administrador|Gerente'])->group(function () {
 
+    Route::resource('/seller_daily_reports', SellerDailyReportController::class);
+    Route::get('seller_daily_reports/{report_date}/group', [SellerDailyReportController::class, 'reportDate'])->name('seller_daily_reports.report_date');
+    Route::resource('/private_sales', PrivateSaleController::class);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
