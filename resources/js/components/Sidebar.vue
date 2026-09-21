@@ -1,5 +1,5 @@
 <script setup>
-import { ChartColumnStacked, Star, Fan, Snowflake, PencilRuler, BetweenVerticalStart, Apple, Info, PackageSearch, Group, ThermometerSnowflake, UserRoundCog, SunMoon, IceCreamCone, ListTodo, BaggageClaim, ShoppingCart, Caravan, NotebookText, UsersRound } from 'lucide-vue-next';
+import { ChartColumnStacked, Star, Fan, Snowflake, PencilRuler, BetweenVerticalStart, Apple, Info, PackageSearch, Group, ThermometerSnowflake, UserRoundCog, SunMoon, IceCreamCone, ListTodo, BaggageClaim, ShoppingCart, Caravan, NotebookText, UsersRound, NotepadText } from 'lucide-vue-next';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
@@ -28,7 +28,27 @@ import { toggleTheme } from '@/theme';
                     <span>Inicio</span>
                 </NavLink>
 
-                <div v-if="$page.props.auth.roles.includes('Administrador')" class="mt-2 flex flex-col gap-1">
+
+                <NavLink :href="route('seller_daily_reports.index')"
+                    :active="route().current('seller_daily_reports.index')" class="flex items-center p-3">
+                    <NotebookText class="mr-3 w-5 h-5" />
+                    <span>Ventas Diarias</span>
+                </NavLink>
+
+                <NavLink :href="route('private_sales.index')" :active="route().current('private_sales.index')"
+                    class="flex items-center p-3">
+                    <NotepadText class="mr-3 w-5 h-5" />
+                    <span>Ventas Particulares</span>
+                </NavLink>
+
+                <NavLink :href="route('orders_enterprises.index')"
+                        :active="route().current('orders_enterprises.index')" class="flex items-center p-3">
+                        <ListTodo class="mr-1" />
+                        <span>Pedidos</span>
+                    </NavLink>
+
+
+                <div v-if="$page.props.auth.roles.includes('Administrador')" class=" flex flex-col gap-1">
                     <Dropdown align="right" width="48">
                         <template #trigger>
                             <span class="inline-flex rounded-md">
@@ -66,11 +86,6 @@ import { toggleTheme } from '@/theme';
                         </template>
                     </Dropdown>
 
-                    <NavLink :href="route('seller_daily_reports.index')"
-                        :active="route().current('seller_daily_reports.index')" class="flex items-center p-3">
-                        <NotebookText class="mr-3 w-5 h-5" />
-                        <span>Ventas Diarias</span>
-                    </NavLink>
 
 
                     <Dropdown align="right" width="48">
@@ -249,11 +264,6 @@ import { toggleTheme } from '@/theme';
                         </template>
                     </Dropdown>
 
-                    <NavLink :href="route('orders_enterprises.index')"
-                        :active="route().current('orders_enterprises.index')" class="flex items-center p-3">
-                        <ListTodo class="mr-1" />
-                        <span>Pedidos</span>
-                    </NavLink>
 
                     <div class="border-t border-blue-gray-100 my-2"></div>
 

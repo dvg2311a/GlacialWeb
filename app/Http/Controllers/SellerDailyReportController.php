@@ -22,7 +22,7 @@ class SellerDailyReportController extends Controller
         $report = SellerDailyReport::with('seller', 'sellerDailyReportDetail:id,total_sales,seller_daily_report_id,user_id')->orderBy('grand_total', 'asc')->get();
 
         $reports_group = $report->groupBy(function ($item) {
-              return $item->report_date->format('Y-m-d');
+            return $item->report_date->format('Y-m-d');
         });
 
         return Inertia::render('DailyReport/Index', ['reports_group' => $reports_group]);
@@ -46,7 +46,7 @@ class SellerDailyReportController extends Controller
     public function reportDate($report_date)
     {
         $report = SellerDailyReport::with('seller', 'sellerDailyReportDetail:id,total_sales,seller_daily_report_id,user_id', 'sellerDailyReportDetail.user:id,name,surname')
-        ->whereDate('report_date', $report_date)->orderBy('grand_total', 'asc')->get();
+            ->whereDate('report_date', $report_date)->orderBy('grand_total', 'asc')->get();
 
         $total_sale = $report->sum('grand_total');
 
@@ -168,7 +168,7 @@ class SellerDailyReportController extends Controller
                 $daily_reports = SellerDailyReport::findOrFail($id);
 
                 $daily_reports->update([
-                    'report_date' => today(),
+                    'report_date' => $request->report_date,
                     'morning_checkup' => $request->morning_checkup,
                     'evening_checkup' => $request->evening_checkup,
                     'seller_id' => $request->seller_id

@@ -143,16 +143,16 @@ addSellerReport();
 
     <Head title="Crear Reporte Diario" />
     <AuthenticatedLayout>
-        <div class="">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="ml-4 p-1 flex flex-wrap">
+        <div class="py-0 lg:py-12">
+            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div class="rounded-xl border border-slate-200 bg-white px-5 py-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+                    <div class="flex flex-wrap items-start gap-3">
                         <NavLink :href="route('seller_daily_reports.index')"
-                            class="-translate-x-3 border-none rounded-md font-semibold tracking-widest focus:outline-none focus:ring disabled:opacity-25 transition">
-                            <ArrowLeft :size="32" color="gray" />
+                            class="mt-1 rounded-md text-slate-500 transition hover:text-cyan-700">
+                            <ArrowLeft :size="32" />
                         </NavLink>
-                        <h1 class="text-2xl font-bold mt-1 dark:text-white">Crear Reporte</h1>
-                        <p class="dark:text-white w-full mt-4">Registrar ventas diarias por vendedores y sus productos.
+                        <h1 class="mt-1 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Crear reporte diario</h1>
+                        <p class="mt-2 w-full text-sm text-slate-500 dark:text-slate-300">Registrar ventas diarias por vendedores y sus productos.
                         </p>
                     </div>
                 </div>
@@ -162,30 +162,30 @@ addSellerReport();
                     <form @submit.prevent="submit" class="space-y-6">
                         <div class="grid grid-cols-1 lg:grid-cols-1 w-[480px] lg:w-full ">
                             <div class="w-[150px] lg:w-[250px]">
-                                <label class="block text-sm font-medium text-gray-700">Fecha de reporte</label>
+                                <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200">Fecha de reporte</label>
                                 <input v-model="form.report_date" type="date"
-                                    class="mt-1 block lg:w-full w-36 rounded-md border-gray-300 shadow-sm" />
+                                    class="mt-2 block w-36 rounded-md border-slate-300 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 lg:w-full" />
                                 <InputError :message="form.errors.report_date" />
                             </div>
                         </div>
 
-                        <div class="flex items-center justify-between">
-                            <h2 class="font-semibold">Vendedores</h2>
+                        <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+                            <h2 class="font-semibold text-slate-800 dark:text-white">Vendedores</h2>
                             <button type="button" @click="addSellerReport"
-                                class="inline-flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded-md shadow-sm hover:bg-green-500">
+                                class="inline-flex items-center gap-2 rounded-md border border-blue-700 px-3 py-2 text-sm font-semibold text-gray-700 transition hover:bg-blue-50 dark:text-blue-300 dark:hover:bg-blue-900/20">
                                 <Plus :size="16" /> Añadir vendedor
                             </button>
                         </div>
 
                         <details v-for="(sellerReport, sellerIndex) in form.seller_reports" :key="sellerIndex" open
-                            class="group rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+                            class="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
                             <summary
                                 class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-md outline-none">
                                 <div class="min-w-0 flex-1 ">
-                                    <div class="text-lg font-semibold text-gray-900">
+                                    <div class="text-lg font-semibold text-slate-800 dark:text-white">
                                         {{ sellerLabel(sellerReport.seller_id) }}
                                     </div>
-                                    <div class="mt-1 text-sm text-gray-500">
+                                    <div class="mt-1 text-sm text-slate-500 dark:text-slate-300">
                                         {{ sellerReport.products.length }} producto(s) registrados · Total: {{
                                             sellerTotal(sellerReport).toFixed(2) }}
                                         <!-- Producto que lleva - Producto que devuelve | Producto que vende * Precio de venta  -->
@@ -197,22 +197,22 @@ addSellerReport();
                                         Desplegable
                                     </span> -->
                                     <button type="button" @click.stop="removeSellerReport(sellerIndex)"
-                                        class="inline-flex items-center gap-2 rounded-md bg-red-600 px-3 py-2 text-white shadow-sm hover:bg-red-500">
+                                        class="inline-flex items-center justify-center gap-2 rounded-md border border-rose-700 px-3 py-2 text-sm font-semibold text-rose-700 transition hover:bg-rose-700/20 dark:text-rose-300">
                                         <Trash :size="16" />
                                     </button>
                                 </div>
                             </summary>
 
-                            <div class="mt-4 space-y-4 border-t border-gray-100 pt-4 lg:w-full ">
+                            <div class="mt-4 space-y-4 border-t border-slate-200 pt-4 dark:border-slate-700 lg:w-full ">
                                 <div
                                     class="min-w-[240px] flex gap-4 lg:w-[100%] flex-row lg:justify-around lg:gap-4 flex-wrap ">
                                     <div class="">
 
                                         <label
 
-                                            class="block text-sm font-medium text-gray-700 lg:w-full">Vendedor</label>
+                                            class="block text-sm font-semibold text-slate-700 dark:text-slate-200 lg:w-full">Vendedor</label>
                                         <select v-model="sellerReport.seller_id"
-                                            class="mt-1 block w-full lg:w-72 rounded-md border-gray-300 shadow-sm">
+                                            class="mt-2 block w-full rounded-md border-slate-300 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 lg:w-72">
                                             <option value="">Seleccionar vendedor</option>
                                             <option v-for="seller in (sellers || [])" :key="seller.id"
                                                 :value="seller.id">{{
@@ -224,55 +224,55 @@ addSellerReport();
 
                                     <!-- <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 max-w-2xl"> -->
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700">Asistencia matutina</label>
+                                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200">Asistencia matutina</label>
                                         <input v-model="sellerReport.morning_checkup" type="time" step="1"
-                                            class="mt-1 block lg:w-full rounded-md border-gray-300 shadow-sm" />
+                                            class="mt-2 block rounded-md border-slate-300 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 lg:w-full" />
                                         <InputError
                                             :message="errorFor(`seller_reports.${sellerIndex}.morning_checkup`)" />
                                     </div>
 
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700">Asistencia
+                                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200">Asistencia
                                             Vespertina</label>
                                         <input v-model="sellerReport.evening_checkup" type="time" step="1"
-                                            class="mt-1 block lg:w-full rounded-md border-gray-300 shadow-sm" />
+                                            class="mt-2 block rounded-md border-slate-300 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 lg:w-full" />
                                         <InputError
                                             :message="errorFor(`seller_reports.${sellerIndex}.evening_checkup`)" />
                                     </div>
                                 </div>
 
                                 <div class="flex items-center justify-between">
-                                    <h3 class="font-medium">Productos del vendedor</h3>
+                                    <h3 class="font-medium text-slate-800 dark:text-white">Productos del vendedor</h3>
                                     <button type="button" @click="addProduct(sellerIndex)"
-                                        class="inline-flex items-center gap-2 w-52 px-3 py-2 bg-blue-600 text-white rounded-md shadow-sm hover:bg-blue-500  ">
+                                        class="inline-flex items-center justify-center gap-2 rounded-md border border-green-700 px-3 py-2 text-sm font-semibold text-green-700 transition hover:bg-green-700/20 dark:text-green-300">
                                         <Plus :size="16" /> Añadir producto
                                     </button>
                                 </div>
 
-                                <div class="overflow-auto rounded-md border border-gray-200">
-                                    <table class="w-full divide-y divide-gray-200">
-                                        <thead class="bg-gray-50">
+                                <div class="overflow-auto rounded-lg border border-slate-200 dark:border-slate-700">
+                                    <table class="w-full divide-y divide-slate-200 dark:divide-slate-700">
+                                        <thead class="bg-slate-50 dark:bg-slate-800/70">
                                             <tr>
                                                 <th
-                                                    class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                                                    class="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
                                                     Producto</th>
                                                 <th
-                                                    class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                                                    class="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
                                                     Llevó</th>
                                                 <th
-                                                    class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                                                    class="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
                                                     Devolvió</th>
                                                 <th
-                                                    class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                                                    class="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
                                                     Vendió</th>
                                                 <th
-                                                    class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                                                    class="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
                                                     Precio</th>
                                                 <th
-                                                    class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                                                    class="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
                                                     Total</th>
                                                 <th
-                                                    class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                                                    class="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
                                                     Acción</th>
                                             </tr>
                                         </thead>
@@ -281,7 +281,7 @@ addSellerReport();
                                                 :key="productIndex">
                                                 <td class="px-4 py-2">
                                                     <select v-model="product.id" @change="syncProductRow(product)"
-                                                        class=" rounded border-gray-300 shadow-sm">
+                                                        class="rounded-md border-slate-300 shadow-sm focus:border-cyan-600 focus:ring-cyan-600">
                                                         <option value="">Seleccionar producto</option>
                                                         <option v-for="prod in (products || [])" :key="prod.id"
                                                             :value="prod.id">{{ prod.name }}</option>
@@ -292,24 +292,24 @@ addSellerReport();
                                                 <td class="px-4 py-2">
                                                     <input v-model.number="product.quantity_out"
                                                         @input="syncProductRow(product)" type="number" min="0"
-                                                        class="w-24 rounded border-gray-300 shadow-sm" />
+                                                        class="w-24 rounded-md border-slate-300 shadow-sm focus:border-cyan-600 focus:ring-cyan-600" />
                                                     <InputError
                                                         :message="errorFor(`seller_reports.${sellerIndex}.products.${productIndex}.quantity_out`)" />
                                                 </td>
                                                 <td class="px-4 py-2">
                                                     <input v-model.number="product.quantity_return"
                                                         @input="syncProductRow(product)" type="number" min="0"
-                                                        class="w-24 rounded border-gray-300 shadow-sm" />
+                                                        class="w-24 rounded-md border-slate-300 shadow-sm focus:border-cyan-600 focus:ring-cyan-600" />
                                                     <InputError
                                                         :message="errorFor(`seller_reports.${sellerIndex}.products.${productIndex}.quantity_return`)" />
                                                 </td>
-                                                <td class="px-4 py-2 text-sm font-medium text-gray-700">
+                                                <td class="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-200">
                                                     {{ product.quantity_sold }}
                                                 </td>
                                                 <td class="px-4 py-2">
                                                     <input v-model.number="product.wholesale_price"
                                                         @input="syncProductRow(product)" type="number" step="0.01"
-                                                        list="wholesale_price_list" min="0" class="w-28 rounded border-gray-300 shadow-sm" id="wholesale_pric" />
+                                                        list="wholesale_price_list" min="0" class="w-28 rounded-md border-slate-300 shadow-sm focus:border-cyan-600 focus:ring-cyan-600" id="wholesale_pric" />
                                                         <datalist id="wholesale_price_list">
                                                             <option value="10.00" />
                                                             <option value="13.00" />
@@ -321,13 +321,13 @@ addSellerReport();
                                                     <InputError
                                                         :message="errorFor(`seller_reports.${sellerIndex}.products.${productIndex}.wholesale_price`)" />
                                                 </td>
-                                                <td class="px-4 py-2 text-sm font-medium text-gray-700">
+                                                <td class="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-200">
                                                     {{ product.line_total.toFixed(2) }}
                                                 </td>
                                                 <td class="px-4 py-2">
                                                     <button type="button"
                                                         @click="removeProduct(sellerIndex, productIndex)"
-                                                        class="inline-flex items-center gap-2 px-2 py-2 bg-red-600 text-white rounded-md shadow-sm hover:bg-red-500">
+                                                        class="rounded-md p-2 text-rose-600 transition hover:bg-rose-50 hover:text-rose-700">
                                                         <Trash :size="14" />
                                                     </button>
                                                 </td>
@@ -337,17 +337,20 @@ addSellerReport();
                                 </div>
 
                                 <div class="flex justify-end">
-                                    <div class="rounded-md bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700">
-                                        Total del vendedor: {{ sellerTotal(sellerReport).toFixed(2) }}
+                                    <div class="rounded-lg bg-slate-50 px-4 py-3 text-sm dark:bg-slate-800">
+                                        <span class="text-slate-500 dark:text-slate-300">Total del vendedor:</span>
+                                        <strong class="ml-2 text-lg text-gray-700 dark:text-gray-300">
+                                            {{ sellerTotal(sellerReport).toFixed(2) }}
+                                        </strong>
                                     </div>
                                 </div>
                             </div>
                         </details>
 
-                        <div>
+                        <div class="flex items-center justify-end gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
                             <button type="submit"
-                                class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500">Crear
-                                Reporte</button>
+                                class="inline-flex items-center rounded-md bg-blue-700 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800">Crear
+                                Venta</button>
                         </div>
                     </form>
                 </div>
