@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('plate_number', 20)->unique();
-            $table->string('description', 50)->nullable();
+            $table->string('description', 200)->nullable();
             $table->enum('proprietary_type', ['Company', 'Individual']);
             $table->foreignId('type_cart_id')->constrained('type_carts')->onDelete('cascade');
             $table->foreignId('status_cart_id')->constrained('status_carts')->onDelete('cascade')->onUpdate('cascade');

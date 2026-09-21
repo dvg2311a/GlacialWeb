@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('flavor_products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string("name");
-            $table->string('description', 100);
+            $table->string('description', 200);
             $table->timestamps();
         });
     }

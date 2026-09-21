@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements("id");
             $table->dateTime("date_sale")->index();
             $table->decimal("grand_total", 12, 2);
-            $table->foreignId("user_id")->constrained("users")->onUpdate("cascade")->onDelete("cascade");
+            $table->foreignId('seller_id')->nullable()->constrained('sellers')->cascadeOnUpdate()->cascadeOnUpdate();
 
             $table->timestamps();
         });

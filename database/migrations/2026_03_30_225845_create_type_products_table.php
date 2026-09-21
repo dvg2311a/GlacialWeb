@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('type_products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 30)->unique();
-            $table->string('description', 100)->nullable();
+            $table->string('description', 200)->nullable();
             $table->timestamps();
         });
     }

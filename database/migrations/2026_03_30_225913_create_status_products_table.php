@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('status_products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('status', 20);
-            $table->string('description', 50);
+            $table->string('description', 200);
             $table->timestamps();
         });
     }

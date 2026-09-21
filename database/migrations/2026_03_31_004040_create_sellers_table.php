@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('phone', 20)->nullable();
             $table->char('sex', 1)->nullable();
             $table->string('identity_card', 20)->unique();
+            $table->string('type_seller');
             $table->string('picture', 2048)->nullable();
-            $table->foreignId('cart_id')->unique()->constrained('carts')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('cart_id')->unique()->nullable()->constrained('carts')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

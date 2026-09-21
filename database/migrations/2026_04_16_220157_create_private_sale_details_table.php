@@ -17,9 +17,11 @@ return new class extends Migration
             $table->decimal("unit_price");
             $table->decimal("line_total", 12, 2);
             $table->enum("type_price", ["Detalle", "Mayorista", "Malo"]);
-
+            
+            $table->foreignId("user_id")->constrained("users")->onUpdate("cascade")->onDelete("cascade");
             $table->foreignId("product_id")->constrained("products")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId("private_sale_id")->constrained("private_sales")->onDelete("cascade")->onUpdate("cascade");
+
             $table->timestamps();
         });
     }
