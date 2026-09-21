@@ -19,6 +19,7 @@ class Seller extends Model
         'sex',
         'status',
         'identity_card',
+        'type_seller',
         'picture',
         'cart_id'
     ];

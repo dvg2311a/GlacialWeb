@@ -30,7 +30,8 @@ class SellerRequest extends FormRequest
             'status' => 'required|string',
             'picture' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'identity_card' => 'required|string|max:20',
-            'cart_id' => 'required|exists:carts,id|unique:sellers,cart_id,' . $this->route('seller'),
+            'type_seller' => 'required|string|max:15',
+            'cart_id' => 'nullable|exists:carts,id|unique:sellers,cart_id,' . $this->route('seller'),
         ];
     }
 }

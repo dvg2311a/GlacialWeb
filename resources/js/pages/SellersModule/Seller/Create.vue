@@ -17,6 +17,7 @@ const form = useForm({
     sex: '',
     status: '',
     identity_card: '',
+    type_seller: '',
     picture: null,
     cart_id: '',
 });
@@ -64,7 +65,8 @@ function submit() {
                 </div>
 
                 <div class="mt-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <form @submit.prevent="submit" class="flex flex-wrap gap-5 justify-center items-start w-full p-6 rounded-lg shadow-lg">
+                    <form @submit.prevent="submit"
+                        class="flex flex-wrap gap-5  justify-center items-start w-full p-6 rounded-lg shadow-lg">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
                             <input v-model="form.name" type="text" name="name" id="name" required
@@ -76,21 +78,25 @@ function submit() {
                             <label for="surname" class="block text-sm font-medium text-gray-700">Apellido</label>
                             <input v-model="form.surname" type="text" name="surname" id="surname" required
                                 class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                            <div v-if="form.errors.surname" class="text-red-600 text-sm mt-1">{{ form.errors.surname }}</div>
+                            <div v-if="form.errors.surname" class="text-red-600 text-sm mt-1">{{ form.errors.surname }}
+                            </div>
                         </div>
 
                         <div>
                             <label for="identity_card" class="block text-sm font-medium text-gray-700">Cédula</label>
-                            <input v-model="form.identity_card" type="text" name="identity_card" id="identity_card" required
+                            <input v-model="form.identity_card" type="text" name="identity_card" id="identity_card"
+                                required
                                 class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                            <div v-if="form.errors.identity_card" class="text-red-600 text-sm mt-1">{{ form.errors.identity_card }}</div>
+                            <div v-if="form.errors.identity_card" class="text-red-600 text-sm mt-1">{{
+                                form.errors.identity_card }}</div>
                         </div>
 
                         <div>
                             <label for="phone" class="block text-sm font-medium text-gray-700">Teléfono</label>
                             <input v-model="form.phone" type="text" name="phone" id="phone"
                                 class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                            <div v-if="form.errors.phone" class="text-red-600 text-sm mt-1">{{ form.errors.phone }}</div>
+                            <div v-if="form.errors.phone" class="text-red-600 text-sm mt-1">{{ form.errors.phone }}
+                            </div>
                         </div>
 
                         <div>
@@ -106,22 +112,18 @@ function submit() {
 
                         <div>
                             <label for="cart_id" class="block text-sm font-medium text-gray-700">Carrito</label>
-                            <select v-model="form.cart_id" name="cart_id" id="cart_id" required
+                            <select v-model="form.cart_id" name="cart_id" id="cart_id"
                                 class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 <option value="">Selecciona un carrito</option>
                                 <option v-for="item in carts" :key="item.id" :value="item.id">
                                     {{ item.plate_number }}
                                 </option>
                             </select>
-                            <div v-if="form.errors.cart_id" class="text-red-600 text-sm mt-1">{{ form.errors.cart_id }}</div>
+                            <div v-if="form.errors.cart_id" class="text-red-600 text-sm mt-1">{{ form.errors.cart_id }}
+                            </div>
                         </div>
 
-                        <div>
-                            <label for="direction" class="block text-sm font-medium text-gray-700">Dirección</label>
-                            <textarea v-model="form.direction" name="direction" id="direction" rows="3"
-                                class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
-                            <p v-if="form.errors.direction" class="text-red-600 text-sm mt-1">{{ form.errors.direction }}</p>
-                        </div>
+
 
                         <div>
                             <label for="status" class="block text-sm font-medium text-gray-700">Estado</label>
@@ -131,14 +133,37 @@ function submit() {
                                 <option value="active">Activo</option>
                                 <option value="inactive">Inactivo</option>
                             </select>
-                            <div v-if="form.errors.status" class="text-red-600 text-sm mt-1">{{ form.errors.status }}</div>
+                            <div v-if="form.errors.status" class="text-red-600 text-sm mt-1">{{ form.errors.status }}
+                            </div>
                         </div>
 
-                        <div class=" w-10/12">
+                        <div>
+                            <label for="type_seller" class="block text-sm font-medium text-gray-700">Tipo de
+                                vendedor</label>
+                            <select v-model="form.type_seller" name="type_seller" id="type_seller"
+                                class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                <option disabled selected>Selecciona una opción</option>
+                                <option value="particular">Particular</option>
+                                <option value="company">Compañía</option>
+                            </select>
+                            <div v-if="form.errors.type_seller" class="text-red-600 text-sm mt-1">{{
+                                form.errors.type_seller }}</div>
+                        </div>
+
+                        <div>
                             <label for="picture" class="block text-sm font-medium text-gray-700">Foto</label>
                             <input @change="onPictureChange" type="file" name="picture" id="picture" accept="image/*"
                                 class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                            <div v-if="form.errors.picture" class="text-red-600 text-sm mt-1">{{ form.errors.picture }}</div>
+                            <div v-if="form.errors.picture" class="text-red-600 text-sm mt-1">{{ form.errors.picture }}
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="direction" class="block text-sm font-medium text-gray-700">Dirección</label>
+                            <textarea v-model="form.direction" name="direction" id="direction" rows="3"
+                                class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                            <p v-if="form.errors.direction" class="text-red-600 text-sm mt-1">{{ form.errors.direction
+                                }}</p>
                         </div>
 
                         <div class="w-full flex justify-end">
