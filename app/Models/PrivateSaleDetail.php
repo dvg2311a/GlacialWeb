@@ -9,7 +9,7 @@ class PrivateSaleDetail extends Model
 {
 
     protected $fillable = [
-        'quantity', 'unit_price', 'line_total', 'type_price', 'product_id', 'private_sale_id'
+        'quantity', 'unit_price', 'line_total', 'type_price', 'product_id', 'user_id','private_sale_id'
     ];
 
     public function product() : BelongsTo {

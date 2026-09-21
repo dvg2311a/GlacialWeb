@@ -8,9 +8,21 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class PrivateSale extends Model
 {
     protected $fillable = [
-        'date_sale', 'grand_total', 'user_id'
+        'date_sale',
+        'grand_total',
+        'seller_id'
     ];
-    public function privateSaleDetail() : HasMany {
-        return $this ->hasMany(PrivateSaleDetail::class);
+
+    protected $casts = [
+        'date_sale' => 'date',
+    ];
+    public function privateSaleDetail(): HasMany
+    {
+        return $this->hasMany(PrivateSaleDetail::class);
+    }
+
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class);
     }
 }
