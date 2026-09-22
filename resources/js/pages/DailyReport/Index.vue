@@ -50,7 +50,7 @@ function confirmDelete(id) {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class=" overflow-hidden sm:rounded-lg">
                     <div class="p-1 0 ">
-                        <h1 class="text-2xl font-bold mb-4">Ventas Diarias</h1>
+                        <h1 class="text-2xl font-bold mb-4">Ventas diarias</h1>
                         <p class="-translate-x-1 w-[350px] lg:w-full" style="z-index: -1000;">Este apartado contiene el listado de ventas diarias de los
                             vendedores.
                             Puedes agregar nuevas ventas o editar las existentes.
@@ -108,7 +108,7 @@ function confirmDelete(id) {
                                     <td class="px-6 py-4 whitespace-nowrap">{{ report.id }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ report.seller.name }} {{
                                         report.seller.surname }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ report.grand_total }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">C${{ report.grand_total }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
 
                                         <NavLink
