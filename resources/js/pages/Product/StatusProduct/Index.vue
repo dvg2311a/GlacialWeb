@@ -24,7 +24,7 @@ function confirmDelete(id) {
             router.delete(route('status_products.destroy', id));
             Swal.fire(
                 '¡Eliminado!',
-                'El tipo de producto ha sido eliminado.',
+                'El Estado de producto ha sido eliminado.',
                 'success'
             );
         }
@@ -41,8 +41,8 @@ function confirmDelete(id) {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-1 ml-4">
-                        <h1 class="text-2xl font-bold mb-4">Tipos de Productos</h1>
-                        <p class="dark:text-white">En este apartado puedes gestionar los tipos de productos.
+                        <h1 class="text-2xl font-bold mb-4">Estado de Productos</h1>
+                        <p class="dark:text-white">En este apartado puedes gestionar los estados de productos.
                             Agregar, editar ver y eliminar cada registro.</p>
                     </div>
                 </div>
