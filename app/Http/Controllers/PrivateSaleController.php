@@ -18,7 +18,7 @@ class PrivateSaleController extends Controller
 
     public function index()
     {
-        $private_sale = PrivateSale::with('privateSaleDetail:id,quantity,unit_price,line_total,type_price,product_id,user_id,private_sale_id', 'seller:id,name,surname')->orderBy('grand_total', 'asc')->get();
+        $private_sale = PrivateSale::with('privateSaleDetail:id,quantity,unit_price,line_total,type_price,product_id,user_id,private_sale_id', 'seller:id,name,surname')->orderBy('date_sale', 'desc')->get();
 
         $private_sale_group = $private_sale->groupBy(function ($item) {
             return $item->date_sale->format('Y-m-d');

@@ -19,7 +19,7 @@ class SellerDailyReportController extends Controller
 
     public function index()
     {
-        $report = SellerDailyReport::with('seller', 'sellerDailyReportDetail:id,total_sales,seller_daily_report_id,user_id')->orderBy('grand_total', 'asc')->get();
+        $report = SellerDailyReport::with('seller', 'sellerDailyReportDetail:id,total_sales,seller_daily_report_id,user_id')->orderBy('report_date', 'desc')->get();
 
         $reports_group = $report->groupBy(function ($item) {
             return $item->report_date->format('Y-m-d');
