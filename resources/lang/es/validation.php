@@ -12,6 +12,7 @@ return [
     ],
     'unique' => 'El campo :attribute ya ha sido tomado. ¡Elija otro!',
 
+    //? TRADUCCIÓN DE ATRIBUTOS
     'attributes' => [
         'plate_number' => 'número de placa',
         'proprietary_type' => 'tipo de propietario',
