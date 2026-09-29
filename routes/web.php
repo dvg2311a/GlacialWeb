@@ -66,8 +66,6 @@ Route::middleware(['auth:web', config('auth_session'), 'verified', 'role:Adminis
     Route::resource('/status_products', StatusProductController::class);
     Route::resource('/products', ProductController::class);
 
-    // ? Modulo de Pedidos
-    Route::resource('/orders_enterprises', OrderEnterpriseController::class);
 
     // ? Modulo de Carritos
     Route::resource('/type_carts', TypeCartController::class);
@@ -87,6 +85,9 @@ Route::middleware(['auth:web', config('auth_session'), 'verified', 'role:Adminis
 });
 
 Route::middleware(['auth:web', config('auth_session'), 'verified', 'role:Administrador|Gerente'])->group(function () {
+
+    // ? Modulo de Pedidos
+    Route::resource('/orders_enterprises', OrderEnterpriseController::class);
 
     Route::resource('/seller_daily_reports', SellerDailyReportController::class);
     Route::get('seller_daily_reports/{report_date}/group', [SellerDailyReportController::class, 'reportDate'])->name('seller_daily_reports.report_date');
