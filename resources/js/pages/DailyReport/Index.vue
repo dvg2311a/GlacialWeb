@@ -73,7 +73,7 @@ function confirmDelete(id) {
                         <h3 class="text-lg font-semibold text-gray-500 m-4 pt-4 capitalize">{{ formatDate(date) }}</h3>
 
                         <NavLink :href="route('seller_daily_reports.report_date', { report_date: date })"
-                            class="ml-4 mb-2 inline-flex items-center px-3 py-1 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 focus:text-white active:bg-blue-600 disabled:opacity-25 transition">
+                            class=" inline-flex items-center px-3 py-1 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 focus:text-white active:bg-blue-600 disabled:opacity-25 transition">
 
                             Ver Reporte
                             <Eye :size="18" class="ml-2" />
@@ -82,7 +82,7 @@ function confirmDelete(id) {
 
 
 
-                    <div class="overflow-auto w-[428px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                    <div class="overflow-auto w-[350px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
                         style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
 
                         <table class="min-w-[0px] lg:w-full divide-y rounded-lg divide-gray-200">
