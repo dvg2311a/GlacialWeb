@@ -83,7 +83,7 @@ function valueOrDash(value?: number | string | null) {
 
     <AuthenticatedLayout>
         <div class="py-0 lg:py-12">
-            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="w-[350px] mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <section class="rounded-xl border border-slate-200 bg-white px-5 py-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
                     <div class="flex items-start gap-3">
                         <NavLink :href="route('private_sales.index')" class="mt-1 rounded-md text-slate-500 transition hover:text-blue-700" title="Volver">
@@ -142,7 +142,7 @@ function valueOrDash(value?: number | string | null) {
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
-                                <tr v-for="detail in details" :key="detail.id || `${detail.product_id}-${detail.type_price}`">
+                                <tr v-for="detail in details" :key="detail.id || `${detail.product_id}-${detail.type_price}`" class="text-nowrap">
                                     <td class="px-5 py-4 text-sm font-semibold text-slate-800 dark:text-white">
                                         {{ detail.product?.name || `Producto #${valueOrDash(detail.product_id)}` }}
                                     </td>
@@ -160,5 +160,3 @@ function valueOrDash(value?: number | string | null) {
     </AuthenticatedLayout>
 </template>
 
-<!-- El método show() del backend está vacío actualmente; esta vista espera private_sale
-     y sus relaciones private_sale_detail/product cuando el controlador las entregue. -->

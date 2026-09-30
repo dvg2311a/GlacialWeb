@@ -80,7 +80,7 @@ function confirmDelete(id: number | string) {
 
     <AuthenticatedLayout>
         <div class="py-0 lg:py-12">
-            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class=" w-[350px] lg:max-w-7xl sm:px-6 lg:px-8">
                 <section class="rounded-xl border border-slate-200 bg-white px-5 py-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
                     <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
                         <div>
@@ -141,7 +141,7 @@ function confirmDelete(id: number | string) {
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
-                                <tr v-for="sale in sales" :key="sale.id" class="transition hover:bg-blue-50/40 dark:hover:bg-slate-800/60">
+                                <tr v-for="sale in sales" :key="sale.id" class="transition hover:bg-blue-50/40 dark:hover:bg-slate-800/60 text-nowrap">
                                     <td class="whitespace-nowrap px-5 py-4 text-sm font-semibold text-slate-800 dark:text-white">{{ sale.seller?.name || 'Cliente particular' }}</td>
                                     <td class="whitespace-nowrap px-5 py-4 text-sm font-semibold text-slate-800 dark:text-white">#{{ sale.id }}</td>
                                     <td class="px-5 py-4 text-sm text-slate-600 dark:text-slate-300">{{ detailCount(sale) }} producto(s)</td>

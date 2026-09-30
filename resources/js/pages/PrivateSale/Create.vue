@@ -168,7 +168,7 @@ function submit() {
 
     <AuthenticatedLayout>
         <div class="py-0 lg:py-12">
-            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="w-[355px] mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <section
                     class="rounded-xl border border-slate-200 bg-white px-5 py-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
                     <div class="flex items-start gap-3">
@@ -192,7 +192,7 @@ function submit() {
 
                 <form class="mt-6 space-y-6" @submit.prevent="submit">
                     <section
-                        class="rounded-xl border border-slate-200 flex justify-between items-center bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+                        class="rounded-xl border border-slate-200 flex justify-between items-center gap-4 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
                         <div class="max-w-xs">
                             <label for="date_sale"
                                 class="block text-sm font-semibold text-slate-700 dark:text-slate-200">Fecha de
@@ -205,7 +205,7 @@ function submit() {
                             class="h-10 inline-flex items-center justify-center gap-2 rounded-md border border-blue-700 px-4 text-sm font-semibold text-gray-700 transition hover:bg-blue-50 dark:text-blue-300 dark:hover:bg-blue-900/20"
                             @click="addSale">
                             <Plus :size="18" />
-                            Añadir otro vendedor
+                            Añadir vendedor
                         </button>
                     </section>
 
