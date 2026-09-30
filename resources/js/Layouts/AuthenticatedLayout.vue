@@ -1,5 +1,5 @@
 <script setup>
-import { ChartColumnStacked, Star, Fan, Snowflake, PencilRuler, BetweenVerticalStart, Apple, Info, PackageSearch, Group, ThermometerSnowflake, UserRoundCog, IceCreamCone, ListTodo, BaggageClaim, ShoppingCart, LogOut, SunMoon, NotebookText } from 'lucide-vue-next';
+import { ChartColumnStacked, Star, Fan, Snowflake, PencilRuler, BetweenVerticalStart, Apple, Info, PackageSearch, Group, ThermometerSnowflake, UserRoundCog, IceCreamCone, ListTodo, BaggageClaim, ShoppingCart, LogOut, SunMoon, NotebookText, NotepadText, UsersRound } from 'lucide-vue-next';
 import { ref } from 'vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
@@ -19,7 +19,8 @@ const showingNavigationDropdown = ref(false);
 <template>
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
         <div class="px-4 py-4 lg:hidden">
-            <button @click="showingNavigationDropdown = !showingNavigationDropdown" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+            <button @click="showingNavigationDropdown = !showingNavigationDropdown"
+                class="text-gray-500 hover:text-gray-700 focus:outline-none">
                 <svg class="h-6 w-6 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
@@ -48,6 +49,27 @@ const showingNavigationDropdown = ref(false);
                             </button>
                         </div>
 
+                        <ResponsiveNavLink :href="route('seller_daily_reports.index')"
+                            :active="route().current('seller_daily_reports.index')" class="text-xs">
+                            <NotebookText class="mr-2 w-4 h-4 inline" />
+                            <span>Ventas Diarias</span>
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('private_sales.index')"
+                            :active="route().current('private_sales.index')" class="text-xs">
+                            <NotepadText class="mr-2 w-4 h-4 inline" />
+                            <span>Ventas Particulares</span>
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('orders_enterprises.index')"
+                            :active="route().current('orders_enterprises.index')" class="text-xs">
+                            <ListTodo class="mr-2 w-4 h-4 inline" />
+                            <span>Pedidos</span>
+                        </ResponsiveNavLink>
+
+                        <div class="border-t border-gray-200 my-2"></div>
+
+
                         <template v-if="$page.props.auth.roles.includes('Administrador')">
                             <Dropdown align="left" width="48">
                                 <template #trigger>
@@ -71,15 +93,14 @@ const showingNavigationDropdown = ref(false);
                                             <Star class="mr-2 w-4 h-4 inline" />
                                             <span>Roles</span>
                                         </ResponsiveNavLink>
+                                        <ResponsiveNavLink :href="route('sellers.index')"
+                                            :active="route().current('sellers.index')">
+                                            <UsersRound class="mr-2 w-4 h-4 inline" />
+                                            <span>Vendedores</span>
+                                        </ResponsiveNavLink>
                                     </div>
                                 </template>
                             </Dropdown>
-
-                            <ResponsiveNavLink :href="route('seller_daily_reports.index')"
-                            :active="route().current('seller_daily_reports.index')" class="text-xs">
-                            <NotebookText class="mr-2 w-4 h-4 inline" />
-                            <span>Ventas Diarias</span>
-                        </ResponsiveNavLink>
 
                             <Dropdown align="left" width="48">
                                 <template #trigger>
@@ -221,11 +242,6 @@ const showingNavigationDropdown = ref(false);
                             </Dropdown>
                         </template>
 
-                        <ResponsiveNavLink :href="route('orders_enterprises.index')"
-                            :active="route().current('orders_enterprises.index')" class="text-xs">
-                            <ListTodo class="mr-2 w-4 h-4 inline" />
-                            <span>Pedidos</span>
-                        </ResponsiveNavLink>
 
                         <div class="border-t border-gray-200 my-2"></div>
 
@@ -247,7 +263,7 @@ const showingNavigationDropdown = ref(false);
                                     <DropdownLink :href="route('profile.edit')">
                                         <UserRoundCog class="mr-2 w-4 h-4 inline" />Profile
                                     </DropdownLink>
-                                    <DropdownLink :href="route('logout')" method="post" as="button">
+                                    <DropdownLink :hr ef="route('logout')" method="post" as="button">
                                         <LogOut class="mr-2 w-4 h-4 inline" />Log Out
                                     </DropdownLink>
                                 </div>
