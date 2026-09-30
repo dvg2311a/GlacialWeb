@@ -42,7 +42,7 @@ function confirmDelete(id) {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class=" overflow-hidden sm:rounded-lg">
                     <div class="p-1">
-                        <h1 class="text-2xl font-bold mb-4">Estado de Carritos</h1>
+                        <h1 class="text-2xl font-bold mb-4">Estado de carritos</h1>
                         <p class=" :dark:text-white">En este apartado puedes
                             gestionar el estado de los carrritos. Agregar, editar ver y eliminar cada registro.</p>
                     </div>

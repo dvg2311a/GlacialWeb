@@ -48,7 +48,7 @@ function submit() {
                             class="-translate-x-3 border-none rounded-md font-semibold tracking-widest focus:outline-none focus:ring disabled:opacity-25 transition">
                             <ArrowLeft :size="32" color="gray" />
                         </NavLink>
-                        <h1 class="text-2xl font-bold mt-1">Crear Dimensión de Placa</h1>
+                        <h1 class="text-2xl font-bold mt-1">Crear dimensión de placa</h1>
                         <p class="dark:text-white w-full mt-4">En este apartado puedes crear un nueva dimensión de placa.</p>
                     </div>
                 </div>

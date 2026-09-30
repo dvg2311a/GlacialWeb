@@ -46,7 +46,7 @@ function confirmDelete(id) {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-1 ml-4">
-                        <h1 class="text-2xl font-bold mb-4">Dimensiones de Placas</h1>
+                        <h1 class="text-2xl font-bold mb-4">Dimensiones de placas</h1>
                         <p class="dark:text-white">En este apartado puedes gestionar las dimensiones de las placas.
                             Agregar, editar ver y eliminar cada registro.</p>
                     </div>

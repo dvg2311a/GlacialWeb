@@ -110,14 +110,14 @@ addProduct();
 
                         <div class="flex gap-6 items-end">
                             <div>
-                                <label class="block text-md font-medium text-gray-700"><b>Fecha de Pedido</b> </label>
+                                <label class="block text-md font-medium text-gray-700"><b>Fecha de pedido</b></label>
                                 <input v-model="form.order_date" type="date" required
                                     class="mt-1 block w-48 rounded-md border-gray-300 shadow-sm" />
                                 <InputError :message="form.errors.order_date" />
                             </div>
 
                             <div>
-                                <label class="block text-md font-medium text-gray-700"><b>Fecha Esperada</b></label>
+                                <label class="block text-md font-medium text-gray-700"><b>Fecha esperada</b></label>
                                 <input v-model="form.expected_date" type="date" required
                                     class="mt-1 block w-48 rounded-md border-gray-300 shadow-sm" />
                                 <InputError :message="form.errors.expected_date" />
@@ -127,8 +127,8 @@ addProduct();
                                 <label class="block text-md font-medium text-gray-700"><b>Estado</b></label>
                                 <select v-model="form.order_status"
                                     class="mt-1 block w-48 rounded-md border-gray-300 shadow-sm">
-                                    <option value="Pending">Pending</option>
-                                    <option value="Received">Received</option>
+                                    <option value="Pending">Pendiente</option>
+                                    <option value="Received">Recibido</option>
                                 </select>
                                 <InputError :message="form.errors.order_status" />
                             </div>
@@ -149,7 +149,7 @@ addProduct();
                                         <tr class="text-left bg-gray-100">
                                             <th class="px-2">Producto</th>
                                             <!-- <th class="px-2">Cajas Pedidas</th> -->
-                                            <th class="px-2">Cajas Recibidas</th>
+                                            <th class="px-2">Cajas recibidas</th>
                                             <th class="px-2">Precio x Caja</th>
                                             <th class="px-2">% Impuesto</th>
                                             <th class="px-2">Acción</th>
