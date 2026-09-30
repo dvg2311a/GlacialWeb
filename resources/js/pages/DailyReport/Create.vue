@@ -233,7 +233,7 @@ addSellerReport();
 
                                     <div>
                                         <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200">Asistencia
-                                            Vespertina</label>
+                                            vespertina</label>
                                         <input v-model="sellerReport.evening_checkup" type="time" step="1"
                                             class="mt-2 block rounded-md border-slate-300 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 lg:w-full" />
                                         <InputError
@@ -340,7 +340,7 @@ addSellerReport();
                                     <div class="rounded-lg bg-slate-50 px-4 py-3 text-sm dark:bg-slate-800">
                                         <span class="text-slate-500 dark:text-slate-300">Total del vendedor:</span>
                                         <strong class="ml-2 text-lg text-gray-700 dark:text-gray-300">
-                                            {{ sellerTotal(sellerReport).toFixed(2) }}
+                                            C$ {{ sellerTotal(sellerReport).toFixed(2) }}
                                         </strong>
                                     </div>
                                 </div>
