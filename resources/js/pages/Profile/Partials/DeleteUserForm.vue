@@ -42,13 +42,11 @@ const closeModal = () => {
     <section class="space-y-6">
         <header>
             <h2 class="text-lg font-medium text-gray-900">
-                Delete Account
+                Zona de peligro
             </h2>
 
             <p class="mt-1 text-sm text-gray-600">
-                Once your account is deleted, all of its resources and data will
-                be permanently deleted. Before deleting your account, please
-                download any data or information that you wish to retain.
+                Una vez que se elimine su cuenta, todos sus recursos y datos se eliminarán de forma permanente.
             </p>
         </header>
 

@@ -37,12 +37,11 @@ const updatePassword = () => {
     <section>
         <header>
             <h2 class="text-lg font-medium text-gray-900">
-                Update Password
+                Actualizar contraseña
             </h2>
 
             <p class="mt-1 text-sm text-gray-600">
-                Ensure your account is using a long, random password to stay
-                secure.
+                En este apartado puedes actualizar tu contraseña. Asegúrate de usar una contraseña larga y aleatoria para mantener la seguridad de tu cuenta.
             </p>
         </header>
 
@@ -113,7 +112,7 @@ const updatePassword = () => {
                         v-if="form.recentlySuccessful"
                         class="text-sm text-gray-600"
                     >
-                        Saved.
+                        Guadar cambios
                     </p>
                 </Transition>
             </div>
