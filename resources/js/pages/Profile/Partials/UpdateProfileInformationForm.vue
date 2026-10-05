@@ -42,7 +42,7 @@ const form = useForm({
         <form @submit.prevent="form.patch(route('profile.update'))"
             class="mt-6 flex gap-7 flex-wrap items-start justify-start  lg:w-[calc(100%+5rem)]">
             <div>
-                <InputLabel for="name" value="Nombre" class=":"/>
+                <InputLabel for="name" value="Nombre" class="dark:text-gray-700"/>
 
                 <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus
                     autocomplete="name" />
@@ -51,7 +51,7 @@ const form = useForm({
             </div>
 
             <div>
-                <InputLabel for="surname" value="Apellidos" />
+                <InputLabel for="surname" value="Apellidos" class="dark:text-gray-700" />
 
                 <TextInput id="surname" type="text" class="mt-1 block w-full" v-model="form.surname" required autofocus
                     autocomplete="surname" />
@@ -60,7 +60,7 @@ const form = useForm({
             </div>
 
             <div>
-                <InputLabel for="direction" value="Dirección" />
+                <InputLabel for="direction" value="Dirección" class="dark:text-gray-700"/>
 
                 <TextInput id="direction" type="text" class="mt-1 block w-full" v-model="form.direction" required
                     autofocus autocomplete="direction" />
@@ -68,8 +68,8 @@ const form = useForm({
                 <InputError class="mt-2" :message="form.errors.direction" />
             </div>
 
-            <div>
-                <InputLabel for="cellphone" value="Número de teléfono" />
+            <div >
+                <InputLabel for="cellphone" value="Número de teléfono" class="dark:text-gray-700"/>
 
                 <TextInput id="cellphone" type="text" class="mt-1 block w-full" v-model="form.cellphone" required
                     autofocus autocomplete="cellphone" />
@@ -77,11 +77,11 @@ const form = useForm({
                 <InputError class="mt-2" :message="form.errors.cellphone" />
             </div>
 
-            <div>
-                <InputLabel for="sex" value="Sexo" />
+            <div class="w-[30%]">
+                <InputLabel for="sex" value="Sexo" class="dark:text-gray-700"/>
 
                 <select id="sex" name="sex" v-model="form.sex"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:text-gray-300 dark:focus:border-indigo-600 dark:focus:ring-indigo-600">
+                    class="mt-1 block w-[100%] rounded-md border-gray-300 shadow-sm dark:text-gray-300 dark:focus:border-gray-600 dark:focus:ring-gray-600">
                     <option value="" disabled>Seleccione una opción</option>
                     <option value="m">Masculino</option>
                     <option value="f">Femenino</option>
@@ -91,7 +91,7 @@ const form = useForm({
             </div>
 
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" value="Email" class="dark:text-gray-700"/>
 
                 <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required
                     autocomplete="username" />
@@ -118,7 +118,7 @@ const form = useForm({
 
                 <Transition enter-active-class="transition ease-in-out" enter-from-class="opacity-0"
                     leave-active-class="transition ease-in-out" leave-to-class="opacity-0">
-                    <p v-if="form.recentlySuccessful" class="text-sm text-gray-600">
+                    <p v-if="form.recentlySuccessful" class="text-sm text-gray-600 bg-green-100 rounded-lg p-2 :dark:bg-green-900 :dark:text-green-100">
                         Cambios guardados correctamente
                     </p>
                 </Transition>
