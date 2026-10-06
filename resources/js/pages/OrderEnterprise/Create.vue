@@ -134,7 +134,7 @@ addProduct();
                             </div>
                         </div>
 
-                        <div class="border rounded p-4 w-[92vw]">
+                        <div class="border rounded p-4 w-[92vw] lg:w-full">
                             <div class="flex items-center justify-between mb-3">
                                 <h2 class="font-semibold">Productos</h2>
                                 <button type="button" @click="addProduct"
