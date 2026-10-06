@@ -28,9 +28,9 @@ const showingNavigationDropdown = ref(false);
         </div>
 
 
-        <div class="min-h-screen  dark:bg-gray-900 z-50" style="z-index: 1000;">
+        <div class="relative z-[1000]">
             <nav
-                class=" dark:border-gray-700 bg-white dark:bg-gray-800 rounded-b absolute z-50 hidden:-ml-72 w-46 -mt-4 transition-all duration-200 ease-in-out">
+                class="absolute left-0 top-0 z-50 w-52 rounded-b bg-white transition-all duration-200 ease-in-out dark:border-gray-700 dark:bg-gray-800">
                 <!-- Responsive Navigation Menu -->
                 <div :class="{
                     block: showingNavigationDropdown,
@@ -245,46 +245,50 @@ const showingNavigationDropdown = ref(false);
 
                         <div class="border-t border-gray-200 my-2"></div>
 
-                        <Dropdown align="left" width="48">
-                            <template #trigger>
-                                <button
-                                    class="w-full flex items-center justify-between px-3 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400">
-                                    <span>Cuenta</span>
-                                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </button>
-                            </template>
+                        <div class="relative ms-3">
+                            <Dropdown align="right" width="48">
 
-                            <template #content>
-                                <div class="flex flex-col gap-1 pl-3">
+                                <template #content>
                                     <DropdownLink :href="route('profile.edit')">
-                                        <UserRoundCog class="mr-2 w-4 h-4 inline" />Profile
+                                        Perfil
                                     </DropdownLink>
-                                    <DropdownLink :hr ef="route('logout')" method="post" as="button">
-                                        <LogOut class="mr-2 w-4 h-4 inline" />Log Out
+                                    <DropdownLink :href="route('logout')" method="post" as="button">
+                                        Cerrar sesión
                                     </DropdownLink>
-                                </div>
-                            </template>
-                        </Dropdown>
+                                </template>
+
+                                <template #trigger>
+                                    <span class="inline-flex rounded-md">
+                                        <button type="button"
+                                            class="inline-flex items-center rounded-md border border-transparent dark:bg-transparent px-3 py-2 text-sm font-medium leading-4 text-gray-500 dark:text-gray-200 transition duration-150 ease-in-out hover:text-gray-700 dark:hover:text-white focus:outline-none">
+                                            {{ $page.props.auth.user.name }}
+
+                                            <svg class="-me-0.5 ms-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    </span>
+                                </template>
+                            </Dropdown>
+                        </div>
                     </div>
                 </div>
             </nav>
+        </div>
 
-            <!-- Page Content -->
-            <div
-                :class="fullWidth ? 'w-full px-4 py-6 sm:px-6 lg:px-8' : 'mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8'">
-                <div class="flex gap-6 ">
+        <!-- Page Content -->
+        <div :class="fullWidth ? 'w-full px-4 py-6 sm:px-6 lg:px-8' : 'mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8'">
+            <div class="flex gap-6 ">
 
-                    <Sidebar />
+                <Sidebar />
 
-                    <!-- Main content -->
-                    <main class="flex-1 lg:ml-60">
-                        <slot />
-                    </main>
-                </div>
+                <!-- Main content -->
+                <main class="flex-1 lg:ml-60">
+                    <slot />
+                </main>
             </div>
         </div>
     </div>

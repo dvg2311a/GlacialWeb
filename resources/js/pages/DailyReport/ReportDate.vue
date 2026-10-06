@@ -84,7 +84,7 @@ const attendedUsers = computed(() => {
 	<Head :title="`Reporte del ${formattedDate}`" />
 
 	<AuthenticatedLayout>
-		<div class="py-6 lg:py-12">
+		<div class="py-2 lg:py-12">
 			<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				<div class="mb-8 flex items-start gap-3">
 					<NavLink
@@ -108,7 +108,7 @@ const attendedUsers = computed(() => {
 					</div>
 				</div>
 
-				<div class="mb-6 grid gap-4 sm:grid-cols-4">
+				<div class="mb-6 grid gap-4 sm:grid-cols-4 w-[85vw]">
 					<div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
 						<div class="flex items-center gap-3 text-gray-500">
 							<CalendarDays :size="20" class="text-blue-600" />
@@ -148,7 +148,7 @@ const attendedUsers = computed(() => {
 						<p class="mt-1 text-sm text-gray-500">{{ reports.length }} reporte(s) registrado(s)</p>
 					</div>
 
-					<div v-if="reports.length" class="overflow-auto w-[428px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+					<div v-if="reports.length" class="overflow-auto w-[80vw] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
                         style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
 						<table class="min-w-full divide-y divide-gray-200">
 							<thead class="bg-gray-50">
