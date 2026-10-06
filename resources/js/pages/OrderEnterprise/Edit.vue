@@ -107,7 +107,7 @@ function submit() {
 				</div>
 
 				<div class="mt-6 max-w-7x5 mx-auto sm:px-6 lg:px-8">
-					<form @submit.prevent="submit" class="w-full p-6 rounded-lg shadow-md flex flex-col gap-6">
+					<form @submit.prevent="submit" class="w-full p-1 rounded-lg shadow-md flex flex-col gap-6">
 
 						<div v-if="Object.keys(form.errors || {}).length" class="bg-red-50 border border-red-200 p-3 rounded">
 							<p class="text-red-700 font-medium">Errores de validación:</p>
@@ -116,7 +116,7 @@ function submit() {
 							</ul>
 						</div>
 
-						<div class="flex gap-6 items-end">
+						<div class="flex gap-6 items-end flex-wrap">
 							<div>
 								<label class="block text-sm font-medium text-gray-700"><b>Fecha de Pedido</b></label>
 								<input v-model="form.order_date" type="date" required
@@ -141,7 +141,7 @@ function submit() {
 							</div>
 						</div>
 
-						<div class="border rounded p-4">
+						<div class="border rounded p-4 w-[92vw] lg:w-full">
 							<div class="flex items-center justify-between mb-3">
 								<h2 class="font-semibold">Productos</h2>
 								<button type="button" @click="addProduct" class="inline-flex items-center gap-2 px-3 py-1 bg-green-600 text-white rounded">
@@ -149,10 +149,12 @@ function submit() {
 								</button>
 							</div>
 
-							<div class="overflow-x-auto">
+							<div
+                                class=" bg-white mt-6 -ml-4 lg:ml-2 overflow-auto w-[89vw] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                                style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
 								<table class="min-w-full table-auto">
 									<thead>
-										<tr class="text-left bg-gray-100">
+										<tr class="text-left bg-gray-100 text-nowrap">
 											<th class="px-2">Producto</th>
 											<th class="px-2">Cajas Pedidas</th>
 											<th class="px-2">Cajas Recibidas</th>
