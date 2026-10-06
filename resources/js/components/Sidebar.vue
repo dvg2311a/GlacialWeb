@@ -50,7 +50,7 @@ import { toggleTheme } from '@/theme';
 
                 <div v-if="$page.props.auth.roles.includes('Administrador')" class=" flex flex-col gap-1">
                     <div class="border-t border-blue-gray-100 my-2"></div>
-                    
+
                     <Dropdown align="right" width="48">
                         <template #trigger>
                             <span class="inline-flex rounded-md">
@@ -277,10 +277,10 @@ import { toggleTheme } from '@/theme';
 
                             <template #content>
                                 <DropdownLink :href="route('profile.edit')">
-                                    Profile
+                                    Perfil
                                 </DropdownLink>
                                 <DropdownLink :href="route('logout')" method="post" as="button">
-                                    Log Out
+                                    Cerrar sesión
                                 </DropdownLink>
                             </template>
 
