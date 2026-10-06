@@ -147,7 +147,7 @@ function submit() {
 
     <AuthenticatedLayout>
         <div class="py-0 lg:py-12">
-            <div class="w-[350px] mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="w-[350px] lg:w-full mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <section class="rounded-xl border border-slate-200 bg-white px-5 py-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
                     <div class="flex items-start gap-3">
                         <NavLink :href="route('private_sales.index')" class="mt-1 rounded-md text-slate-500 transition hover:text-blue-700" title="Volver">
