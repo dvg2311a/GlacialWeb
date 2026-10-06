@@ -85,8 +85,8 @@ addProduct();
     <AuthenticatedLayout>
         <div class="w-full">
             <div class="w-full mx-auto lg:px-8 ">
-                <div class=" overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-1 ml-4 flex flex-wrap">
+                <div class="pl-1 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class=" flex flex-wrap">
                         <NavLink :href="route('orders_enterprises.index')"
                             class="-translate-x-3 border-none rounded-md font-semibold tracking-widest focus:outline-none focus:ring disabled:opacity-25 transition">
                             <ArrowLeft :size="32" color="gray" />
@@ -98,7 +98,7 @@ addProduct();
                 </div>
 
                 <div class="mt-6 max-w-7x5 mx-auto sm:px-6 lg:px-8">
-                    <form @submit.prevent="submit" class="w-full p-6 rounded-lg shadow-md flex flex-col gap-6">
+                    <form @submit.prevent="submit" class="w-full p-1 rounded-lg shadow-md flex flex-col gap-6">
 
                         <div v-if="Object.keys(form.errors || {}).length"
                             class="bg-red-50 border border-red-200 p-3 rounded">
@@ -108,7 +108,7 @@ addProduct();
                             </ul>
                         </div>
 
-                        <div class="flex gap-6 items-end">
+                        <div class="flex gap-6 items-end flex-wrap">
                             <div>
                                 <label class="block text-md font-medium text-gray-700"><b>Fecha de pedido</b></label>
                                 <input v-model="form.order_date" type="date" required
@@ -134,7 +134,7 @@ addProduct();
                             </div>
                         </div>
 
-                        <div class="border rounded p-4">
+                        <div class="border rounded p-4 w-[92vw]">
                             <div class="flex items-center justify-between mb-3">
                                 <h2 class="font-semibold">Productos</h2>
                                 <button type="button" @click="addProduct"
@@ -143,10 +143,12 @@ addProduct();
                                 </button>
                             </div>
 
-                            <div class="overflow-x-auto">
+                            <div
+                                class=" bg-white mt-6 -ml-4 lg:ml-2 overflow-auto w-[89vw] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                                style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
                                 <table class="min-w-full table-auto">
                                     <thead>
-                                        <tr class="text-left bg-gray-100">
+                                        <tr class="text-left bg-gray-100 text-nowrap">
                                             <th class="px-2">Producto</th>
                                             <!-- <th class="px-2">Cajas Pedidas</th> -->
                                             <th class="px-2">Cajas recibidas</th>
@@ -197,30 +199,30 @@ addProduct();
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
                         </div>
-
-                        <div class="flex justify-end gap-6">
-                            <div class="text-right">
-                                <div class="text-sm text-gray-600">Subtotal Base</div>
-                                <div class="font-medium">C${{ form.subtotal_base }}</div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-sm text-gray-600">Total Impuestos</div>
-                                <div class="font-medium">C${{ form.total_tax }}</div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-sm text-gray-600">Gran Total</div>
-                                <div class="font-medium">C${{ form.grand_total }}</div>
-                            </div>
-                        </div>
-
-                        <div class="flex justify-end">
-                            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">Crear Pedido</button>
-                        </div>
-                    </form>
                 </div>
+
+                <div class="flex justify-end gap-6">
+                    <div class="text-right">
+                        <div class="text-sm text-gray-600">Subtotal Base</div>
+                        <div class="font-medium">C${{ form.subtotal_base }}</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-gray-600">Total Impuestos</div>
+                        <div class="font-medium">C${{ form.total_tax }}</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-gray-600">Gran Total</div>
+                        <div class="font-medium">C${{ form.grand_total }}</div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">Crear Pedido</button>
+                </div>
+                </form>
             </div>
+        </div>
         </div>
     </AuthenticatedLayout>
 </template>
