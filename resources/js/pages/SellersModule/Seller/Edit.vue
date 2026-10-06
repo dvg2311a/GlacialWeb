@@ -17,6 +17,7 @@ const form = useForm({
     sex: props.seller?.sex ?? '',
     status: props.seller?.status ?? '',
     identity_card: props.seller?.identity_card ?? '',
+    type_seller: props.seller?.type_seller ?? '',
     picture: null,
     cart_id: props.seller?.cart_id ?? '',
 });
@@ -28,21 +29,22 @@ function onPictureChange(event) {
 }
 
 function submit() {
-    form.put(route('sellers.update', props.seller.id), {
-        onSuccess: () => {
-            Swal.fire({
-                title: '¡Éxito!',
-                text: 'El vendedor ha sido actualizado exitosamente.',
-                icon: 'success',
-                confirmButtonText: 'Aceptar',
-                timer: 3000,
-                timerProgressBar: true,
-                showClass: {
-                    popup: 'animate__animated animate__fadeInDown'
-                },
-            });
-        }
-    });
+    form
+        .transform((data) => ({
+            ...data,
+            _method: 'put',
+        }))
+        .post(route('sellers.update', props.seller.id), {
+            forceFormData: true,
+            onSuccess: () => {
+                Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'El vendedor ha sido actualizado exitosamente.',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                });
+            },
+        });
 }
 </script>
 
@@ -106,7 +108,7 @@ function submit() {
 
                         <div>
                             <label for="cart_id" class="block text-sm font-medium text-gray-700">Carrito</label>
-                            <select v-model="form.cart_id" name="cart_id" id="cart_id" required
+                            <select v-model="form.cart_id" name="cart_id" id="cart_id"
                                 class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 <option value="">Selecciona un carrito</option>
                                 <option v-for="item in carts" :key="item.id" :value="item.id">
@@ -132,6 +134,17 @@ function submit() {
                                 <option value="inactive">Inactivo</option>
                             </select>
                             <div v-if="form.errors.status" class="text-red-600 text-sm mt-1">{{ form.errors.status }}</div>
+                        </div>
+
+                        <div>
+                            <label for="type_seller" class="block text-sm font-medium text-gray-700">Tipo de vendedor</label>
+                            <select v-model="form.type_seller" name="type_seller" id="type_seller"
+                                class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                <option value="" disabled>Selecciona una opción</option>
+                                <option value="particular">Particular</option>
+                                <option value="company">Compañía</option>
+                            </select>
+                            <div v-if="form.errors.type_seller" class="text-red-600 text-sm mt-1">{{ form.errors.type_seller }}</div>
                         </div>
 
                         <div class="w-10/12 ml-4">

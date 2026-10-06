@@ -117,15 +117,15 @@ function getProductName(detail) {
                     <div class="p-6 bg-white rounded-lg shadow-md">
                         <div class="flex gap-4 justify-between px-4">
                             <div class="">
-                                <h2 class="text-sm font-medium text-gray-500">Fecha de Pedido</h2>
+                                <h2 class="text-sm font-medium text-gray-500"><b>Fecha de Pedido</b></h2>
                                 <p class="mt-1 text-gray-800">{{ formatDate(order.order_date) }}</p>
                             </div>
                             <div>
-                                <h2 class="text-sm font-medium text-gray-500">Fecha Esperada</h2>
+                                <h2 class="text-sm font-medium text-gray-500"><b>Fecha Esperada</b></h2>
                                 <p class="mt-1 text-gray-800">{{ formatDate(order.expected_date) }}</p>
                             </div>
                             <div>
-                                <h2 class="text-sm font-medium text-gray-500">Estado</h2>
+                                <h2 class="text-sm font-medium text-gray-500"><b>Estado</b></h2>
                                 <p class="mt-1 text-gray-800">{{ order.order_status }}</p>
                             </div>
                         </div>
@@ -135,7 +135,7 @@ function getProductName(detail) {
                                 <thead>
                                     <tr class="text-left bg-gray-100">
                                         <th class="px-2 py-2 whitespace-nowrap">Producto</th>
-                                        <th class="px-2 py-2 whitespace-nowrap">Cajas Pedidas</th>
+                                        <!-- <th class="px-2 py-2 whitespace-nowrap">Cajas Pedidas</th> -->
                                         <th class="px-2 py-2 whitespace-nowrap">Cajas Recibidas</th>
                                         <th class="px-2 py-2 whitespace-nowrap">Precio x Caja</th>
                                         <th class="px-2 py-2 whitespace-nowrap">% Impuesto</th>
@@ -151,17 +151,17 @@ function getProductName(detail) {
                                                 === String((d.product && d.product.id) || d.product_id || d.productId)) ||
                                             {}).name || 'no-match' }}
                                         </td>
-                                        <td class="px-2 py-2 whitespace-nowrap text-center">{{ d.boxes_ordered }}</td>
+                                        <!-- <td class="px-2 py-2 whitespace-nowrap text-center">{{ d.boxes_ordered }}</td> -->
                                         <td class="px-2 py-2 whitespace-nowrap text-center">{{ d.boxes_received }}</td>
-                                        <td class="px-2 py-2 whitespace-nowrap text-center">{{
+                                        <td class="px-2 py-2 whitespace-nowrap text-center">C$ {{
                                             formatCurrency(d.purchase_price_per_box) }}</td>
                                         <td class="px-2 py-2 whitespace-nowrap text-center">{{ (d.tax_percentage != null
                                             ? d.tax_percentage : 0) }}% </td>
-                                        <td class="px-2 py-2 whitespace-nowrap text-center">{{
+                                        <td class="px-2 py-2 whitespace-nowrap text-center">C$ {{
                                             formatCurrency(lineSubtotal(d)) }}</td>
-                                        <td class="px-2 py-2 whitespace-nowrap text-center">{{
+                                        <td class="px-2 py-2 whitespace-nowrap text-center">C$ {{
                                             formatCurrency(lineTax(d)) }}</td>
-                                        <td class="px-2 py-2 whitespace-nowrap">{{ formatCurrency(lineTotal(d)) }}</td>
+                                        <td class="px-2 py-2 whitespace-nowrap">C$ {{ formatCurrency(lineTotal(d)) }}</td>
                                         <!-- Debug lookup: show raw product id and name found in `product` prop -->
                                     </tr>
                                 </tbody>
@@ -170,16 +170,16 @@ function getProductName(detail) {
 
                         <div class="mt-6 flex justify-end gap-6">
                             <div class="text-right">
-                                <div class="text-sm text-gray-600">Subtotal Base</div>
-                                <div class="font-medium text-gray-900">{{ formatCurrency(order.subtotal_base) }}</div>
+                                <div class="text-sm text-gray-600"><b>Subtotal Base</b></div>
+                                <div class="font-medium text-gray-900">C$ {{ formatCurrency(order.subtotal_base) }}</div>
                             </div>
                             <div class="text-right">
-                                <div class="text-sm text-gray-600">Total Impuestos</div>
-                                <div class="font-medium text-gray-900">{{ formatCurrency(order.total_tax) }}</div>
+                                <div class="text-sm text-gray-600"><b>Total Impuestos</b></div>
+                                <div class="font-medium text-gray-900">C$ {{ formatCurrency(order.total_tax) }}</div>
                             </div>
                             <div class="text-right">
-                                <div class="text-sm text-gray-600">Gran Total</div>
-                                <div class="font-medium text-gray-900">{{ formatCurrency(order.grand_total) }}</div>
+                                <div class="text-sm text-gray-600"><b>Gran Total</b></div>
+                                <div class="font-medium text-gray-900">C$ {{ formatCurrency(order.grand_total) }}</div>
                             </div>
                         </div>
                     </div>

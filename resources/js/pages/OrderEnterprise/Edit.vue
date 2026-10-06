@@ -118,21 +118,21 @@ function submit() {
 
 						<div class="flex gap-6 items-end">
 							<div>
-								<label class="block text-sm font-medium text-gray-700">Fecha de Pedido</label>
+								<label class="block text-sm font-medium text-gray-700"><b>Fecha de Pedido</b></label>
 								<input v-model="form.order_date" type="date" required
 									class="mt-1 block w-48 rounded-md border-gray-300 shadow-sm" />
 								<InputError :message="form.errors.order_date" />
 							</div>
 
 							<div>
-								<label class="block text-sm font-medium text-gray-700">Fecha Esperada</label>
+								<label class="block text-sm font-medium text-gray-700"><b>Fecha Esperada</b></label>
 								<input v-model="form.expected_date" type="date" required
 									class="mt-1 block w-48 rounded-md border-gray-300 shadow-sm" />
 								<InputError :message="form.errors.expected_date" />
 							</div>
 
 							<div>
-								<label class="block text-sm font-medium text-gray-700">Estado</label>
+								<label class="block text-sm font-medium text-gray-700"><b>Estado</b></label>
 								<select v-model="form.order_status" class="mt-1 block w-48 rounded-md border-gray-300 shadow-sm">
 									<option value="Pending">Pending</option>
 									<option value="Received">Received</option>
@@ -199,16 +199,16 @@ function submit() {
 
 						<div class="flex justify-end gap-6">
 							<div class="text-right">
-								<div class="text-sm text-gray-600">Subtotal Base</div>
-								<div class="font-medium">{{ form.subtotal_base }}</div>
+								<div class="text-sm text-gray-600"><b>Subtotal Base</b></div>
+								<div class="font-medium">C$ {{ form.subtotal_base }}</div>
 							</div>
 							<div class="text-right">
-								<div class="text-sm text-gray-600">Total Impuestos</div>
-								<div class="font-medium">{{ form.total_tax }}</div>
+								<div class="text-sm text-gray-600"><b>Total Impuestos</b></div>
+								<div class="font-medium">C$ {{ form.total_tax }}</div>
 							</div>
 							<div class="text-right">
-								<div class="text-sm text-gray-600">Gran Total</div>
-								<div class="font-medium">{{ form.grand_total }}</div>
+								<div class="text-sm text-gray-600"><b>Gran Total</b></div>
+								<div class="font-medium">C$ {{ form.grand_total }}</div>
 							</div>
 						</div>
 

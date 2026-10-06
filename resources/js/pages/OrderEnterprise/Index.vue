@@ -104,9 +104,9 @@ function confirmDelete(id) {
                                     o.purchase_order_detail.reduce((total, detail) => total + detail.boxes_received, 0)
                                     }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-center">{{ o.order_status }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">{{ o.subtotal_base }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">{{ o.total_tax }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">{{ o.grand_total }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">C$ {{ o.subtotal_base }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">C$ {{ o.total_tax }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">C$ {{ o.grand_total }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-center  ">
                                     <NavLink :href="route('orders_enterprises.show', { orders_enterprise: o.id })"
                                         class="text-green-600 hover:text-green-900" title="Ver">
