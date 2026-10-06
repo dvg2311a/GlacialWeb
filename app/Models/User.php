@@ -6,13 +6,14 @@ namespace App\Models;
 // use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
-#[Fillable(['name','surname','direction', 'cellphone','sex','picture','email', 'password'])]
+#[Fillable(['name', 'surname', 'direction', 'cellphone', 'sex', 'picture', 'email', 'password'])]
 #[Hidden(['password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -33,7 +34,15 @@ class User extends Authenticatable
         ];
     }
 
-    public function sellerDailyReportDetail(){
-        return $this -> hasMany(SellerDailyReportDetail::class);
+    protected function picture(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => $value ? route('users.picture', $this->getKey()) : null,
+        );
+    }
+
+    public function sellerDailyReportDetail()
+    {
+        return $this->hasMany(SellerDailyReportDetail::class);
     }
 }

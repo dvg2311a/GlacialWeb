@@ -22,9 +22,13 @@ const form = useForm({
     direction: user.direction,
     cellphone: user.cellphone,
     sex: user.sex,
-    picture: user.picture,
+    picture: null,
     email: user.email,
 });
+
+function onPictureChange(event) {
+    form.picture = event.target.files[0] ?? null;
+}
 </script>
 
 <template>
@@ -39,89 +43,101 @@ const form = useForm({
             </p>
         </header>
 
-        <form @submit.prevent="form.patch(route('profile.update'))"
-            class="mt-6 flex gap-7 flex-wrap items-start justify-start  lg:w-[calc(100%+5rem)]">
-            <div>
-                <InputLabel for="name" value="Nombre" class="dark:text-gray-700"/>
-
-                <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus
-                    autocomplete="name" />
-
-                <InputError class="mt-2" :message="form.errors.name" />
-            </div>
-
-            <div>
-                <InputLabel for="surname" value="Apellidos" class="dark:text-gray-700" />
-
-                <TextInput id="surname" type="text" class="mt-1 block w-full" v-model="form.surname" required autofocus
-                    autocomplete="surname" />
-
-                <InputError class="mt-2" :message="form.errors.surname" />
-            </div>
-
-            <div>
-                <InputLabel for="direction" value="Dirección" class="dark:text-gray-700"/>
-
-                <TextInput id="direction" type="text" class="mt-1 block w-full" v-model="form.direction" required
-                    autofocus autocomplete="direction" />
-
-                <InputError class="mt-2" :message="form.errors.direction" />
-            </div>
-
-            <div >
-                <InputLabel for="cellphone" value="Número de teléfono" class="dark:text-gray-700"/>
-
-                <TextInput id="cellphone" type="text" class="mt-1 block w-full" v-model="form.cellphone" required
-                    autofocus autocomplete="cellphone" />
-
-                <InputError class="mt-2" :message="form.errors.cellphone" />
-            </div>
-
-            <div class="w-[30%]">
-                <InputLabel for="sex" value="Sexo" class="dark:text-gray-700"/>
-
-                <select id="sex" name="sex" v-model="form.sex"
-                    class="mt-1 block w-[100%] rounded-md border-gray-300 shadow-sm dark:text-gray-300 dark:focus:border-gray-600 dark:focus:ring-gray-600">
-                    <option value="" disabled>Seleccione una opción</option>
-                    <option value="m">Masculino</option>
-                    <option value="f">Femenino</option>
-                </select>
-
-                <InputError class="mt-2" :message="form.errors.sex" />
-            </div>
-
-            <div>
-                <InputLabel for="email" value="Email" class="dark:text-gray-700"/>
-
-                <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required
-                    autocomplete="username" />
-
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div v-if="mustVerifyEmail && user.email_verified_at === null">
-                <p class="mt-2 text-sm text-gray-800">
-                    Su email no está verificado
-                    <Link :href="route('verification.send')" method="post" as="button"
-                        class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                        Click here to re-send the verification email.
-                    </Link>
-                </p>
-
-                <div v-show="status === 'verification-link-sent'" class="mt-2 text-sm font-medium text-green-600">
-                    A new verification link has been sent to your email address.
+        <form @submit.prevent="form.patch(route('profile.update'))" class="mt-6 flex flex-col gap-4 lg:w-[calc(100%+5rem)]">
+            <div class="lg:flex gap-3">
+                <img v-if="user.picture" :src="user.picture" alt="Foto de perfil"
+                class="mt-3 h-24 w-24 rounded-full object-cover" />
+                <label for="picture" class="block text-sm font-medium text-gray-700 dark:text-gray-700">Foto</label>
+                <input @change="onPictureChange" type="file" name="picture" id="picture" accept="image/*"
+                    class="mt-1 block h-10 p-1 w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <div v-if="form.errors.picture" class="text-red-600 text-sm mt-1">{{ form.errors.picture }}
                 </div>
             </div>
+            <div class="flex gap-7 flex-wrap items-start justify-start">
 
-            <div class="flex items-center gap-4">
-                <PrimaryButton :disabled="form.processing">Guardar cambios</PrimaryButton>
+                <div>
+                    <InputLabel for="name" value="Nombre" class="dark:text-gray-700" />
 
-                <Transition enter-active-class="transition ease-in-out" enter-from-class="opacity-0"
-                    leave-active-class="transition ease-in-out" leave-to-class="opacity-0">
-                    <p v-if="form.recentlySuccessful" class="text-sm text-gray-600 bg-green-100 rounded-lg p-2 :dark:bg-green-900 :dark:text-green-100">
-                        Cambios guardados correctamente
+                    <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus
+                        autocomplete="name" />
+
+                    <InputError class="mt-2" :message="form.errors.name" />
+                </div>
+
+                <div>
+                    <InputLabel for="surname" value="Apellidos" class="dark:text-gray-700" />
+
+                    <TextInput id="surname" type="text" class="mt-1 block w-full" v-model="form.surname" required
+                        autofocus autocomplete="surname" />
+
+                    <InputError class="mt-2" :message="form.errors.surname" />
+                </div>
+
+                <div>
+                    <InputLabel for="direction" value="Dirección" class="dark:text-gray-700" />
+
+                    <TextInput id="direction" type="text" class="mt-1 block w-full" v-model="form.direction" required
+                        autofocus autocomplete="direction" />
+
+                    <InputError class="mt-2" :message="form.errors.direction" />
+                </div>
+
+                <div>
+                    <InputLabel for="cellphone" value="Número de teléfono" class="dark:text-gray-700" />
+
+                    <TextInput id="cellphone" type="text" class="mt-1 block w-full" v-model="form.cellphone" required
+                        autofocus autocomplete="cellphone" />
+
+                    <InputError class="mt-2" :message="form.errors.cellphone" />
+                </div>
+
+                <div class="lg:w-[30%]">
+                    <InputLabel for="sex" value="Sexo" class="dark:text-gray-700" />
+
+                    <select id="sex" name="sex" v-model="form.sex"
+                        class="mt-1 block w-[100%] rounded-md border-gray-300 shadow-sm dark:text-gray-300 dark:focus:border-gray-600 dark:focus:ring-gray-600">
+                        <option value="" disabled>Seleccione una opción</option>
+                        <option value="m">Masculino</option>
+                        <option value="f">Femenino</option>
+                    </select>
+
+                    <InputError class="mt-2" :message="form.errors.sex" />
+                </div>
+
+                <div>
+                    <InputLabel for="email" value="Email" class="dark:text-gray-700" />
+
+                    <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required
+                        autocomplete="username" />
+
+                    <InputError class="mt-2" :message="form.errors.email" />
+                </div>
+
+                <div v-if="mustVerifyEmail && user.email_verified_at === null">
+                    <p class="mt-2 text-sm text-gray-800">
+                        Su email no está verificado
+                        <Link :href="route('verification.send')" method="post" as="button"
+                            class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                            Click here to re-send the verification email.
+                        </Link>
                     </p>
-                </Transition>
+
+                    <div v-show="status === 'verification-link-sent'" class="mt-2 text-sm font-medium text-green-600">
+                        A new verification link has been sent to your email address.
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <PrimaryButton :disabled="form.processing">Guardar cambios</PrimaryButton>
+
+                    <Transition enter-active-class="transition ease-in-out" enter-from-class="opacity-0"
+                        leave-active-class="transition ease-in-out" leave-to-class="opacity-0">
+                        <p v-if="form.recentlySuccessful"
+                            class="text-sm text-gray-600 bg-green-100 rounded-lg p-2 :dark:bg-green-900 :dark:text-green-100">
+                            Cambios guardados correctamente
+                        </p>
+                    </Transition>
+                </div>
             </div>
         </form>
     </section>

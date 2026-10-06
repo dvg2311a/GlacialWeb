@@ -17,6 +17,11 @@ trait ProfileValidationRules
         return [
             'name' => $this->nameRules(),
             'email' => $this->emailRules($userId),
+            'surname' => ['required', 'string', 'max:50'],
+            'direction' => ['required', 'string', 'max:100'],
+            'cellphone' => ['required', 'string', 'max:15'],
+            'sex' => ['required', 'string', 'in:m,f'],
+            'picture' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ];
     }
 
