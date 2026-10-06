@@ -67,10 +67,10 @@ function confirmDelete(id) {
                     </NavLink>
                 </div>
 
-                <div v-for="(reports, date) in reports_group" :key="date" class=" bg-white rounded-lg mt-6 -ml-4 pb-2">
+                <div v-for="(reports, date) in reports_group" :key="date" class="  rounded-xl mt-6 -ml-1 pb-2 border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900">
 
                     <div class="flex items-center justify-between border-b border-gray-200 px-4 py-2">
-                        <h3 class="text-lg font-semibold text-gray-500 m-4 pt-4 capitalize">{{ formatDate(date) }}</h3>
+                        <h3 class="text-lg font-semibold text-slate-600 dark:text-slate-300 m-4 pt-4 capitalize">{{ formatDate(date) }}</h3>
 
                         <NavLink :href="route('seller_daily_reports.report_date', { report_date: date })"
                             class=" inline-flex items-center px-3 py-1 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 focus:text-white active:bg-blue-600 disabled:opacity-25 transition">
@@ -86,11 +86,11 @@ function confirmDelete(id) {
                         style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
 
                         <table class="min-w-[0px] lg:w-full divide-y rounded-lg divide-gray-200">
-                            <thead class="bg-gray-50 rounded-lg">
+                            <thead class="bg-slate-50 dark:bg-slate-800/70 rounded-lg">
                                 <tr>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Fecha</th>
+                                        ID</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Vendedor</th>
@@ -102,14 +102,14 @@ function confirmDelete(id) {
                                         Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
 
                                 <tr v-for="report in reports" :key="report.id">
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ report.id }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ report.seller.name }} {{
+                                    <td class="px-6 py-4 whitespace-nowrap text-slate-600 dark:text-slate-300">{{ report.id }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-slate-600 dark:text-slate-300">{{ report.seller.name }} {{
                                         report.seller.surname }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">C${{ report.grand_total }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
+                                    <td class="px-6 py-4 whitespace-nowrap text-slate-600 dark:text-slate-300">C${{ report.grand_total }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-slate-600 dark:text-slate-300">
 
                                         <NavLink
                                             :href="route('seller_daily_reports.show', { seller_daily_report: report.id })"
