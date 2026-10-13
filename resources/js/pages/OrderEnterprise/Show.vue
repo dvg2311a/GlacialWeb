@@ -96,7 +96,7 @@ function getProductName(detail) {
 
     <Head title="Detalle Pedido Empresa" />
     <AuthenticatedLayout>
-        <div class="py-2 w-full mr-4 -translate-x-20">
+        <div class="lg:py-2 w-full lg:mr-4 lg:-translate-x-20">
 
             <div class="w-min-full mx-auto -sm:px-6 -lg-px-8">
                 <div class="overflow-hidden shadow-sm sm:rounded-lg">
@@ -112,10 +112,10 @@ function getProductName(detail) {
                 <!-- debug removed -->
 
 
-                <div class="rounded-lg bg-white mt-6 -ml-4 lg:ml-7 overflow-auto w-[428px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                <div class="rounded-lg bg-white mt-6 lg:-ml-4 overflow-auto w-[92vw] lg:w-full lg:p-0 lg:overflow-hidden pr-2 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
                     style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
                     <div class="p-6 bg-white rounded-lg shadow-md">
-                        <div class="flex gap-4 justify-between px-4">
+                        <div class="flex gap-4 justify-start lg:justify-between flex-wrap px-4">
                             <div class="">
                                 <h2 class="text-sm font-medium text-gray-500"><b>Fecha de Pedido</b></h2>
                                 <p class="mt-1 text-gray-800">{{ formatDate(order.order_date) }}</p>
@@ -168,16 +168,16 @@ function getProductName(detail) {
                             </table>
                         </div>
 
-                        <div class="mt-6 flex justify-end gap-6">
-                            <div class="text-right">
+                        <div class="mt-6 flex justify-end gap-4">
+                            <div class="text-right text-nowrap">
                                 <div class="text-sm text-gray-600"><b>Subtotal Base</b></div>
                                 <div class="font-medium text-gray-900">C$ {{ formatCurrency(order.subtotal_base) }}</div>
                             </div>
-                            <div class="text-right">
+                            <div class="text-right text-nowrap">
                                 <div class="text-sm text-gray-600"><b>Total Impuestos</b></div>
                                 <div class="font-medium text-gray-900">C$ {{ formatCurrency(order.total_tax) }}</div>
                             </div>
-                            <div class="text-right">
+                            <div class="text-right text-nowrap">
                                 <div class="text-sm text-gray-600"><b>Gran Total</b></div>
                                 <div class="font-medium text-gray-900">C$ {{ formatCurrency(order.grand_total) }}</div>
                             </div>

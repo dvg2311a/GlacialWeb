@@ -53,7 +53,7 @@ function submit() {
     <Head title="Editar Vendedor" />
     <AuthenticatedLayout>
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lgs:px-8">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="ml-4 p-1 flex flex-wrap">
                         <NavLink :href="route('sellers.index')"
@@ -118,13 +118,6 @@ function submit() {
                             <div v-if="form.errors.cart_id" class="text-red-600 text-sm mt-1">{{ form.errors.cart_id }}</div>
                         </div>
 
-                        <div class="w-[320px]">
-                            <label for="direction" class="block text-sm font-medium text-gray-700">Dirección</label>
-                            <textarea v-model="form.direction" name="direction" id="direction" rows="3"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
-                            <p v-if="form.errors.direction" class="text-red-600 text-sm mt-1">{{ form.errors.direction }}</p>
-                        </div>
-
                         <div>
                             <label for="status" class="block text-sm font-medium text-gray-700">Estado</label>
                             <select v-model="form.status" name="status" id="status"
@@ -147,12 +140,19 @@ function submit() {
                             <div v-if="form.errors.type_seller" class="text-red-600 text-sm mt-1">{{ form.errors.type_seller }}</div>
                         </div>
 
-                        <div class="w-10/12 ml-4">
+                        <div>
                             <label for="picture" class="block text-sm font-medium text-gray-700">Foto</label>
                             <input @change="onPictureChange" type="file" name="picture" id="picture" accept="image/*"
                                 class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <p v-if="seller?.picture" class="text-xs text-gray-500 mt-1">Actual: {{ seller.picture }}</p>
                             <div v-if="form.errors.picture" class="text-red-600 text-sm mt-1">{{ form.errors.picture }}</div>
+                        </div>
+
+                        <div class="w-[310px]">
+                            <label for="direction" class="block text-sm font-medium text-gray-700">Dirección</label>
+                            <textarea v-model="form.direction" name="direction" id="direction" rows="3"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                            <p v-if="form.errors.direction" class="text-red-600 text-sm mt-1">{{ form.errors.direction }}</p>
                         </div>
 
                         <div class="w-full flex justify-end">
