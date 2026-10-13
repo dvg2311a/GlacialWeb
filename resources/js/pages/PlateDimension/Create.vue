@@ -57,9 +57,9 @@ function submit() {
                 <div class="mt-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <form @submit.prevent="submit" class="space-y-6 flex justify-center flex-col items-center">
                         <div>
-                            <label for="height" class="block text-sm font-medium text-gray-700">Alto</label>
+                            <label for="height" class="block text-sm font-medium text-gray-700 ">Alto</label>
                             <input v-model="form.height" type="decimal" name="height" id="height" required
-                                class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                class="mt-1 block h-auto p-2 w-80 rounded-md border-none focus:border-none  shadow-sm ">
                             <div v-if="form.errors.height" class="text-red-600 text-sm mt-1">{{
                                 form.errors.height }}</div>
                         </div>
@@ -67,7 +67,7 @@ function submit() {
                         <div>
                             <label for="width" class="block text-sm font-medium text-gray-700">Ancho</label>
                             <input v-model="form.width" type="decimal" name="width" id="width" required
-                                class="mt-1 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                class="mt-1 p-2 block w-80 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <div v-if="form.errors.width" class="text-red-600 text-sm mt-1">{{
                                 form.errors.width }}</div>
                         </div>
