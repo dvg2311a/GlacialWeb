@@ -108,7 +108,7 @@ const attendedUsers = computed(() => {
 					</div>
 				</div>
 
-				<div class="mb-6 grid gap-4 sm:grid-cols-4 w-[85vw]">
+				<div class="mb-6 grid gap-4 sm:grid-cols-4 w-[85vw] lg:w-full">
 					<div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
 						<div class="flex items-center gap-3 text-gray-500">
 							<CalendarDays :size="20" class="text-blue-600" />
