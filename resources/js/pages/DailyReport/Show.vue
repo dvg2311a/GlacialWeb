@@ -74,15 +74,13 @@ function creatorUserLabel(user: UserOption | null) {
                             }}</div>
                         <div class="dark:text-gray-900"><strong>Fecha de registro:</strong> {{ new Date(
                             daily_report.report_date).toLocaleDateString('es-NI') }}</div>
-<<<<<<< HEAD
+
                         <div class="dark:text-gray-900"><strong>Total:</strong>C$ {{ daily_report.grand_total ?? 0 }}</div>
                         <div class=" w-[360px] dark:text-gray-900"><strong>Usuario que registró:</strong> {{ creatorUserLabel(creator_user) }}</div>
-=======
-                        <div class="dark:text-gray-900"><strong>Total:</strong> {{ daily_report.grand_total ?? 0 }}
-                        </div>
-                        <div class=" w-[360px] dark:text-gray-900"><strong>Usuario que registró:</strong> {{
-                            creatorUserLabel(creator_user) }}</div>
->>>>>>> 6b6a1c66f0906a75d966fa462ad356d5c2ef5242
+
+
+
+
                     </div>
 
                     <div class="overflow-auto w-[360px] sm:w-[100%] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
@@ -103,7 +101,7 @@ function creatorUserLabel(user: UserOption | null) {
                                     <td class="px-4 py-2 dark:text-gray-100">{{ d.product ? d.product.name : '—' }}</td>
                                     <td class="px-4 py-2 dark:text-gray-100">{{ d.quantity_out }}</td>
                                     <td class="px-4 py-2 dark:text-gray-100">{{ d.quantity_return }}</td>
-                                    <td class="px-4 py-2 dark:text-gray-100">C$ {{ d.quantity_sold }}</td>
+                                    <td class="px-4 py-2 dark:text-gray-100"> {{ d.quantity_sold }}</td>
                                     <td class="px-4 py-2 dark:text-gray-100">C$ {{ d.wholesale_price }}</td>
                                     <td class="px-4 py-2 dark:text-gray-100">C$ {{ d.total_sales }}</td>
                                 </tr>
