@@ -31,11 +31,11 @@ type DailyReport = {
     seller?: ReportSeller | null;
 };
 
-const props = defineProps < {
+const props = defineProps<{
     daily_report: DailyReport;
     daily_report_detail: DailyReportItem[];
     creator_user: UserOption | null;
-} > ();
+}>();
 
 const { daily_report, daily_report_detail, creator_user } = props;
 
@@ -61,23 +61,33 @@ function creatorUserLabel(user: UserOption | null) {
                             <ArrowLeft :size="32" color="gray" />
                         </NavLink>
                         <h1 class="text-2xl font-bold mt-1">Detalle Reporte</h1>
-                        <p class="dark:text-white w-full mt-4">Reporte del día {{ new Date(daily_report.report_date).toLocaleDateString('es-NI') }}</p>
+                        <p class="dark:text-white w-full mt-4">Reporte del día {{ new
+                            Date(daily_report.report_date).toLocaleDateString('es-NI') }}</p>
                     </div>
                 </div>
 
                 <div class="mt-6 bg-white rounded pl-2 pt-4">
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-                        <div class="dark:text-gray-900"><strong>Vendedor:</strong> {{ daily_report.seller ? daily_report.seller.name && daily_report.seller.surname ? `${daily_report.seller.name} ${daily_report.seller.surname}` : daily_report.seller.name : '—'
+                    <div class="grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-3 gap-4 mb-4">
+                        <div class="dark:text-gray-900"><strong>Vendedor:</strong> {{ daily_report.seller ?
+                            daily_report.seller.name && daily_report.seller.surname ? `${daily_report.seller.name}
+                            ${daily_report.seller.surname}` : daily_report.seller.name : '—'
                             }}</div>
                         <div class="dark:text-gray-900"><strong>Fecha de registro:</strong> {{ new Date(
                             daily_report.report_date).toLocaleDateString('es-NI') }}</div>
+<<<<<<< HEAD
                         <div class="dark:text-gray-900"><strong>Total:</strong>C$ {{ daily_report.grand_total ?? 0 }}</div>
                         <div class=" w-[360px] dark:text-gray-900"><strong>Usuario que registró:</strong> {{ creatorUserLabel(creator_user) }}</div>
+=======
+                        <div class="dark:text-gray-900"><strong>Total:</strong> {{ daily_report.grand_total ?? 0 }}
+                        </div>
+                        <div class=" w-[360px] dark:text-gray-900"><strong>Usuario que registró:</strong> {{
+                            creatorUserLabel(creator_user) }}</div>
+>>>>>>> 6b6a1c66f0906a75d966fa462ad356d5c2ef5242
                     </div>
 
-                    <div class="overflow-auto w-[360px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                    <div class="overflow-auto w-[360px] sm:w-[100%] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
                         style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
-                        <table class="w-[360px] lg:w-full divide-y divide-gray-200">
+                        <table class="w-[360px] lg:w-full sm:w-[100%] divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th class="px-4 py-2 text-left">Producto</th>

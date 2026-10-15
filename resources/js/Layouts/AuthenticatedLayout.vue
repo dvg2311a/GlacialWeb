@@ -35,7 +35,7 @@ const showingNavigationDropdown = ref(false);
                 <div :class="{
                     block: showingNavigationDropdown,
                     hidden: !showingNavigationDropdown,
-                }" class="sm:hidden">
+                }" class="lg:hidden">
                     <div class="space-y-1 pb-3 pt-2">
                         <div class="flex">
 

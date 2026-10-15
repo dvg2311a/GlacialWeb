@@ -157,8 +157,8 @@ addSellerReport();
                     </div>
                 </div>
 
-                <div class="mt-6 w-[360px] lg:w-full lg:max-w-7xl mx-auto sm:px-6 lg:px-8 scrollbar-thin scrollbar-thumb"
-                    style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
+                <div class="mt-6 w-[360px] sm:w-[770px] lg:w-full lg:max-w-7xl mx-auto sm:px-6 lg:px-8 scrollbar-thin scrollbar-thumb"
+                    style="-webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;">
                     <form @submit.prevent="submit" class="space-y-6">
                         <div class="grid grid-cols-1 lg:grid-cols-1 w-[300px] lg:w-full ">
                             <div class="w-[150px] lg:w-[250px]">
@@ -205,7 +205,7 @@ addSellerReport();
 
                             <div class="mt-4 space-y-4 border-t border-slate-200 pt-4 dark:border-slate-700 lg:w-full ">
                                 <div
-                                    class="min-w-[240px] flex gap-4 lg:w-[100%] flex-row lg:justify-around lg:gap-4 flex-wrap ">
+                                    class="min-w-[240px]  flex gap-4 lg:w-[100%] flex-row lg:justify-around lg:gap-4 flex-wrap ">
                                     <div class="">
 
                                         <label
