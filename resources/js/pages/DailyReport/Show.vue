@@ -71,7 +71,7 @@ function creatorUserLabel(user: UserOption | null) {
                             }}</div>
                         <div class="dark:text-gray-900"><strong>Fecha de registro:</strong> {{ new Date(
                             daily_report.report_date).toLocaleDateString('es-NI') }}</div>
-                        <div class="dark:text-gray-900"><strong>Total:</strong> {{ daily_report.grand_total ?? 0 }}</div>
+                        <div class="dark:text-gray-900"><strong>Total:</strong>C$ {{ daily_report.grand_total ?? 0 }}</div>
                         <div class=" w-[360px] dark:text-gray-900"><strong>Usuario que registró:</strong> {{ creatorUserLabel(creator_user) }}</div>
                     </div>
 
@@ -93,9 +93,9 @@ function creatorUserLabel(user: UserOption | null) {
                                     <td class="px-4 py-2 dark:text-gray-100">{{ d.product ? d.product.name : '—' }}</td>
                                     <td class="px-4 py-2 dark:text-gray-100">{{ d.quantity_out }}</td>
                                     <td class="px-4 py-2 dark:text-gray-100">{{ d.quantity_return }}</td>
-                                    <td class="px-4 py-2 dark:text-gray-100">{{ d.quantity_sold }}</td>
-                                    <td class="px-4 py-2 dark:text-gray-100">{{ d.wholesale_price }}</td>
-                                    <td class="px-4 py-2 dark:text-gray-100">{{ d.total_sales }}</td>
+                                    <td class="px-4 py-2 dark:text-gray-100">C$ {{ d.quantity_sold }}</td>
+                                    <td class="px-4 py-2 dark:text-gray-100">C$ {{ d.wholesale_price }}</td>
+                                    <td class="px-4 py-2 dark:text-gray-100">C$ {{ d.total_sales }}</td>
                                 </tr>
                             </tbody>
                         </table>
