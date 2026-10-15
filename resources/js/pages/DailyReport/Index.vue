@@ -51,7 +51,7 @@ function confirmDelete(id) {
                 <div class=" overflow-hidden sm:rounded-lg">
                     <div class="p-1 0 ">
                         <h1 class="text-2xl font-bold mb-4">Ventas diarias</h1>
-                        <p class="-translate-x-1 w-[350px] lg:w-full" style="z-index: -1000;">Este apartado contiene el listado de ventas diarias de los
+                        <p class="-translate-x-1 w-[350px] sm:w-[100%] lg:w-full" style="z-index: -1000;">Este apartado contiene el listado de ventas diarias de los
                             vendedores.
                             Puedes agregar nuevas ventas o editar las existentes.
                             Para eliminar alguna venta, consulta con el adminsitrador</p>
@@ -82,10 +82,10 @@ function confirmDelete(id) {
 
 
 
-                    <div class="overflow-auto w-[350px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                    <div class="overflow-auto w-[350px] md:w-[100%] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
                         style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
 
-                        <table class="min-w-[0px] lg:w-full divide-y rounded-lg divide-gray-200">
+                        <table class="min-w-[0px] sm:w-[100%] lg:w-full divide-y rounded-lg divide-gray-200">
                             <thead class="bg-slate-50 dark:bg-slate-800/70 rounded-lg">
                                 <tr>
                                     <th

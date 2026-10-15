@@ -120,9 +120,9 @@ function submit() {
                     </div>
                 </div>
 
-                <div class="mt-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <form @submit.prevent="submit" class="space-y-6">
-                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <div class="mt-6 max-w-7xl mx-auto sm:w-[100%] sm:px-6 lg:px-8">
+                    <form @submit.prevent="submit" class="space-y-6 sm:w-[100%]">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 gap-4">
                             <div class="w-[260px]">
                                 <label class="block text-sm font-medium text-gray-700">Vendedor</label>
                                 <select v-model="form.seller_id"
@@ -158,14 +158,14 @@ function submit() {
                         </div>
 
                         <div class="mt-6">
-                            <div class="flex items-center justify-between mb-4 w-[390px] lg:w-full">
+                            <div class="flex items-center justify-between mb-4 w-[390px] sm:w-full lg:w-full">
                                 <h2 class="font-semibold mb-2">Productos</h2>
                                 <button type="button" @click="addProduct"
                                     class="inline-flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded-md shadow-sm hover:bg-green-500">
                                     Añadir producto
                                 </button>
                             </div>
-                            <div class="overflow-auto w-[428px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                            <div class="overflow-auto w-[109vw] sm:w-[700px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
                                 style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
                                 <table class="w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-50">
