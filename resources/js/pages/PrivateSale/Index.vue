@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Head, router } from '@inertiajs/vue3';
-import { CalendarDays, Eye, Pencil, Plus, ReceiptText, Trash } from 'lucide-vue-next';
+import { CalendarDays, Eye,   SquarePen, Plus, ReceiptText, Trash } from 'lucide-vue-next';
 import NavLink from '@/Components/NavLink.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
@@ -130,7 +130,7 @@ function confirmDelete(id: number | string) {
                             <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Total del día</p>
                             <p class="text-xl font-bold text-blue-700 dark:text-blue-300">
                                 C$ {{formatCurrency(sales.reduce((total: number, sale: PrivateSale) => total +
-                                    Number(sale.grand_total || 0), 0)) }}
+                                    Number(sale.grand_total || 0), 0))}}
                             </p>
                         </div>
                     </div>
@@ -170,7 +170,7 @@ function confirmDelete(id: number | string) {
                                     <td
                                         class="whitespace-nowrap px-5 py-4 text-right text-sm font-bold text-slate-800 dark:text-white">
                                         C$ {{ formatCurrency(sale.grand_total) }}</td>
-                                    <td class="px-5 py-4 text-right">
+                                    <td class="px-5 py-4 flex items-center text-right">
                                         <NavLink :href="route('private_sales.show', sale.id)"
                                             class="text-sm text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300">
                                             <Eye />
@@ -178,7 +178,7 @@ function confirmDelete(id: number | string) {
                                         <NavLink :href="route('private_sales.edit', sale.id)"
                                             class="ml-3 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
                                             title="Editar">
-                                            <Pencil :size="18" />
+                                            <SquarePen :size="18" />
                                         </NavLink>
                                         <button type="button"
                                             class="ml-2 text-rose-600 hover:text-rose-800 dark:text-rose-400 dark:hover:text-rose-300"

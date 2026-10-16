@@ -37,10 +37,10 @@ function confirmDelete(id) {
 
     <Head title="Type Products" />
     <AuthenticatedLayout>
-        <div class="py-0 lg:py-12">
+        <div class="py-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-1 ml-4">
+                    <div class="p-1">
                         <h1 class="text-2xl font-bold mb-4">Tipos de Productos</h1>
                         <p class="dark:text-white">En este apartado puedes gestionar los tipos de productos.
                             Agregar, editar ver y eliminar cada registro.</p>
@@ -79,7 +79,7 @@ function confirmDelete(id) {
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     {{ type_product.name }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td class="px-6 py-4 whitespace-rap">
                                     {{ type_product.description }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">

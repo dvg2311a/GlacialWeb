@@ -231,7 +231,7 @@ function submit() {
                             </div>
                         </div>
 
-                        <div>
+                        <div class=" justify-end flex">
                             <button type="submit" :disabled="form.processing"
                                 class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 disabled:opacity-50">Actualizar
                                 Reporte</button>
