@@ -73,10 +73,10 @@ defineProps({
                                 <h2 class="text-sm font-medium text-gray-500">Sabor de Producto</h2>
                                 <p class="mt-1 text-gray-800">{{ product_show.flavor?.name }}</p>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <h2 class="text-sm font-medium text-gray-500">Estado de Producto</h2>
                                 <p class="mt-1 text-gray-800">{{ product_show.status_product?.status }}</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

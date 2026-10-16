@@ -23,7 +23,7 @@ const form = useForm({
     expiration_date: '',
     freezer_id: '',
     type_product_id: '',
-    status_product_id: '',
+    // status_product_id: '',
     flavor_id: '',
 });
 
@@ -128,7 +128,7 @@ function submit() {
                             <div v-if="form.errors.bad_price" class="text-red-600 text-sm mt-1">{{
                                 form.errors.bad_price }}</div>
                         </div>
-                        <div>
+                        <!-- <div>
                             <label for="expiration_date" class="block text-sm font-medium text-gray-700">Fecha de
                                 Vencimiento</label>
                             <input v-model="form.expiration_date" type="date" name="expiration_date"
@@ -136,7 +136,7 @@ function submit() {
                                 class="mt-1 block w-40 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <div v-if="form.errors.expiration_date" class="text-red-600 text-sm mt-1">{{
                                 form.errors.expiration_date }}</div>
-                        </div>
+                        </div> -->
                         <div>
                             <label for="freezer_id" class="block text-sm font-medium text-gray-700">Freezer</label>
                             <select v-model="form.freezer_id" name="freezer_id" id="freezer_id" rows="3"
@@ -177,7 +177,7 @@ function submit() {
                             <div v-if="form.flavor_id" class="text-red-600 text-sm mt-1">{{
                                 form.errors.flavor_id }}</div>
                         </div>
-                        <div>
+                        <!-- <div>
                             <label for="status_product_id" class="block text-sm font-medium text-gray-700">Estado del
                                 Producto</label>
                             <select v-model="form.status_product_id" name="status_product_id" id="status_product_id"
@@ -190,7 +190,7 @@ function submit() {
                             </select>
                             <div v-if="form.status_product_id" class="text-red-600 text-sm mt-1">{{
                                 form.errors.status_product_id }}</div>
-                        </div>
+                        </div> -->
                         <div class="w-full flex flex-col items-end">
                             <button type="submit"
                                 class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-600 disabled:opacity-25 transition">
