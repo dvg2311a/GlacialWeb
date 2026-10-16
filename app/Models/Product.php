@@ -12,8 +12,11 @@ class Product extends Model
 
     protected $fillable = [
         'name', 'description', 'shape', 'wholesale_price', 'retail_price',
-        'purchase_price', 'bad_price', 'expiration_date','freezer_id',
-        'type_product_id', 'flavor_id', 'status_product_id'
+        'purchase_price', 'bad_price',
+        // 'expiration_date',
+        'freezer_id',
+        'type_product_id', 'flavor_id',
+        // 'status_product_id'
     ];
 
     public function freezer(){
@@ -28,9 +31,9 @@ class Product extends Model
         return $this -> belongsTo(FlavorProduct::class);
     }
 
-    public function statusProduct(){
-        return $this -> belongsTo(StatusProduct::class);
-    }
+    // public function statusProduct(){
+    //     return $this -> belongsTo(StatusProduct::class);
+    // }
 
     public function purchaseOrderDetail(){
         return $this -> hasMany(PurchaseOrderDetail::class);

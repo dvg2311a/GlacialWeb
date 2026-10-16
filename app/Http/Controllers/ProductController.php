@@ -6,7 +6,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\FlavorProduct;
 use App\Models\Freezer;
 use App\Models\Product;
-use App\Models\StatusProduct;
+// use App\Models\StatusProduct;
 use App\Models\TypeProduct;
 use Inertia\Inertia;
 use Throwable;
@@ -19,7 +19,7 @@ class ProductController extends Controller
         $products_view = Product::with(
             'freezer:id,number_freezer',
             'typeProduct:id,name',
-            'statusProduct:id,status',
+            // 'statusProduct:id,status',
             'flavor:id,name'
         )->get();
 
@@ -31,10 +31,12 @@ class ProductController extends Controller
         $products = new Product();
         $freezers = Freezer::all();
         $flavor_products = FlavorProduct::all();
-        $status_products = StatusProduct::all();
+        // $status_products = StatusProduct::all();
         $type_products = TypeProduct::all();
         return Inertia::render('Product/Products/Create', ['products' => $products, 'freezers' => $freezers,
-        'flavor_products' => $flavor_products, 'status_products' => $status_products, 'type_products' => $type_products]);
+        'flavor_products' => $flavor_products,
+        // 'status_products' => $status_products,
+        'type_products' => $type_products]);
     }
 
     public function store(ProductRequest $request)
@@ -49,7 +51,7 @@ class ProductController extends Controller
 
     public function show(string $id)
     {
-        $product_show = Product::with('freezer', 'flavor', 'statusProduct', 'typeProduct')->findOrFail($id);
+        $product_show = Product::with('freezer', 'flavor', 'typeProduct')->findOrFail($id);
         // $freezer = Freezer::all();
         // $type_product = TypeProduct::all();
         // $flavor_product = FlavorProduct::all();
@@ -62,10 +64,12 @@ class ProductController extends Controller
         $products = Product::findOrFail($id);
         $freezers = Freezer::all();
         $flavor_products = FlavorProduct::all();
-        $status_products = StatusProduct::all();
+        // $status_products = StatusProduct::all();
         $type_products = TypeProduct::all();
         return Inertia::render('Product/Products/Edit', ['products' => $products, 'freezers' => $freezers,
-        'flavor_products' => $flavor_products, 'status_products' => $status_products, 'type_products' => $type_products]);
+        'flavor_products' => $flavor_products,
+        // 'status_products' => $status_products,
+        'type_products' => $type_products]);
     }
 
 

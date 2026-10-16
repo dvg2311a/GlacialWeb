@@ -30,11 +30,11 @@ class ProductRequest extends FormRequest
             'retail_price' => 'required|numeric|min:0',
             'purchase_price' => 'required|numeric|min:0',
             'bad_price' => 'required|numeric|min:0',
-            'expiration_date' => 'nullable|date',
+            // 'expiration_date' => 'nullable|date',
             'freezer_id' => 'required|exists:freezers,id',
             'type_product_id' => 'required|exists:type_products,id',
             'flavor_id' => 'required|exists:flavor_products,id',
-            'status_product_id' => 'required|exists:status_products,id',
+            // 'status_product_id' => 'required|exists:status_products,id',
         ];
     }
 }
