@@ -48,7 +48,7 @@ function confirmDelete(id) {
     <AuthenticatedLayout>
         <div class="py-0 lg:py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class=" overflow-hidden sm:rounded-lg">
+                <div class=" overflow-hidden sm:rounded-lg rounded-xl border border-slate-200 bg-white px-5 py-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
                     <div class="p-1 0 ">
                         <h1 class="text-2xl font-bold mb-4">Ventas diarias</h1>
                         <p class="-translate-x-1 w-[350px] sm:w-[100%] lg:w-full" style="z-index: -1000;">Este apartado contiene el listado de ventas diarias de los
@@ -62,7 +62,7 @@ function confirmDelete(id) {
                     <NavLink :href="route('seller_daily_reports.create')"
                         class="-translate-x-4 lg:-translate-x-0 inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 focus:text-white active:bg-blue-600 disabled:opacity-25 transition">
 
-                        Nuevo Reporte
+                        Nuevo venta
                         <Plus :size="18" class="ml-2" />
                     </NavLink>
                 </div>

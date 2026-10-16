@@ -227,7 +227,7 @@ function submit() {
                                             <InputError :message="errorFor(`private_sales.${productIndex}.unit_price` as string)" />
                                         </td>
                                         <td class="px-4 py-3">
-                                            <select v-model="row.type_price" required class="w-36 rounded-md border-slate-300 shadow-sm focus:border-blue-600 focus:ring-blue-600">
+                                            <select v-model="row.type_price" required class=" rounded-md border-slate-300 shadow-sm focus:border-blue-600 focus:ring-blue-600">
                                                 <option value="">Seleccionar tipo</option>
                                                 <option value="Detalle">Detalle</option>
                                                 <option value="Mayorista">Mayorista</option>

@@ -293,7 +293,7 @@ function submit() {
                                         <tr v-for="(row, productIndex) in sale.products" :key="productIndex">
                                             <td class="px-4 py-3">
                                                 <select v-model="row.id" required
-                                                    class="w-full rounded-md border-slate-300 shadow-sm focus:border-blue-600 focus:ring-blue-600"
+                                                    class=" rounded-md border-slate-300 shadow-sm focus:border-blue-600 focus:ring-blue-600"
                                                     @change="syncProductRow(row)">
                                                     <option value="">Seleccionar producto</option>
                                                     <option v-for="item in product || []" :key="item.id"
@@ -327,7 +327,7 @@ function submit() {
                                             </td>
                                             <td class="px-4 py-3">
                                                 <select v-model="row.type_price" required
-                                                    class="w-36 rounded-md border-slate-300 shadow-sm focus:border-blue-600 focus:ring-blue-600">
+                                                    class=" rounded-md border-slate-300 shadow-sm focus:border-blue-600 focus:ring-blue-600">
                                                     <option value="">Seleccionar tipo</option>
                                                     <option value="Detalle">Detalle</option>
                                                     <option value="Mayorista">Mayorista</option>

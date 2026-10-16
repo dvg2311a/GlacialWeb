@@ -328,7 +328,7 @@ addSellerReport();
                                                     <button type="button"
                                                         @click="removeProduct(sellerIndex, productIndex)"
                                                         class="rounded-md p-2 text-rose-600 transition hover:bg-rose-50 hover:text-rose-700">
-                                                        <Trash :size="14" />
+                                                        <Trash :size="20" />
                                                     </button>
                                                 </td>
                                             </tr>
