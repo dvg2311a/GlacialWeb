@@ -37,7 +37,7 @@ function confirmDelete(id) {
 
     <Head title="Type Products" />
     <AuthenticatedLayout>
-        <div class="py-0">
+        <div class="py-0 sm:w-[90vw]">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-1">
@@ -55,7 +55,7 @@ function confirmDelete(id) {
                     </NavLink>
                 </div>
 
-                <div class=" bg-white mt-6 -ml-4 overflow-auto w-[428px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                <div class=" bg-white mt-6 -ml-4 overflow-auto sm:w-[90vw] w-[428px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
                     style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
                     <table class="min-w-[0px] lg:w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">

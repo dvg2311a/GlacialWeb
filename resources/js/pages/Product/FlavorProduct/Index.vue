@@ -55,7 +55,7 @@ function confirmDelete(id) {
                     </NavLink>
                 </div>
 
-                <div class=" bg-white mt-6 -ml-4 overflow-auto w-[428px] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                <div class=" bg-white mt-6 -ml-4 overflow-auto w-[428px] sm:w-[90vw] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
                     style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
                     <table class="min-w-[0px] lg:w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
@@ -79,7 +79,7 @@ function confirmDelete(id) {
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     {{ flavor_product.name }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td class="px-6 py-4 whitespace-wrap">
                                     {{ flavor_product.description }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
