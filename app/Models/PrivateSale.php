@@ -10,12 +10,14 @@ class PrivateSale extends Model
     protected $fillable = [
         'date_sale',
         'grand_total',
-        'seller_id'
+        'status',
+        'seller_id',
     ];
 
     protected $casts = [
         'date_sale' => 'date',
     ];
+
     public function privateSaleDetail(): HasMany
     {
         return $this->hasMany(PrivateSaleDetail::class);

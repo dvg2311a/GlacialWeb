@@ -9,6 +9,10 @@ defineProps({
         type: Object,
         required: true,
     },
+    can_edit: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 function formatDate(dateString) {
@@ -32,11 +36,21 @@ function confirmDelete(id) {
     }).then((result) => {
         if (result.isConfirmed) {
             router.delete(route('seller_daily_reports.destroy', id));
-            Swal.fire(
-                '¡Eliminado!',
-                'El freezer ha sido eliminado.',
-                'success'
-            );
+        }
+    });
+}
+
+function confirmReport(id) {
+    Swal.fire({
+        title: '¿Confirmar reporte?',
+        text: 'Se descontarán únicamente las unidades vendidas del inventario.',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Confirmar reporte',
+        cancelButtonText: 'Cancelar',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            router.post(route('seller_daily_reports.confirm', id));
         }
     });
 }
@@ -99,6 +113,9 @@ function confirmDelete(id) {
                                         Total</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Estado</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Acciones</th>
                                 </tr>
                             </thead>
@@ -109,6 +126,7 @@ function confirmDelete(id) {
                                     <td class="px-6 py-4 whitespace-nowrap text-slate-600 dark:text-slate-300">{{ report.seller.name }} {{
                                         report.seller.surname }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-slate-600 dark:text-slate-300">C${{ report.grand_total }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-slate-600 dark:text-slate-300">{{ report.status || 'Draft' }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-slate-600 dark:text-slate-300">
 
                                         <NavLink
@@ -116,14 +134,18 @@ function confirmDelete(id) {
                                             class="text-green-600 hover:text-green-900" title="Ver">
                                             <Eye />
                                         </NavLink>
-                                        <NavLink
+                                        <NavLink v-if="can_edit || report.status !== 'Confirmed'"
                                             :href="route('seller_daily_reports.edit', { seller_daily_report: report.id })"
                                             class="text-indigo-600 hover:text-indigo-900 ml-2" title="Editar">
                                             <SquarePen />
                                         </NavLink>
-                                        <button @click="confirmDelete(report.id)"
+                                        <button v-if="can_edit" @click="confirmDelete(report.id)"
                                             class="text-red-600 hover:text-red-900 ml-2" title="Eliminar">
                                             <Trash />
+                                        </button>
+                                        <button v-if="report.status !== 'Confirmed'" @click="confirmReport(report.id)"
+                                            class="text-blue-600 hover:text-blue-900 ml-2" title="Confirmar reporte">
+                                            Confirmar
                                         </button>
                                     </td>
                                 </tr>

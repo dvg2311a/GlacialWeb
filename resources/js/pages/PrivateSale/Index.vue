@@ -7,6 +7,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 type PrivateSale = {
     id: number | string;
     grand_total?: number | string | null;
+    status?: 'Draft' | 'Confirmed' | 'Cancelled' | string;
     seller?: { name?: string | null } | null;
     private_sale_detail?: unknown[];
     privateSaleDetail?: unknown[];
@@ -16,6 +17,7 @@ type PrivateSaleGroup = Record<string, PrivateSale[]>;
 
 const props = defineProps<{
     private_sale_group: PrivateSaleGroup;
+    can_edit: boolean;
 }>();
 
 function formatDate(dateString: string) {
@@ -70,6 +72,31 @@ function confirmDelete(id: number | string) {
                     });
                 },
             });
+        }
+    });
+}
+
+function confirmSale(id: number | string) {
+    const Swal = (window as unknown as {
+        Swal?: {
+            fire: (options: Record<string, unknown>) => Promise<{ isConfirmed?: boolean }>;
+        };
+    }).Swal;
+
+    if (!Swal) {
+        return;
+    }
+
+    Swal.fire({
+        title: '¿Confirmar esta venta?',
+        text: 'Las unidades se descontarán del inventario y la operación quedará registrada.',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Confirmar venta',
+        cancelButtonText: 'Cancelar',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            router.post(route('private_sales.confirm', id));
         }
     });
 }
@@ -149,6 +176,9 @@ function confirmDelete(id: number | string) {
                                         class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
                                         Líneas de producto</th>
                                     <th
+                                        class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
+                                        Estado</th>
+                                    <th
                                         class="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-500">
                                         Total</th>
                                     <th
@@ -167,6 +197,9 @@ function confirmDelete(id: number | string) {
                                         #{{ sale.id }}</td>
                                     <td class="px-5 py-4 text-sm text-slate-600 dark:text-slate-300">{{
                                         detailCount(sale) }} producto(s)</td>
+                                    <td class="px-5 py-4 text-sm text-slate-600 dark:text-slate-300">
+                                        {{ sale.status || 'Draft' }}
+                                    </td>
                                     <td
                                         class="whitespace-nowrap px-5 py-4 text-right text-sm font-bold text-slate-800 dark:text-white">
                                         C$ {{ formatCurrency(sale.grand_total) }}</td>
@@ -175,15 +208,20 @@ function confirmDelete(id: number | string) {
                                             class="text-sm text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300">
                                             <Eye />
                                         </NavLink>
-                                        <NavLink :href="route('private_sales.edit', sale.id)"
+                                        <NavLink v-if="can_edit" :href="route('private_sales.edit', sale.id)"
                                             class="ml-3 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
                                             title="Editar">
                                             <SquarePen :size="18" />
                                         </NavLink>
-                                        <button type="button"
+                                        <button v-if="can_edit" type="button"
                                             class="ml-2 text-rose-600 hover:text-rose-800 dark:text-rose-400 dark:hover:text-rose-300"
                                             title="Eliminar" @click="confirmDelete(sale.id)">
                                             <Trash :size="18" />
+                                        </button>
+                                        <button v-if="sale.status !== 'Confirmed'" type="button"
+                                            class="ml-2 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                                            title="Confirmar venta" @click="confirmSale(sale.id)">
+                                            Confirmar
                                         </button>
                                     </td>
                                 </tr>

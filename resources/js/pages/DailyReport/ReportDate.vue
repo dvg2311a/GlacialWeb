@@ -31,6 +31,7 @@ const props = defineProps<{
 	report_date: string;
 	total_sale: number | string | null;
 	reports: DailyReport[];
+	can_edit: boolean;
 }>();
 
 const formattedDate = computed(() => {
@@ -173,7 +174,7 @@ const attendedUsers = computed(() => {
 											>
 												<Eye :size="20" />
 											</NavLink>
-											<NavLink
+											<NavLink v-if="can_edit || report.status !== 'Confirmed'"
 												:href="route('seller_daily_reports.edit', { seller_daily_report: report.id })"
 												class="text-indigo-600 transition hover:text-indigo-800"
 												title="Editar reporte"

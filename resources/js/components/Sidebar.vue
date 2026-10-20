@@ -47,6 +47,12 @@ import { toggleTheme } from '@/theme';
                         <span>Pedidos</span>
                     </NavLink>
 
+                <NavLink :href="route('inventories.index')" :active="route().current('inventories.index')"
+                    class="flex items-center p-3">
+                    <PackageSearch class="mr-3 w-5 h-5" />
+                    <span>Inventario</span>
+                </NavLink>
+
 
                 <div v-if="$page.props.auth.roles.includes('Administrador')" class=" flex flex-col gap-1">
                     <div class="border-t border-blue-gray-100 my-2"></div>

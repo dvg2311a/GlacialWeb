@@ -3,27 +3,39 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderEnterpriseRequest;
+use App\Models\InventoryTransaction;
 use App\Models\OrderEnterprise;
 use App\Models\Product;
 use App\Models\PurchaseOrderDetail;
-use Illuminate\Http\Request;
+use App\Services\InventoryService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Throwable;
 
 class OrderEnterpriseController extends Controller
 {
-
     public function index()
     {
         $order = OrderEnterprise::query()->with('purchaseOrderDetail:id,boxes_received,purchase_price_total_per_box,order_enterprise_id,product_id')->latest()->get();
+        $receiptKeys = InventoryTransaction::query()
+            ->where('reference_type', PurchaseOrderDetail::class)
+            ->whereIn('reference_id', $order->flatMap(fn (OrderEnterprise $enterpriseOrder) => $enterpriseOrder->purchaseOrderDetail->pluck('id')))
+            ->pluck('movement_key')
+            ->flip();
+
+        $order->each(function (OrderEnterprise $enterpriseOrder) use ($receiptKeys): void {
+            $enterpriseOrder->setAttribute('inventory_receipt_confirmed', $enterpriseOrder->purchaseOrderDetail
+                ->filter(fn (PurchaseOrderDetail $detail): bool => (int) $detail->boxes_received > 0)
+                ->every(fn (PurchaseOrderDetail $detail): bool => $receiptKeys->has("purchase-order-detail:{$detail->id}:receipt")));
+        });
 
         return Inertia::render('OrderEnterprise/Index', ['order' => $order]);
     }
 
     public function create(): mixed
     {
-        $order = new OrderEnterprise();
+        $order = new OrderEnterprise;
         $order_details = PurchaseOrderDetail::all();
         $products = Product::all();
 
@@ -39,7 +51,7 @@ class OrderEnterpriseController extends Controller
                 $order = OrderEnterprise::create([
                     'order_date' => $request->order_date,
                     'expected_date' => $request->expected_date,
-                    'order_status' => $request->order_status
+                    'order_status' => 'Pending',
                 ]);
 
                 $totalTaxGeneral = 0;
@@ -75,10 +87,11 @@ class OrderEnterpriseController extends Controller
                     $order->update([
                         'total_tax' => $totalTaxGeneral,
                         'subtotal_base' => $lineSubtotal,
-                        'grand_total' => $grandTotalLine
+                        'grand_total' => $grandTotalLine,
                     ]);
                 }
             });
+
             return redirect()->route('orders_enterprises.index')->with('success', 'Pedido creado exitosamente');
         } catch (Throwable $e) {
             dd($e->getMessage());
@@ -101,6 +114,45 @@ class OrderEnterpriseController extends Controller
             'product' => $product,
             'purchase' => $purchase,
         ]);
+    }
+
+    public function confirmReceipt(string $id, InventoryService $inventoryService)
+    {
+        try {
+            DB::transaction(function () use ($id, $inventoryService): void {
+                $order = OrderEnterprise::query()
+                    ->with('purchaseOrderDetail')
+                    ->lockForUpdate()
+                    ->findOrFail($id);
+
+                foreach ($order->purchaseOrderDetail as $detail) {
+                    $quantity = (int) $detail->boxes_received;
+
+                    if ($quantity === 0) {
+                        continue;
+                    }
+
+                    $inventoryService->receive(
+                        productId: $detail->product_id,
+                        quantity: $quantity,
+                        referenceType: PurchaseOrderDetail::class,
+                        referenceId: $detail->id,
+                        movementKey: "purchase-order-detail:{$detail->id}:receipt",
+                        notes: "Recepción del pedido empresarial {$order->id}.",
+                    );
+                }
+
+                $order->update(['order_status' => 'Received']);
+            });
+
+            return redirect()
+                ->route('orders_enterprises.index')
+                ->with('success', 'Recepción confirmada y existencias actualizadas.');
+        } catch (Throwable $e) {
+            report($e);
+
+            return back()->with('error', 'No fue posible confirmar la recepción del pedido.');
+        }
     }
 
     public function edit(string $id)
@@ -129,12 +181,17 @@ class OrderEnterpriseController extends Controller
 
                 $order = OrderEnterprise::findOrFail($id);
 
+                if ($order->order_status === 'Received') {
+                    throw ValidationException::withMessages([
+                        'order_status' => 'Un pedido recibido no puede editarse sin revertir primero su recepción.',
+                    ]);
+                }
+
                 $order->update([
                     'order_date' => $request->order_date,
                     'expected_date' => $request->expected_date,
-                    'order_status' => $request->order_status,
+                    'order_status' => 'Pending',
                 ]);
-
 
                 $order->purchaseOrderDetail()->delete();
 
@@ -156,7 +213,6 @@ class OrderEnterpriseController extends Controller
 
                     $grandTotal = $product['boxes_received'] * $totalPerBox;
                     $grandTotalGeneral += $grandTotal;
-
 
                     // recrear detalle
                     PurchaseOrderDetail::create([
@@ -194,6 +250,13 @@ class OrderEnterpriseController extends Controller
         try {
             DB::transaction(function () use ($id) {
                 $order = OrderEnterprise::findOrFail($id);
+
+                if ($order->order_status === 'Received') {
+                    throw ValidationException::withMessages([
+                        'order_status' => 'Un pedido recibido no puede eliminarse sin revertir primero su recepción.',
+                    ]);
+                }
+
                 // eliminar detalles relacionados
                 $order->purchaseOrderDetail()->delete();
                 $order->delete();

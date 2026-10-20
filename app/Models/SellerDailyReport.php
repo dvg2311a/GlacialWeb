@@ -11,18 +11,20 @@ class SellerDailyReport extends Model
 
     protected $fillable = [
         'report_date', 'morning_checkup', 'evening_checkup', 'grand_total',
-        'seller_id'
+        'seller_id', 'status',
     ];
 
     protected $casts = [
         'report_date' => 'date',
     ];
 
-    public function seller(){
-        return $this -> belongsTo(Seller::class);
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class);
     }
 
-    public function sellerDailyReportDetail(){
-        return $this -> hasMany(SellerDailyReportDetail::class);
+    public function sellerDailyReportDetail()
+    {
+        return $this->hasMany(SellerDailyReportDetail::class);
     }
 }

@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SellerDailyReportRequest;
+use App\Models\InventoryTransaction;
 use App\Models\Product;
 use App\Models\Seller;
 use App\Models\SellerDailyReport;
 use App\Models\SellerDailyReportDetail;
-use Inertia\Inertia;
-use Illuminate\Support\Facades\DB;
+use App\Services\InventoryService;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\SellerDailyReportRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use Carbon\Carbon;
+use Inertia\Inertia;
 use Throwable;
 
 class SellerDailyReportController extends Controller
 {
-
     public function index()
     {
         $report = SellerDailyReport::with('seller', 'sellerDailyReportDetail:id,total_sales,seller_daily_report_id,user_id')->orderBy('report_date', 'desc')->get();
@@ -25,7 +25,10 @@ class SellerDailyReportController extends Controller
             return $item->report_date->format('Y-m-d');
         });
 
-        return Inertia::render('DailyReport/Index', ['reports_group' => $reports_group]);
+        return Inertia::render('DailyReport/Index', [
+            'reports_group' => $reports_group,
+            'can_edit' => Auth::user()?->hasRole('Administrador') ?? false,
+        ]);
     }
     /*
     Se necesita realizar una vista en la cual se muestre un listado de los vendedores,
@@ -53,25 +56,25 @@ class SellerDailyReportController extends Controller
         return Inertia::render('DailyReport/ReportDate', [
             'report_date' => $report_date,
             'total_sale' => $total_sale,
-            'reports' => $report
+            'reports' => $report,
+            'can_edit' => Auth::user()?->hasRole('Administrador') ?? false,
         ]);
     }
 
-
     public function create()
     {
-        $daily_reports = new SellerDailyReport();
-        $daily_report_details = new SellerDailyReportDetail();
+        $daily_reports = new SellerDailyReport;
+        $daily_report_details = new SellerDailyReportDetail;
         $products = Product::all();
         $sellers = Seller::all();
 
         return Inertia::render('DailyReport/Create', ['daily_reports' => $daily_reports, 'daily_report_details' => $daily_report_details, 'products' => $products, 'sellers' => $sellers]);
     }
 
-    public function store(SellerDailyReportRequest $request)
+    public function store(SellerDailyReportRequest $request, InventoryService $inventoryService)
     {
         try {
-            DB::transaction(function () use ($request) {
+            DB::transaction(function () use ($request, $inventoryService) {
                 $reportGroups = $request->input('seller_reports');
 
                 if (empty($reportGroups) && $request->filled('seller_id') && ! empty($request->input('seller_daily_reports', []))) {
@@ -109,7 +112,7 @@ class SellerDailyReportController extends Controller
                         $lineTotal = $productSold * $wholesalePrice;
                         $grandTotal += $lineTotal;
 
-                        SellerDailyReportDetail::create([
+                        $detail = SellerDailyReportDetail::create([
                             'quantity_out' => $quantityOut,
                             'quantity_return' => $quantityReturn,
                             'quantity_sold' => $productSold,
@@ -119,6 +122,17 @@ class SellerDailyReportController extends Controller
                             'product_id' => $dailyReportProduct['id'],
                             'user_id' => Auth::id(),
                         ]);
+
+                        if ($quantityOut > 0) {
+                            $inventoryService->commit(
+                                productId: $detail->product_id,
+                                quantity: $quantityOut,
+                                referenceType: SellerDailyReportDetail::class,
+                                referenceId: $detail->id,
+                                movementKey: "daily-report-detail:{$detail->id}:commitment",
+                                notes: "Compromiso del reporte diario {$dailyReport->id}.",
+                            );
+                        }
                     }
 
                     $dailyReport->update([
@@ -126,11 +140,74 @@ class SellerDailyReportController extends Controller
                     ]);
                 }
             });
+
             return redirect()->route('seller_daily_reports.index')->with('success', 'Registro creado exitosamente');
         } catch (Throwable $e) {
+            report($e);
 
-            dd($e->getMessage());
             return back()->withInput()->with('error', 'Ocurrió un error al crear el registro');
+        }
+    }
+
+    public function confirm(string $id, InventoryService $inventoryService)
+    {
+        try {
+            DB::transaction(function () use ($id, $inventoryService): void {
+                $report = SellerDailyReport::query()
+                    ->with('sellerDailyReportDetail')
+                    ->lockForUpdate()
+                    ->findOrFail($id);
+
+                if ($report->status === 'Confirmed') {
+                    return;
+                }
+
+                if ($report->status === 'Cancelled') {
+                    throw ValidationException::withMessages([
+                        'status' => 'Un reporte cancelado no puede confirmarse.',
+                    ]);
+                }
+
+                foreach ($report->sellerDailyReportDetail as $detail) {
+                    $quantity = (int) $detail->quantity_sold;
+
+                    if ($quantity > 0) {
+                        $inventoryService->issueCommitted(
+                            productId: $detail->product_id,
+                            quantity: $quantity,
+                            referenceType: SellerDailyReportDetail::class,
+                            referenceId: $detail->id,
+                            movementKey: "daily-report-detail:{$detail->id}:issue",
+                            notes: "Confirmación del reporte diario {$report->id}.",
+                        );
+                    }
+
+                    $returned = (int) $detail->quantity_return;
+
+                    if ($returned > 0) {
+                        $inventoryService->releaseCommitment(
+                            productId: $detail->product_id,
+                            quantity: $returned,
+                            referenceType: SellerDailyReportDetail::class,
+                            referenceId: $detail->id,
+                            movementKey: "daily-report-detail:{$detail->id}:return-release",
+                            notes: "Liberación de devoluciones del reporte diario {$report->id}.",
+                        );
+                    }
+                }
+
+                $report->update(['status' => 'Confirmed']);
+            });
+
+            return redirect()
+                ->route('seller_daily_reports.index')
+                ->with('success', 'Reporte confirmado y existencias actualizadas.');
+        } catch (ValidationException $e) {
+            throw $e;
+        } catch (Throwable $e) {
+            report($e);
+
+            return back()->with('error', 'No fue posible confirmar el reporte diario.');
         }
     }
 
@@ -144,11 +221,15 @@ class SellerDailyReportController extends Controller
         return Inertia::render('DailyReport/Show', ['daily_report' => $daily_report, 'daily_report_detail' => $daily_report_detail, 'product' => $product, 'creator_user' => $creator_user]);
     }
 
-
     public function edit(string $id)
     {
         try {
             $daily_report = SellerDailyReport::with('sellerDailyReportDetail')->findOrFail($id);
+
+            if ($daily_report->status === 'Confirmed') {
+                abort_unless(Auth::user()?->hasRole('Administrador'), 403);
+            }
+
             $daily_report_details = SellerDailyReportDetail::with('product', 'user')->where('seller_daily_report_id', $daily_report->id)->get();
             $products = Product::all();
             $sellers = Seller::all();
@@ -159,19 +240,36 @@ class SellerDailyReportController extends Controller
         }
     }
 
-
-    public function update(SellerDailyReportRequest $request, string $id)
+    public function update(SellerDailyReportRequest $request, string $id, InventoryService $inventoryService)
     {
         try {
-            DB::transaction(function () use ($request, $id) {
+            DB::transaction(function () use ($request, $id, $inventoryService) {
 
-                $daily_reports = SellerDailyReport::findOrFail($id);
+                $daily_reports = SellerDailyReport::with('sellerDailyReportDetail')->findOrFail($id);
+
+                if ($daily_reports->status === 'Confirmed') {
+                    abort_unless(Auth::user()?->hasRole('Administrador'), 403);
+                    $this->reverseConfirmedReportMovements($daily_reports, $inventoryService);
+                }
+
+                foreach ($daily_reports->sellerDailyReportDetail as $detail) {
+                    if ((int) $detail->quantity_out > 0) {
+                        $inventoryService->releaseCommitment(
+                            productId: $detail->product_id,
+                            quantity: (int) $detail->quantity_out,
+                            referenceType: SellerDailyReportDetail::class,
+                            referenceId: $detail->id,
+                            movementKey: "daily-report-detail:{$detail->id}:edit-release",
+                            notes: "Liberación por edición del reporte diario {$daily_reports->id}.",
+                        );
+                    }
+                }
 
                 $daily_reports->update([
                     'report_date' => $request->report_date,
                     'morning_checkup' => $request->morning_checkup,
                     'evening_checkup' => $request->evening_checkup,
-                    'seller_id' => $request->seller_id
+                    'seller_id' => $request->seller_id,
                 ]);
 
                 $daily_reports->sellerDailyReportDetail()->delete();
@@ -185,7 +283,7 @@ class SellerDailyReportController extends Controller
 
                     if ($quantityReturn > $quantityOut) {
                         throw ValidationException::withMessages([
-                            'quantity_return' => 'La cantidad devuelta no puede ser mayor a la cantidad que el vendedor llevó'
+                            'quantity_return' => 'La cantidad devuelta no puede ser mayor a la cantidad que el vendedor llevó',
                         ]);
                     }
 
@@ -194,7 +292,7 @@ class SellerDailyReportController extends Controller
                     $line_total = $product_sold * $wholesalePrice;
                     $grand_total += $line_total;
 
-                    SellerDailyReportDetail::create([
+                    $detail = SellerDailyReportDetail::create([
                         'quantity_out' => $quantityOut,
                         'quantity_return' => $quantityReturn,
                         'quantity_sold' => $product_sold,
@@ -204,31 +302,90 @@ class SellerDailyReportController extends Controller
                         'product_id' => $daily_report['id'],
                         'user_id' => Auth::id(),
                     ]);
+
+                    if ($quantityOut > 0) {
+                        $inventoryService->commit(
+                            productId: $detail->product_id,
+                            quantity: $quantityOut,
+                            referenceType: SellerDailyReportDetail::class,
+                            referenceId: $detail->id,
+                            movementKey: "daily-report-detail:{$detail->id}:commitment",
+                            notes: "Compromiso del reporte diario {$daily_reports->id}.",
+                        );
+                    }
                 }
 
                 $daily_reports->update([
-                    'grand_total' => $grand_total
+                    'grand_total' => $grand_total,
+                    'status' => 'Draft',
                 ]);
             });
+
             return redirect()->route('seller_daily_reports.index')->with('success', 'Registro actualizado exitosamente');
         } catch (Throwable $e) {
+            report($e);
 
-            dd($e->getMessage());
             return back()->withInput()->with('error', 'Ocurrió un error al actualizar el registro');
         }
     }
 
-
-    public function destroy(string $id)
+    public function destroy(string $id, InventoryService $inventoryService)
     {
         try {
-            DB::transaction(function () use ($id) {
-                $daily_report_delete = SellerDailyReport::findOrFail($id);
+            abort_unless(Auth::user()?->hasRole('Administrador'), 403);
+
+            DB::transaction(function () use ($id, $inventoryService) {
+                $daily_report_delete = SellerDailyReport::with('sellerDailyReportDetail')->findOrFail($id);
+
+                if ($daily_report_delete->status === 'Confirmed') {
+                    $this->reverseConfirmedReportMovements($daily_report_delete, $inventoryService);
+                }
+
+                foreach ($daily_report_delete->sellerDailyReportDetail as $detail) {
+                    if ((int) $detail->quantity_out > 0) {
+                        $inventoryService->releaseCommitment(
+                            productId: $detail->product_id,
+                            quantity: (int) $detail->quantity_out,
+                            referenceType: SellerDailyReportDetail::class,
+                            referenceId: $detail->id,
+                            movementKey: "daily-report-detail:{$detail->id}:delete-release",
+                            notes: "Liberación por eliminación del reporte diario {$daily_report_delete->id}.",
+                        );
+                    }
+                }
+
                 $daily_report_delete->sellerDailyReportDetail()->delete();
                 $daily_report_delete->delete();
             });
         } catch (Throwable $e) {
             return back()->with('error', 'Ocurrió un error al eliminar el registro');
+        }
+    }
+
+    private function reverseConfirmedReportMovements(
+        SellerDailyReport $report,
+        InventoryService $inventoryService,
+    ): void {
+        foreach ($report->sellerDailyReportDetail as $detail) {
+            $movementKeys = [
+                "daily-report-detail:{$detail->id}:issue",
+                "daily-report-detail:{$detail->id}:return-release",
+                "daily-report-detail:{$detail->id}:commitment",
+            ];
+
+            foreach ($movementKeys as $index => $movementKey) {
+                $movement = InventoryTransaction::query()
+                    ->where('movement_key', $movementKey)
+                    ->first();
+
+                if ($movement) {
+                    $inventoryService->reverse(
+                        transaction: $movement,
+                        movementKey: "daily-report-detail:{$detail->id}:admin-reversal:{$index}",
+                        notes: "Reversión administrativa del reporte diario {$report->id}.",
+                    );
+                }
+            }
         }
     }
 }

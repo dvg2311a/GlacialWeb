@@ -18,7 +18,7 @@ class SellerDailyReportRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-    * @return array<string, mixed>
+     * @return array<string, mixed>
      */
     public function rules(): array
     {
@@ -34,12 +34,12 @@ class SellerDailyReportRequest extends FormRequest
             'seller_reports.*.products' => 'nullable|array|min:1',
             'seller_reports.*.products.*.id' => 'required|exists:products,id',
             'seller_reports.*.products.*.quantity_out' => 'required|integer|min:0',
-            'seller_reports.*.products.*.quantity_return' => 'required|integer|min:0',
+            'seller_reports.*.products.*.quantity_return' => 'nullable|integer|min:0',
             'seller_reports.*.products.*.wholesale_price' => 'required|numeric|min:0',
             'seller_daily_reports' => 'nullable|array',
             'seller_daily_reports.*.id' => 'required|exists:products,id',
             'seller_daily_reports.*.quantity_out' => 'required|integer|min:0',
-            'seller_daily_reports.*.quantity_return' => 'required|integer|min:0',
+            'seller_daily_reports.*.quantity_return' => 'nullable|integer|min:0',
             'seller_daily_reports.*.wholesale_price' => 'required|numeric|min:0',
         ];
     }
@@ -68,7 +68,6 @@ class SellerDailyReportRequest extends FormRequest
             'seller_reports.*.products.*.quantity_out.required' => 'La cantidad de salida es obligatoria para cada producto.',
             'seller_reports.*.products.*.quantity_out.integer' => 'La cantidad de salida debe ser un número entero para cada producto.',
             'seller_reports.*.products.*.quantity_out.min' => 'La cantidad de salida no puede ser negativa para cada producto.',
-            'seller_reports.*.products.*.quantity_return.required' => 'La cantidad devuelta es obligatoria para cada producto.',
             'seller_reports.*.products.*.quantity_return.integer' => 'La cantidad devuelta debe ser un número entero para cada producto.',
             'seller_reports.*.products.*.quantity_return.min' => 'La cantidad devuelta no puede ser negativa para cada producto.',
             'seller_reports.*.products.*.wholesale_price.required' => 'El precio al por mayor es obligatorio para cada producto.',
@@ -80,7 +79,6 @@ class SellerDailyReportRequest extends FormRequest
             'seller_daily_reports.*.quantity_out.required' => 'La cantidad de salida es obligatoria para cada producto en los reportes diarios.',
             'seller_daily_reports.*.quantity_out.integer' => 'La cantidad de salida debe ser un número entero para cada producto en los reportes diarios.',
             'seller_daily_reports.*.quantity_out.min' => 'La cantidad de salida no puede ser negativa para cada producto en los reportes diarios.',
-            'seller_daily_reports.*.quantity_return.required' => 'La cantidad devuelta es obligatoria para cada producto en los reportes diarios.',
             'seller_daily_reports.*.quantity_return.integer' => 'La cantidad devuelta debe ser un número entero para cada producto en los reportes diarios.',
             'seller_daily_reports.*.quantity_return.min' => 'La cantidad devuelta no puede ser negativa para cada producto en los reportes diarios.',
             'seller_daily_reports.*.wholesale_price.required' => 'El precio al por mayor es obligatorio para cada producto en los reportes diarios.',

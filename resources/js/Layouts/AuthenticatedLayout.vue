@@ -67,6 +67,12 @@ const showingNavigationDropdown = ref(false);
                             <span>Pedidos</span>
                         </ResponsiveNavLink>
 
+                        <ResponsiveNavLink :href="route('inventories.index')"
+                            :active="route().current('inventories.index')" class="text-xs">
+                            <PackageSearch class="mr-2 w-4 h-4 inline" />
+                            <span>Inventario</span>
+                        </ResponsiveNavLink>
+
                         <div class="border-t border-gray-200 my-2"></div>
 
 

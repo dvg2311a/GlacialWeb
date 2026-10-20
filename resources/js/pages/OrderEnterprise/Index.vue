@@ -38,6 +38,21 @@ function confirmDelete(id) {
     });
 }
 
+function confirmReceipt(id) {
+    Swal.fire({
+        title: '¿Confirmar recepción?',
+        text: 'Las cajas recibidas se agregarán al inventario y esta acción quedará registrada.',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Confirmar recepción',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            router.post(route('orders_enterprises.confirm_receipt', id));
+        }
+    });
+}
+
 </script>
 
 <template>
@@ -119,6 +134,10 @@ function confirmDelete(id) {
                                     <button @click="confirmDelete(o.id)" class="text-red-600 hover:text-red-900 ml-2"
                                         title="Eliminar">
                                         <Trash />
+                                    </button>
+                                    <button v-if="!o.inventory_receipt_confirmed" @click="confirmReceipt(o.id)"
+                                        class="text-blue-600 hover:text-blue-900 ml-2" title="Confirmar recepción">
+                                        {{ o.order_status === 'Received' ? 'Sincronizar inventario' : 'Recibir' }}
                                     </button>
                                 </td>
                             </tr>

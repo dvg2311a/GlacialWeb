@@ -1,39 +1,26 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-
-use App\Http\Controllers\RoleController;
-
-use App\Http\Controllers\TypeFreezerController;
-use App\Http\Controllers\FreezerController;
-
-use App\Http\Controllers\PlateDimensionController;
-use App\Http\Controllers\PlateController;
-
-use App\Http\Controllers\FlavorProductController;
-use App\Http\Controllers\StatusProductController;
-use App\Http\Controllers\TypeProductController;
-use App\Http\Controllers\ProductController;
-
-use App\Http\Controllers\OrderEnterpriseController;
-use App\Http\Controllers\PurchaseOrderDetailController;
-
-use App\Http\Controllers\TypeCartController;
-use App\Http\Controllers\StatusCartController;
 use App\Http\Controllers\CartController;
-
+use App\Http\Controllers\FlavorProductController;
+use App\Http\Controllers\FreezerController;
+use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\OrderEnterpriseController;
+use App\Http\Controllers\PlateController;
+use App\Http\Controllers\PlateDimensionController;
+use App\Http\Controllers\PrivateSaleController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SellerController;
-
 use App\Http\Controllers\SellerDailyReportController;
 use App\Http\Controllers\SellerDailyReportDetailController;
-
-use App\Http\Controllers\InventoryController;
-use App\Http\Controllers\PrivateSaleController;
+use App\Http\Controllers\StatusCartController;
+use App\Http\Controllers\StatusProductController;
+use App\Http\Controllers\TypeCartController;
+use App\Http\Controllers\TypeFreezerController;
+use App\Http\Controllers\TypeProductController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
-
 
 Route::get('/', function () {
     return Inertia::render('Auth/Login');
@@ -67,7 +54,6 @@ Route::middleware(['auth:web', config('auth_session'), 'verified', 'role:Adminis
     Route::resource('/status_products', StatusProductController::class);
     Route::resource('/products', ProductController::class);
 
-
     // ? Modulo de Carritos
     Route::resource('/type_carts', TypeCartController::class);
     Route::resource('/status_carts', StatusCartController::class);
@@ -80,7 +66,6 @@ Route::middleware(['auth:web', config('auth_session'), 'verified', 'role:Adminis
     // Route::resource('/seller_daily_report_details', SellerDailyReportDetailController::class);
 
     // ? Modulo de Inventario
-    Route::resource('/inventories', InventoryController::class);
 
     // ? Modulo de Reporte de Vendedores
 });
@@ -89,10 +74,17 @@ Route::middleware(['auth:web', config('auth_session'), 'verified', 'role:Adminis
 
     // ? Modulo de Pedidos
     Route::resource('/orders_enterprises', OrderEnterpriseController::class);
+    Route::post('/orders_enterprises/{orders_enterprise}/confirm-receipt', [OrderEnterpriseController::class, 'confirmReceipt'])
+        ->name('orders_enterprises.confirm_receipt');
 
-    Route::resource('/seller_daily_reports', SellerDailyReportController::class);
+        Route::resource('/inventories', InventoryController::class);
+        Route::resource('/seller_daily_reports', SellerDailyReportController::class);
+        Route::post('/seller_daily_reports/{seller_daily_report}/confirm', [SellerDailyReportController::class, 'confirm'])
+        ->name('seller_daily_reports.confirm');
     Route::get('seller_daily_reports/{report_date}/group', [SellerDailyReportController::class, 'reportDate'])->name('seller_daily_reports.report_date');
     Route::resource('/private_sales', PrivateSaleController::class);
+    Route::post('/private_sales/{private_sale}/confirm', [PrivateSaleController::class, 'confirm'])
+        ->name('private_sales.confirm');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
