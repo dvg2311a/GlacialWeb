@@ -33,7 +33,7 @@ defineProps<{
 <template>
     <Head :title="`Inventario: ${inventory.product?.name || 'Producto'}`" />
     <AuthenticatedLayout>
-        <div class="py-0 lg:py-12">
+        <div class="py-0 lg:py-10 w-[90vw] lg:w-full lg:-ml-12">
             <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
                 <div class="flex items-center gap-3">
                     <NavLink :href="route('inventories.index')" class="text-slate-500"><ArrowLeft /></NavLink>
@@ -70,13 +70,13 @@ defineProps<{
                         </thead>
                         <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
                             <tr v-for="transaction in inventory.transactions" :key="transaction.id">
-                                <td class="px-5 py-4 text-sm">{{ new Date(transaction.created_at).toLocaleString('es-NI') }}</td>
-                                <td class="px-5 py-4 text-sm font-semibold">{{ transaction.movement_type }}</td>
-                                <td class="px-5 py-4 text-right text-sm">{{ transaction.quantity }}</td>
-                                <td class="px-5 py-4 text-right text-sm">{{ transaction.stock_before }} → {{ transaction.stock_after }}</td>
-                                <td class="px-5 py-4 text-right text-sm">{{ transaction.committed_before }} → {{ transaction.committed_after }}</td>
-                                <td class="px-5 py-4 text-sm">{{ transaction.reference_type }} #{{ transaction.reference_id }}</td>
-                                <td class="px-5 py-4 text-sm">{{ transaction.user ? `${transaction.user.name} ${transaction.user.surname || ''}` : 'Sistema' }}</td>
+                                <td class="px-5 py-4 text-sm dark:text-white text-nowrap">{{ new Date(transaction.created_at).toLocaleString('es-NI') }}</td>
+                                <td class="px-5 py-4 text-sm font-semibold dark:text-white  text-nowrap">{{ transaction.movement_type }}</td>
+                                <td class="px-5 py-4 text-right text-sm dark:text-white  text-nowrap">{{ transaction.quantity }}</td>
+                                <td class="px-5 py-4 text-right text-sm dark:text-white  text-nowrap">{{ transaction.stock_before }} → {{ transaction.stock_after }}</td>
+                                <td class="px-5 py-4 text-right text-sm dark:text-white  text-nowrap">{{ transaction.committed_before }} → {{ transaction.committed_after }}</td>
+                                <td class="px-5 py-4 text-sm dark:text-white  text-nowrap">{{ transaction.reference_type }} #{{ transaction.reference_id }}</td>
+                                <td class="px-5 py-4 text-sm dark:text-white  text-nowrap">{{ transaction.user ? `${transaction.user.name} ${transaction.user.surname || ''}` : 'Sistema' }}</td>
                             </tr>
                             <tr v-if="!inventory.transactions.length"><td colspan="7" class="px-5 py-10 text-center text-slate-500">No hay movimientos registrados.</td></tr>
                         </tbody>

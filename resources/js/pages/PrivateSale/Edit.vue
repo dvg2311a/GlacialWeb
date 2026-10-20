@@ -132,7 +132,7 @@ function submit() {
             const Swal = (window as unknown as { Swal?: { fire: (...args: unknown[]) => void } }).Swal;
             Swal?.fire({
                 title: '¡Éxito!',
-                text: 'La venta privada ha sido actualizada.',
+                text: 'La venta particular ha sido actualizada.',
                 icon: 'success',
                 confirmButtonText: 'Aceptar',
                 timer: 2500,
@@ -143,18 +143,18 @@ function submit() {
 </script>
 
 <template>
-    <Head title="Editar Venta Privada" />
+    <Head title="Editar Venta particular " />
 
     <AuthenticatedLayout>
         <div class="py-0 lg:py-12">
-            <div class="w-[350px] lg:w-full mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="w-[350px] lg:w-full sm:w-[90vw] mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <section class="rounded-xl border border-slate-200 bg-white px-5 py-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
                     <div class="flex items-start gap-3">
                         <NavLink :href="route('private_sales.index')" class="mt-1 rounded-md text-slate-500 transition hover:text-blue-700" title="Volver">
                             <ArrowLeft :size="28" />
                         </NavLink>
                         <div>
-                            <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Editar venta privada</h1>
+                            <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Editar venta particular</h1>
                             <p class="mt-2 text-sm text-slate-500 dark:text-slate-300">Actualiza el vendedor, la fecha y los productos registrados en esta venta.</p>
                         </div>
                     </div>
@@ -166,9 +166,9 @@ function submit() {
                             <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Venta #{{ props.private_sale.id }}</p>
                             <p class="mt-1 text-lg font-semibold text-slate-800 dark:text-white">{{ sellerLabel() }}</p>
                         </div>
-                        <div class="w-full max-w-sm">
-                            <label for="date_sale" class="block text-sm font-semibold text-slate-700 dark:text-slate-200">Fecha de venta</label>
-                            <input id="date_sale" v-model="form.date_sale" type="date" required class="mt-2 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-600 focus:ring-blue-600" />
+                        <div class="w-40 flex justify-start flex-wrap max-w-sm">
+                            <label for="date_sale" class="block text-sm font-semibold text-slate-700 dark:text-slate-200 pb-4">Fecha de venta</label>
+                            <input id="date_sale" v-model="form.date_sale" type="date" required class=" block rounded-md border-slate-300 shadow-sm focus:border-blue-600 focus:ring-blue-600" />
                             <InputError :message="form.errors.date_sale" />
                         </div>
                     </section>
@@ -256,7 +256,7 @@ function submit() {
 
                     <div class="flex justify-end">
                         <button type="submit" :disabled="form.processing" class="inline-flex items-center justify-center rounded-md bg-blue-700 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-60">
-                            {{ form.processing ? 'Guardando...' : 'Actualizar venta privada' }}
+                            {{ form.processing ? 'Guardando...' : 'Actualizar venta particular' }}
                         </button>
                     </div>
                 </form>

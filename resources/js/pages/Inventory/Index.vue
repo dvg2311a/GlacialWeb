@@ -52,7 +52,7 @@ function statusClass(item: InventoryRow) {
 <template>
     <Head title="Inventario" />
     <AuthenticatedLayout>
-        <div class="py-0 lg:py-12">
+        <div class="py-0 lg:py-12 w-[90vw]">
             <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
                 <section class="rounded-xl border border-slate-200 bg-white px-5 py-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
                     <div class="flex items-center gap-3">
@@ -98,7 +98,7 @@ function statusClass(item: InventoryRow) {
                 <section class="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900">
                     <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
                         <thead class="bg-slate-50 dark:bg-slate-800/70">
-                            <tr>
+                            <tr class=" text-nowrap">
                                 <th class="px-5 py-3 text-left text-xs uppercase text-slate-500">Producto</th>
                                 <th class="px-5 py-3 text-right text-xs uppercase text-slate-500">Stock</th>
                                 <th class="px-5 py-3 text-right text-xs uppercase text-slate-500">Comprometido</th>
@@ -109,7 +109,7 @@ function statusClass(item: InventoryRow) {
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
-                            <tr v-for="item in inventories.data" :key="item.id">
+                            <tr v-for="item in inventories.data" :key="item.id" class=" text-nowrap">
                                 <td class="px-5 py-4 font-semibold text-slate-800 dark:text-white">{{ item.product?.name || 'Producto eliminado' }}</td>
                                 <td class="px-5 py-4 text-right dark:text-white">{{ item.stock }}</td>
                                 <td class="px-5 py-4 text-right dark:text-white">{{ item.committed_quantity }}</td>
