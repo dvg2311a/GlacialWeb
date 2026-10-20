@@ -52,8 +52,8 @@ function statusClass(item: InventoryRow) {
 <template>
     <Head title="Inventario" />
     <AuthenticatedLayout>
-        <div class="py-0 lg:py-12 w-[90vw]">
-            <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
+        <div class="py-0 lg:py-12 w-[90vw] lg:w-full lg:-ml-40">
+            <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8 xl:w-[1000vw] xl:ml-0 lg:-ml-12">
                 <section class="rounded-xl border border-slate-200 bg-white px-5 py-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
                     <div class="flex items-center gap-3">
                         <PackageSearch class="text-blue-700" :size="30" />
