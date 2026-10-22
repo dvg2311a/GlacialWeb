@@ -160,10 +160,19 @@ addSellerReport();
                 <div class="mt-6 w-[360px] sm:w-[770px] lg:w-full lg:max-w-7xl mx-auto sm:px-6 lg:px-8 scrollbar-thin scrollbar-thumb"
                     style="-webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;">
                     <form @submit.prevent="submit" class="space-y-6">
+                        <div v-if="Object.keys(form.errors).length"
+                            class="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+                            <p class="font-semibold">No se pudo guardar el reporte:</p>
+                            <ul class="mt-2 list-disc space-y-1 pl-5">
+                                <li v-for="(message, key) in form.errors" :key="key">{{ message }}</li>
+                            </ul>
+                        </div>
+
                         <div class="grid grid-cols-1 lg:grid-cols-1 w-[300px] lg:w-full ">
                             <div class="w-[150px] lg:w-[250px]">
                                 <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200">Fecha de reporte</label>
                                 <input v-model="form.report_date" type="date"
+                                    required
                                     class="mt-2 block w-36 rounded-md border-slate-300 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 lg:w-full" />
                                 <InputError :message="form.errors.report_date" />
                             </div>
@@ -212,6 +221,7 @@ addSellerReport();
 
                                             class="block text-sm font-semibold text-slate-700 dark:text-slate-200 lg:w-full">Vendedor</label>
                                         <select v-model="sellerReport.seller_id"
+                                            required
                                             class="mt-2 block w-full rounded-md border-slate-300 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 lg:w-72">
                                             <option value="">Seleccionar vendedor</option>
                                             <option v-for="seller in (sellers || [])" :key="seller.id"
@@ -226,6 +236,7 @@ addSellerReport();
                                     <div>
                                         <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200">Asistencia matutina</label>
                                         <input v-model="sellerReport.morning_checkup" type="time" step="1"
+                                            required
                                             class="mt-2 block rounded-md border-slate-300 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 lg:w-full" />
                                         <InputError
                                             :message="errorFor(`seller_reports.${sellerIndex}.morning_checkup`)" />
@@ -308,7 +319,7 @@ addSellerReport();
                                                 </td>
                                                 <td class="px-4 py-2">
                                                     <input v-model.number="product.wholesale_price"
-                                                        @input="syncProductRow(product)" type="number" step="0.01"
+                                                        @input="syncProductRow(product)" type="number" step="0"
                                                         list="wholesale_price_list" min="0" class="w-28 rounded-md border-slate-300 shadow-sm focus:border-cyan-600 focus:ring-cyan-600" id="wholesale_pric" />
                                                         <datalist id="wholesale_price_list">
                                                             <option value="10.00" />

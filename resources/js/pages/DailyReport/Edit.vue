@@ -54,9 +54,13 @@ function syncReportRow(row) {
     row.line_total = Number((row.quantity_sold * wholesale).toFixed(2));
 }
 
+function dateInputValue(value) {
+    return value ? String(value).split('T')[0].slice(0, 10) : '';
+}
+
 // populate form with existing data
 if (daily_report) {
-    form.report_date = daily_report.report_date || '';
+    form.report_date = dateInputValue(daily_report.report_date);
     form.seller_id = daily_report.seller_id || '';
     form.morning_checkup = daily_report.morning_checkup || '';
     form.evening_checkup = daily_report.evening_checkup || '';
@@ -122,10 +126,19 @@ function submit() {
 
                 <div class="mt-6 max-w-7xl mx-auto sm:w-[100%] sm:px-6 lg:px-8">
                     <form @submit.prevent="submit" class="space-y-6 sm:w-[100%]">
+                        <div v-if="Object.keys(form.errors).length"
+                            class="rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+                            <p class="font-semibold">No se pudo actualizar el reporte:</p>
+                            <ul class="mt-2 list-disc space-y-1 pl-5">
+                                <li v-for="(message, key) in form.errors" :key="key">{{ message }}</li>
+                            </ul>
+                        </div>
+
                         <div class="grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 gap-4">
                             <div class="w-[260px]">
                                 <label class="block text-sm font-medium text-gray-700">Vendedor</label>
                                 <select v-model="form.seller_id"
+                                    required
                                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm W-[320px]">
                                     <option value="">Seleccionar vendedor</option>
                                     <option v-for="s in (sellers || [])" :key="s.id" :value="s.id">{{ s.name }} {{
@@ -138,6 +151,7 @@ function submit() {
                             <div class="w-[180px]">
                                 <label class="block text-sm font-medium text-gray-700">Fecha de reporte</label>
                                 <input v-model="form.report_date" type="date"
+                                    required
                                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" />
                                 <InputError :message="form.errors.report_date" />
                             </div>
@@ -145,6 +159,7 @@ function submit() {
                             <div class="w-[180px]">
                                 <label class="block text-sm font-medium text-gray-700">Revisión Matutina</label>
                                 <input v-model="form.morning_checkup" type="time" step="1"
+                                    required
                                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" />
                                 <InputError :message="form.errors.morning_checkup" />
                             </div>
@@ -205,12 +220,12 @@ function submit() {
                                                     v-model.number="form.seller_daily_reports[idx].quantity_return"
                                                     @input="syncReportRow(form.seller_daily_reports[idx])" type="number"
                                                     min="0" class="w-24 rounded border" /></td>
-                                            <td class="px-4 py-2 text-sm font-medium text-gray-700">{{ p.quantity_sold
+                                            <td class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-slate-200">{{ p.quantity_sold
                                                 ?? 0 }}</td>
                                             <td class="px-4 py-2"><input
                                                     v-model.number="form.seller_daily_reports[idx].wholesale_price"
                                                     @input="syncReportRow(form.seller_daily_reports[idx])" type="number"
-                                                    step="0.01" class="w-28 rounded border" /></td>
+                                                    step="0" class="w-28 rounded border" /></td>
                                             <td class="px-4 py-2 text-sm font-medium text-gray-700">{{ (p.line_total ??
                                                 0).toFixed(2) }}</td>
                                             <td class="px-4 py-2">

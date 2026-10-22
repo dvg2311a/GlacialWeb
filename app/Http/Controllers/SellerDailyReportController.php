@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SellerDailyReportRequest;
+use App\Exceptions\InventoryException;
 use App\Models\InventoryTransaction;
 use App\Models\Product;
 use App\Models\Seller;
@@ -145,7 +146,21 @@ class SellerDailyReportController extends Controller
         } catch (Throwable $e) {
             report($e);
 
-            return back()->withInput()->with('error', 'Ocurrió un error al crear el registro');
+            if ($e instanceof ValidationException) {
+                return back()
+                    ->withInput()
+                    ->withErrors($e->errors());
+            }
+
+            if ($e instanceof InventoryException) {
+                return back()
+                    ->withInput()
+                    ->withErrors(['seller_reports' => $e->getMessage()]);
+            }
+
+            return back()
+                ->withInput()
+                ->withErrors(['seller_reports' => 'No fue posible guardar el reporte. Verifique los datos e inténtelo nuevamente.']);
         }
     }
 
@@ -325,7 +340,21 @@ class SellerDailyReportController extends Controller
         } catch (Throwable $e) {
             report($e);
 
-            return back()->withInput()->with('error', 'Ocurrió un error al actualizar el registro');
+            if ($e instanceof ValidationException) {
+                return back()
+                    ->withInput()
+                    ->withErrors($e->errors());
+            }
+
+            if ($e instanceof InventoryException) {
+                return back()
+                    ->withInput()
+                    ->withErrors(['seller_daily_reports' => $e->getMessage()]);
+            }
+
+            return back()
+                ->withInput()
+                ->withErrors(['seller_daily_reports' => 'No fue posible actualizar el reporte. Verifique los datos e inténtelo nuevamente.']);
         }
     }
 

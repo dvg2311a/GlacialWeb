@@ -22,26 +22,36 @@ class SellerDailyReportRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'report_date' => 'required|date',
             'morning_checkup' => ['nullable', 'regex:/^\d{2}:\d{2}(:\d{2})?$/'],
             'evening_checkup' => ['nullable', 'regex:/^\d{2}:\d{2}(:\d{2})?$/'],
             'seller_id' => 'nullable|exists:sellers,id',
-            'seller_reports' => 'nullable|array',
+            'seller_reports' => 'nullable|array|min:1',
             'seller_reports.*.seller_id' => 'required|exists:sellers,id',
             'seller_reports.*.morning_checkup' => ['required', 'regex:/^\d{2}:\d{2}(:\d{2})?$/'],
             'seller_reports.*.evening_checkup' => ['nullable', 'regex:/^\d{2}:\d{2}(:\d{2})?$/'],
-            'seller_reports.*.products' => 'nullable|array|min:1',
+            'seller_reports.*.products' => 'required|array|min:1',
             'seller_reports.*.products.*.id' => 'required|exists:products,id',
             'seller_reports.*.products.*.quantity_out' => 'required|integer|min:0',
             'seller_reports.*.products.*.quantity_return' => 'nullable|integer|min:0',
             'seller_reports.*.products.*.wholesale_price' => 'required|numeric|min:0',
-            'seller_daily_reports' => 'nullable|array',
+            'seller_daily_reports' => 'nullable|array|min:1',
             'seller_daily_reports.*.id' => 'required|exists:products,id',
             'seller_daily_reports.*.quantity_out' => 'required|integer|min:0',
             'seller_daily_reports.*.quantity_return' => 'nullable|integer|min:0',
             'seller_daily_reports.*.wholesale_price' => 'required|numeric|min:0',
         ];
+
+        if ($this->isMethod('POST')) {
+            $rules['seller_reports'] = 'required|array|min:1';
+        } else {
+            $rules['seller_id'] = 'required|exists:sellers,id';
+            $rules['morning_checkup'] = ['required', 'regex:/^\d{2}:\d{2}(:\d{2})?$/'];
+            $rules['seller_daily_reports'] = 'required|array|min:1';
+        }
+
+        return $rules;
     }
 
     #[Override]
