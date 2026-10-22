@@ -197,11 +197,6 @@ const showingNavigationDropdown = ref(false);
                                             <Apple class="mr-2 w-4 h-4 inline" />
                                             <span>Sabor de Producto</span>
                                         </ResponsiveNavLink>
-                                        <ResponsiveNavLink :href="route('status_products.index')"
-                                            :active="route().current('status_products.index')">
-                                            <Info class="mr-2 w-4 h-4 inline" />
-                                            <span>Estado de Producto</span>
-                                        </ResponsiveNavLink>
                                         <ResponsiveNavLink :href="route('products.index')"
                                             :active="route().current('products.index')">
                                             <IceCreamCone class="mr-2 w-4 h-4 inline" />

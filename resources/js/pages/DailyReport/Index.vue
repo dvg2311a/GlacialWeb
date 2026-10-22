@@ -76,7 +76,7 @@ function confirmReport(id) {
                     <NavLink :href="route('seller_daily_reports.create')"
                         class="-translate-x-4 lg:-translate-x-0 inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 focus:text-white active:bg-blue-600 disabled:opacity-25 transition">
 
-                        Nuevo venta
+                        Nueva venta
                         <Plus :size="18" class="ml-2" />
                     </NavLink>
                 </div>

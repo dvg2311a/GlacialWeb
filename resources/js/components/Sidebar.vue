@@ -213,13 +213,6 @@ import { toggleTheme } from '@/theme';
                                     <span>Sabor de Producto</span>
                                 </NavLink>
 
-                                <NavLink :href="route('status_products.index')"
-                                    :active="route().current('status_products.index')"
-                                    class="flex items-center p-3 ml-2">
-                                    <Info class="mr-1" />
-                                    <span>Estado de Producto</span>
-                                </NavLink>
-
                                 <NavLink :href="route('products.index')" :active="route().current('products.index')"
                                     class="flex items-center p-3 ml-2">
                                     <IceCreamCone class="mr-1" />
