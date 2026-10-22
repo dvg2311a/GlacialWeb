@@ -24,7 +24,6 @@ class OrderEnterpriseRequest extends FormRequest
     {
         return [
             'order_date' => 'required|date',
-            'expected_date' => 'required|date|after:order_date',
             'order_status' => 'required|in:Pending,Received',
             'total_tax' => 'required|decimal:0,2',
             'subtotal_base' => 'required|decimal:0,2',

@@ -121,10 +121,6 @@ function getProductName(detail) {
                                 <p class="mt-1 text-gray-800">{{ formatDate(order.order_date) }}</p>
                             </div>
                             <div>
-                                <h2 class="text-sm font-medium text-gray-500"><b>Fecha Esperada</b></h2>
-                                <p class="mt-1 text-gray-800">{{ formatDate(order.expected_date) }}</p>
-                            </div>
-                            <div>
                                 <h2 class="text-sm font-medium text-gray-500"><b>Estado</b></h2>
                                 <p class="mt-1 text-gray-800">{{ order.order_status }}</p>
                             </div>

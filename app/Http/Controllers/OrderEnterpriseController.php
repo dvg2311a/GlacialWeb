@@ -50,7 +50,6 @@ class OrderEnterpriseController extends Controller
 
                 $order = OrderEnterprise::create([
                     'order_date' => $request->order_date,
-                    'expected_date' => $request->expected_date,
                     'order_status' => 'Pending',
                 ]);
 
@@ -189,7 +188,6 @@ class OrderEnterpriseController extends Controller
 
                 $order->update([
                     'order_date' => $request->order_date,
-                    'expected_date' => $request->expected_date,
                     'order_status' => 'Pending',
                 ]);
 

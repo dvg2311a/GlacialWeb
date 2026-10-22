@@ -86,10 +86,10 @@ function confirmReceipt(id) {
                             <tr>
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Fecha Pedido</th>
-                                <th
+                                    Fecha de Ingreso</th>
+                                <!-- <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Fecha Esperada</th>
+                                    Fecha Esperada</th> -->
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Total de Cajas Recibidas</th>
@@ -113,8 +113,6 @@ function confirmReceipt(id) {
                         <tbody class="bg-white divide-y divide-gray-200">
                             <tr v-for="o in order" :key="o.id">
                                 <td class="px-6 py-4 whitespace-nowrap text-center">{{ formatDate(o.order_date) }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">{{ formatDate(o.expected_date) }}
-                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-center">{{
                                     o.purchase_order_detail.reduce((total, detail) => total + detail.boxes_received, 0)
                                     }}</td>

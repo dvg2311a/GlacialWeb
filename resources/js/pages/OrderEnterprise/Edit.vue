@@ -13,7 +13,6 @@ const props = defineProps({
 
 const form = useForm({
 	order_date: props.order?.order_date ?? '',
-	expected_date: props.order?.expected_date ?? '',
 	order_status: props.order?.order_status ?? 'Pending',
 	products: ((props.purchase && props.purchase.length) ? props.purchase : (props.order?.purchaseOrderDetail || [])).map(p => ({
 		id: p.product_id ?? p.product?.id ?? p.id ?? '',
@@ -118,17 +117,10 @@ function submit() {
 
 						<div class="flex gap-6 items-end flex-wrap">
 							<div>
-								<label class="block text-sm font-medium text-gray-700"><b>Fecha de Pedido</b></label>
+								<label class="block text-sm font-medium text-gray-700"><b>Fecha de ingreso</b></label>
 								<input v-model="form.order_date" type="date" required
 									class="mt-1 block w-48 rounded-md border-gray-300 shadow-sm" />
 								<InputError :message="form.errors.order_date" />
-							</div>
-
-							<div>
-								<label class="block text-sm font-medium text-gray-700"><b>Fecha Esperada</b></label>
-								<input v-model="form.expected_date" type="date" required
-									class="mt-1 block w-48 rounded-md border-gray-300 shadow-sm" />
-								<InputError :message="form.errors.expected_date" />
 							</div>
 
 							<div>
@@ -156,7 +148,7 @@ function submit() {
 									<thead>
 										<tr class="text-left bg-gray-100 text-nowrap">
 											<th class="px-2">Producto</th>
-											<th class="px-2">Cajas Pedidas</th>
+											<!-- <th class="px-2">Cajas Pedidas</th> -->
 											<th class="px-2">Cajas Recibidas</th>
 											<th class="px-2">Precio x Caja</th>
 											<th class="px-2">% Impuesto</th>
@@ -172,10 +164,10 @@ function submit() {
 												</select>
 												<InputError :message="form.errors[`products.${idx}.id`]" />
 											</td>
-											<td class="px-2 py-2">
+											<!-- <td class="px-2 py-2">
 												<input v-model.number="p.boxes_ordered" type="number" min="0" @input="recalcTotals()" class="w-24 rounded border-gray-300" />
 												<InputError :message="form.errors[`products.${idx}.boxes_ordered`]" />
-											</td>
+											</td> -->
 											<td class="px-2 py-2">
 												<input v-model.number="p.boxes_received" type="number" min="0" @input="recalcTotals()" class="w-24 rounded border-gray-300" />
 												<InputError :message="form.errors[`products.${idx}.boxes_received`]" />
@@ -223,4 +215,3 @@ function submit() {
 		</div>
 	</AuthenticatedLayout>
 </template>
-

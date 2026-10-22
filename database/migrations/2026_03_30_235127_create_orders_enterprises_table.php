@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('orders_enterprises', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('order_date');
-            $table->date('expected_date');
             $table->enum('order_status', ['Pending', 'Received']);
             $table->decimal('total_tax', 12, 2)->default(0);
             $table->decimal('subtotal_base', 12, 2)->default(0);

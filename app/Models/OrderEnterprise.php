@@ -11,7 +11,6 @@ class OrderEnterprise extends Model
 
     protected $fillable = [
         'order_date',
-        'expected_date',
         'order_status',
         'total_tax',
         'subtotal_base',

@@ -11,7 +11,6 @@ defineProps({
 
 const form = useForm({
     order_date: '',
-    expected_date: '',
     order_status: 'Pending',
     products: [],
     total_tax: 0,
@@ -110,17 +109,10 @@ addProduct();
 
                         <div class="flex gap-6 items-end flex-wrap">
                             <div>
-                                <label class="block text-md font-medium text-gray-700"><b>Fecha de pedido</b></label>
+                                <label class="block text-md font-medium text-gray-700"><b>Fecha de ingreso</b></label>
                                 <input v-model="form.order_date" type="date" required
                                     class="mt-1 block w-48 rounded-md border-gray-300 shadow-sm" />
                                 <InputError :message="form.errors.order_date" />
-                            </div>
-
-                            <div>
-                                <label class="block text-md font-medium text-gray-700"><b>Fecha esperada</b></label>
-                                <input v-model="form.expected_date" type="date" required
-                                    class="mt-1 block w-48 rounded-md border-gray-300 shadow-sm" />
-                                <InputError :message="form.errors.expected_date" />
                             </div>
 
                             <div>
