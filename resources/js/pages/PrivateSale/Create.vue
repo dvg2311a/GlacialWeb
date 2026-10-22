@@ -311,7 +311,7 @@ function submit() {
                                             </td>
                                             <td class="px-4 py-3">
                                                 <input list="unit_price" v-model.number="row.unit_price" type="number"
-                                                    min="0" step="0.01" required
+                                                    min="0" step="0" required
                                                     class="w-36 rounded-md border-slate-300 shadow-sm focus:border-blue-600 focus:ring-blue-600"
                                                     @input="syncProductRow(row)" />
                                                 <datalist id="unit_price">

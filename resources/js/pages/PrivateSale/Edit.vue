@@ -215,7 +215,7 @@ function submit() {
                                             <InputError :message="errorFor(`private_sales.${productIndex}.quantity` as string)" />
                                         </td>
                                         <td class="px-4 py-3">
-                                            <input list="unit_price" v-model.number="row.unit_price" type="number" min="0" step="0.10" required class="w-36 rounded-md border-slate-300 shadow-sm focus:border-blue-600 focus:ring-blue-600" @input="syncProductRow(row)" />
+                                            <input list="unit_price" v-model.number="row.unit_price" type="number" min="0" step="0" required class="w-36 rounded-md border-slate-300 shadow-sm focus:border-blue-600 focus:ring-blue-600" @input="syncProductRow(row)" />
                                             <datalist id="unit_price">
                                                             <option value="10.00" />
                                                             <option value="13.00" />
