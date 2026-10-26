@@ -59,7 +59,7 @@ function confirmDelete(id) {
                 </div>
 
                 <div class=" bg-white mt-6 -ml-4 overflow-auto sm:w-[90vw] w-[100vw] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
-                    style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
+                    style="-webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;">
                     <table class="min-w-[0px] lg:w-full sm:w-[90vw] divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>

@@ -96,8 +96,8 @@ function confirmReport(id) {
 
 
 
-                    <div class="overflow-auto w-[350px] md:w-[100%] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
-                        style="-webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain;">
+                    <div class="overflow-auto w-[100vw] md:w-[100%] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                        style="-webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;">
 
                         <table class="min-w-[0px] sm:w-[100%] lg:w-full divide-y rounded-lg divide-gray-200">
                             <thead class="bg-slate-50 dark:bg-slate-800/70 rounded-lg">
