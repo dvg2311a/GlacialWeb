@@ -65,7 +65,7 @@ function confirmReport(id) {
                 <div class=" overflow-hidden sm:rounded-lg rounded-xl border border-slate-200 bg-white px-5 py-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
                     <div class="p-1 0 ">
                         <h1 class="text-2xl font-bold mb-4">Ventas diarias</h1>
-                        <p class="-translate-x-1 w-[350px] sm:w-[100%] lg:w-full" style="z-index: -1000;">Este apartado contiene el listado de ventas diarias de los
+                        <p class="-translate-x-1 w-[82vw] sm:w-[100%] lg:w-full" style="z-index: -1000;">Este apartado contiene el listado de ventas diarias de los
                             vendedores.
                             Puedes agregar nuevas ventas o editar las existentes.
                             Para eliminar alguna venta, consulta con el adminsitrador</p>
@@ -88,7 +88,6 @@ function confirmReport(id) {
 
                         <NavLink :href="route('seller_daily_reports.report_date', { report_date: date })"
                             class=" inline-flex items-center px-3 py-1 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 focus:outline-none hover:text-white focus:border-blue-700 focus:ring focus:ring-blue-200 focus:text-white active:bg-blue-600 disabled:opacity-25 transition">
-
                             Ver Reporte
                             <Eye :size="18" class="ml-2" />
                         </NavLink>
@@ -96,7 +95,7 @@ function confirmReport(id) {
 
 
 
-                    <div class="overflow-auto w-[100vw] md:w-[100%] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
+                    <div class="overflow-auto w-[96vw] md:w-[100%] lg:w-full lg:p-0 lg:overflow-hidden pr-4 pb-4 scrollbar-thin scrollbar-thumb-gray-400"
                         style="-webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;">
 
                         <table class="min-w-[0px] sm:w-[100%] lg:w-full divide-y rounded-lg divide-gray-200">
