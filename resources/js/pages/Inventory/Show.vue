@@ -33,8 +33,8 @@ defineProps<{
 <template>
     <Head :title="`Inventario: ${inventory.product?.name || 'Producto'}`" />
     <AuthenticatedLayout>
-        <div class="py-0 lg:py-10 w-[90vw] lg:w-full lg:-ml-12">
-            <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
+        <div class="py-0 lg:py-10 w-[90vw] lg:w-[80vw] lg:-ml-[8vw]">
+            <div class="mx-auto max-w-7xl space-y-6 sm:px-6 ">
                 <div class="flex items-center gap-3">
                     <NavLink :href="route('inventories.index')" class="text-slate-500"><ArrowLeft /></NavLink>
                     <div>
