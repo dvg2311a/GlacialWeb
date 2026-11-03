@@ -106,7 +106,7 @@ function submit() {
                             <label for="retail_price" class="block text-sm font-medium text-gray-700">Precio de
                                 Detalle (C$)</label>
                             <input v-model="form.retail_price" type="number" name="retail_price" id="retail_price"
-                                required min="0"
+                                required min="0" step="0"
                                 class="mt-1 block w-40 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <div v-if="form.errors.retail_price" class="text-red-600 text-sm mt-1">{{
                                 form.errors.retail_price }}</div>
@@ -115,7 +115,7 @@ function submit() {
                             <label for="purchase_price" class="block text-sm font-medium text-gray-700">Precio de
                                 Compra (C$)</label>
                             <input v-model="form.purchase_price" type="number" name="purchase_price" id="purchase_price"
-                                required min="0"
+                                required min="0" step="0.01"
                                 class="mt-1 block w-40 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <div v-if="form.errors.purchase_price" class="text-red-600 text-sm mt-1">{{
                                 form.errors.purchase_price }}</div>
