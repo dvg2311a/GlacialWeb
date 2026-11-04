@@ -64,7 +64,7 @@ defineProps<{
                                 <th class="px-5 py-3 text-right text-xs uppercase text-slate-500">Cantidad</th>
                                 <th class="px-5 py-3 text-right text-xs uppercase text-slate-500">Stock</th>
                                 <th class="px-5 py-3 text-right text-xs uppercase text-slate-500">Comprometido</th>
-                                <th class="px-5 py-3 text-left text-xs uppercase text-slate-500">Referencia</th>
+                                <!-- <th class="px-5 py-3 text-left text-xs uppercase text-slate-500">Referencia</th> -->
                                 <th class="px-5 py-3 text-left text-xs uppercase text-slate-500">Usuario</th>
                             </tr>
                         </thead>
@@ -75,7 +75,7 @@ defineProps<{
                                 <td class="px-5 py-4 text-right text-sm dark:text-white  text-nowrap">{{ transaction.quantity }}</td>
                                 <td class="px-5 py-4 text-right text-sm dark:text-white  text-nowrap">{{ transaction.stock_before }} → {{ transaction.stock_after }}</td>
                                 <td class="px-5 py-4 text-right text-sm dark:text-white  text-nowrap">{{ transaction.committed_before }} → {{ transaction.committed_after }}</td>
-                                <td class="px-5 py-4 text-sm dark:text-white  text-nowrap">{{ transaction.reference_type }} #{{ transaction.reference_id }}</td>
+                                <!-- <td class="px-5 py-4 text-sm dark:text-white  text-nowrap">{{ transaction.reference_type }} #{{ transaction.reference_id }}</td> -->
                                 <td class="px-5 py-4 text-sm dark:text-white  text-nowrap">{{ transaction.user ? `${transaction.user.name} ${transaction.user.surname || ''}` : 'Sistema' }}</td>
                             </tr>
                             <tr v-if="!inventory.transactions.length"><td colspan="7" class="px-5 py-10 text-center text-slate-500">No hay movimientos registrados.</td></tr>

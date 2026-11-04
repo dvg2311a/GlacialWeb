@@ -261,22 +261,25 @@ class SellerDailyReportController extends Controller
             DB::transaction(function () use ($request, $id, $inventoryService) {
 
                 $daily_reports = SellerDailyReport::with('sellerDailyReportDetail')->findOrFail($id);
+                $wasConfirmed = $daily_reports->status === 'Confirmed';
 
-                if ($daily_reports->status === 'Confirmed') {
+                if ($wasConfirmed) {
                     abort_unless(Auth::user()?->hasRole('Administrador'), 403);
                     $this->reverseConfirmedReportMovements($daily_reports, $inventoryService);
                 }
 
-                foreach ($daily_reports->sellerDailyReportDetail as $detail) {
-                    if ((int) $detail->quantity_out > 0) {
-                        $inventoryService->releaseCommitment(
-                            productId: $detail->product_id,
-                            quantity: (int) $detail->quantity_out,
-                            referenceType: SellerDailyReportDetail::class,
-                            referenceId: $detail->id,
-                            movementKey: "daily-report-detail:{$detail->id}:edit-release",
-                            notes: "Liberación por edición del reporte diario {$daily_reports->id}.",
-                        );
+                if (! $wasConfirmed) {
+                    foreach ($daily_reports->sellerDailyReportDetail as $detail) {
+                        if ((int) $detail->quantity_out > 0) {
+                            $inventoryService->releaseCommitment(
+                                productId: $detail->product_id,
+                                quantity: (int) $detail->quantity_out,
+                                referenceType: SellerDailyReportDetail::class,
+                                referenceId: $detail->id,
+                                movementKey: "daily-report-detail:{$detail->id}:edit-release",
+                                notes: "Liberación por edición del reporte diario {$daily_reports->id}.",
+                            );
+                        }
                     }
                 }
 

@@ -64,12 +64,12 @@ function statusClass(item: InventoryRow) {
                     </div>
                 </section>
 
-                <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+                <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
                     <div v-for="card in [
                         ['Stock', summary.stock],
                         ['Comprometido', summary.committed],
                         ['Disponible', summary.available],
-                        ['En ruta', summary.in_transit],
+                        // ['En ruta', summary.in_transit],
                         ['Stock bajo', summary.low],
                         ['Agotados', summary.out],
                     ]" :key="card[0]" class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
@@ -103,7 +103,7 @@ function statusClass(item: InventoryRow) {
                                 <th class="px-5 py-3 text-right text-xs uppercase text-slate-500">Stock</th>
                                 <th class="px-5 py-3 text-right text-xs uppercase text-slate-500">Comprometido</th>
                                 <th class="px-5 py-3 text-right text-xs uppercase text-slate-500">Disponible</th>
-                                <th class="px-5 py-3 text-right text-xs uppercase text-slate-500">En ruta</th>
+                                <!-- <th class="px-5 py-3 text-right text-xs uppercase text-slate-500">En ruta</th> -->
                                 <th class="px-5 py-3 text-left text-xs uppercase text-slate-500">Estado</th>
                                 <th class="px-5 py-3 text-right text-xs uppercase text-slate-500">Acciones</th>
                             </tr>
@@ -114,7 +114,7 @@ function statusClass(item: InventoryRow) {
                                 <td class="px-5 py-4 text-right dark:text-white">{{ item.stock }}</td>
                                 <td class="px-5 py-4 text-right dark:text-white">{{ item.committed_quantity }}</td>
                                 <td class="px-5 py-4 text-right dark:text-white font-semibold">{{ item.available_quantity }}</td>
-                                <td class="px-5 py-4 text-right dark:text-white">{{ item.in_transit_quantity }}</td>
+                                <!-- <td class="px-5 py-4 text-right dark:text-white">{{ item.in_transit_quantity }}</td> -->
                                 <td class="px-5 py-4"><span class="rounded-full px-2 py-1 text-xs font-semibold" :class="statusClass(item)">{{ statusLabel(item) }}</span></td>
                                 <td class="px-5 py-4 text-right">
                                     <NavLink :href="route('inventories.show', item.id)" class="text-blue-700 hover:text-blue-900" title="Ver historial"><Eye :size="18" /></NavLink>
