@@ -97,16 +97,16 @@ function confirmDelete(id) {
                                     {{ product.name }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    {{ product.wholesale_price }}
+                                    C$ {{ product.wholesale_price }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    {{ product.retail_price }}
+                                    C$ {{ product.retail_price }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    {{ product.purchase_price }}
+                                    C$ {{ product.purchase_price }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    {{ product.bad_price }}
+                                    C$ {{ product.bad_price }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     {{ product.type_product.name }}
