@@ -52,7 +52,7 @@ function submit() {
 
     <Head title="Editar Vendedor" />
     <AuthenticatedLayout>
-        <div class="py-12">
+        <div class="py-8 sm:w-[90vw] lg:w-[60vw]">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="ml-4 p-1 flex flex-wrap">
@@ -66,7 +66,7 @@ function submit() {
                 </div>
 
                 <div class="mt-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <form @submit.prevent="submit" class=" flex flex-wrap gap-5 sm:w-[90vw] justify-center items-start w-full p-6 rounded-lg shadow-md">
+                    <form @submit.prevent="submit" class=" flex flex-wrap gap-5 sm:w-[90vw] w-full lg:w-[60vw] justify-center items-start p-6 rounded-lg shadow-md">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
                             <input v-model="form.name" type="text" name="name" id="name" required
