@@ -17,7 +17,7 @@ class OrderEnterpriseController extends Controller
 {
     public function index()
     {
-        $order = OrderEnterprise::query()->with('purchaseOrderDetail:id,boxes_received,purchase_price_total_per_box,order_enterprise_id,product_id')->latest()->get();
+        $order = OrderEnterprise::query()->with('purchaseOrderDetail:id,boxes_received,purchase_price_total_per_box,order_enterprise_id,product_id')->latest('order_date')->get();
         $receiptKeys = InventoryTransaction::query()
             ->where('reference_type', PurchaseOrderDetail::class)
             ->whereIn('reference_id', $order->flatMap(fn (OrderEnterprise $enterpriseOrder) => $enterpriseOrder->purchaseOrderDetail->pluck('id')))
